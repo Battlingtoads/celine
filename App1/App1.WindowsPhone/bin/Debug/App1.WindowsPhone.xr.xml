@@ -36,7 +36,9 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Slider">
       <RootProperty Name="Orientation" />
+      <RootProperty Name="StepFrequency" />
       <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="IsThumbToolTipEnabled" />
       <RootEvent Name="ValueChanged" />
     </RootType>
     <RootType FullName="gnow.UI.MyMeter" />

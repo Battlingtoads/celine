@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
@@ -28,9 +29,17 @@ namespace gnow.UI
 
         private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            meter.SetLevel((float)e.NewValue / 100);
-            valueBox.Text = (e.NewValue.ToString());
+            meter.SetLevel((float)e.NewValue/100);
+            SetTextValue(mapLogarithmic((float)e.NewValue));
             OnFaderValueChangedEvent(e);
+        }
+
+        public void SetTextValue(float val)
+        {
+            if (val < -100)
+                valueBox.Text = "-" + '\u221E'.ToString();
+            else
+                valueBox.Text = val.ToString("######.00");
         }
 
          
@@ -44,6 +53,28 @@ namespace gnow.UI
             if(handler != null)
             {
                 handler(this, e);
+            }
+        }
+
+        public float mapLogarithmic(float value)
+        {
+            float retVal;
+            if(value == 0)
+            {
+                return -1000;
+            }
+            else if(value == 1)
+            {
+                return -82;
+            }
+            else if (value <= 70)
+            {
+                retVal = (float)Math.Log(value);
+                return retVal * 21.183f - 90;
+            }
+            else
+            {
+                return value * 10 / 30 - 23.3333f;
             }
         }
     }
