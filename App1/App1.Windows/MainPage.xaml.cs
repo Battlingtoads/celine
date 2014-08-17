@@ -29,7 +29,6 @@ namespace App1
     {
         List<Fader> faders;
         List<MyMeter> meters;
-        private Fader faderTest;
         public MainPage()
         {
             this.InitializeComponent();
