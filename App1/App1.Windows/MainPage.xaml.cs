@@ -55,7 +55,13 @@ namespace App1
             for(int i = 0; i < 64; i++)
             {
                 Meter meterBase = new Meter();
-                meterBase.SetBackgroundFill( new SolidColorBrush(new Color() { A = 255, B = 00, G = 255, R = 00 }));
+                LinearGradientBrush brsh = new LinearGradientBrush();
+                brsh.StartPoint = new Point(.5, 1);
+                brsh.EndPoint = new Point(.5, 0);
+                brsh.GradientStops.Add(new GradientStop { Color = new Color() { A=255, G = 255 }, Offset = 0.0 });
+                brsh.GradientStops.Add(new GradientStop { Color = new Color() { A=255, G = 255, R=255}, Offset = 0.70 });
+                brsh.GradientStops.Add(new GradientStop { Color = new Color() { A=255, R = 255 }, Offset = 1.0 });
+                meterBase.SetBackgroundFill(brsh);
                 meterBase.SetValue(MarginProperty, new Thickness() { Left = 2, Right = 2 });
                 meters.Add(meterBase);
                 meterGrid.Children.Add(meters[i]);
