@@ -95,4 +95,10 @@
 
 
     </Grid>
+    <Page.TopAppBar>
+        <AppBar>
+            <AppBarButton Label="label" Icon="Refresh" />
+
+        </AppBar>
+    </Page.TopAppBar>
 </Page>
