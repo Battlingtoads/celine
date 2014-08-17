@@ -30,10 +30,12 @@ namespace App1
         List<Fader> faders;
         List<Meter> meters;
         List<Button> navButtons;
+        int currentPage;
         public MainPage()
         {
             this.InitializeComponent();
             Page_Load();
+            currentPage = 0;
         }
         
 
@@ -48,6 +50,21 @@ namespace App1
 
 
         }
+
+        private void NavButtonClick(object sender, RoutedEventArgs e)
+        {
+            Button s = (Button)sender;
+            if(s == navButtons[currentPage])
+            {
+                //do nothing
+                return;
+            }
+            s.BorderBrush = new SolidColorBrush(new Color { A = 255, B = 200 });
+            navButtons[currentPage].BorderBrush = new SolidColorBrush(Windows.UI.Colors.White);
+            currentPage = navButtons.IndexOf(s);
+
+        }
+
         void Page_Load()
         {
             meters = new List<Meter>();
@@ -118,8 +135,10 @@ namespace App1
                 }
                 buttonBase.SetValue(HorizontalAlignmentProperty, HorizontalAlignment.Stretch);
                 buttonBase.SetValue(VerticalAlignmentProperty, VerticalAlignment.Stretch);
+                buttonBase.Click += NavButtonClick;
+                navButtons.Add(buttonBase);
                 navGrid.Children.Add(buttonBase);
-                Grid.SetColumn(buttonBase, i + 1);
+                Grid.SetColumn(buttonBase, i);
                 Grid.SetRow(buttonBase, 0);
 
             }
