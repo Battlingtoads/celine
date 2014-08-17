@@ -24,7 +24,13 @@ namespace gnow.UI
         public Fader()
         {
             this.InitializeComponent();
-            meter.SetBackgroundFill(new SolidColorBrush(new Color(){A=255, G=255}));
+            LinearGradientBrush brsh = new LinearGradientBrush();
+            brsh.StartPoint = new Point(.5, 1);
+            brsh.EndPoint = new Point(.5, 0);
+            brsh.GradientStops.Add(new GradientStop { Color = new Color() { A=255, G = 255 }, Offset = 0.0 });
+            brsh.GradientStops.Add(new GradientStop { Color = new Color() { A=255, G = 255, R=255}, Offset = 0.70 });
+            brsh.GradientStops.Add(new GradientStop { Color = new Color() { A=255, R = 255 }, Offset = 1.0 });
+            meter.SetBackgroundFill(brsh);
         }
 
         private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
