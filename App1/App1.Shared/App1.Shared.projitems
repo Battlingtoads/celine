@@ -19,9 +19,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Fader.xaml.cs">
       <DependentUpon>Fader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Meter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MyMeter.xaml.cs">
-      <DependentUpon>MyMeter.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Meter.xaml.cs">
+      <DependentUpon>Meter.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)OSCData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OSCMessage.cs" />
@@ -35,7 +34,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)MyMeter.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Meter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
