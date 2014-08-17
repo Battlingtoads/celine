@@ -37,7 +37,7 @@ using Windows.Storage.Streams;
 namespace gnow.util.osc
 {
 	/// <summary>
-	/// OSCTransmitter
+	/// Singleton wrapper for a udp port which received OSC packets
 	/// </summary>
 	public sealed class OSCInPort
 	{
@@ -45,6 +45,9 @@ namespace gnow.util.osc
 
         private OSCInPort() { }
 
+		/// <summary>
+		/// Gets the instnace of the class
+		/// </summary>
         public static OSCInPort Instance
         {
             get
@@ -53,9 +56,19 @@ namespace gnow.util.osc
             }
         }
 
+		/// <summary>
+		/// Socket which receives OSC packets.
+		/// </summary>
 		private static DatagramSocket udpClient;
+
+		/// <summary>
+		/// The port to listen to for OSC packets
+		/// </summary>
         public static string localPort;
 
+		/// <summary>
+		/// Connects to the local port and sets up receiving events.
+		/// </summary>
 		async public Task Connect()
 		{
 			if(udpClient != null) Close();
@@ -74,7 +87,31 @@ namespace gnow.util.osc
             }
 		}
 
+		/// <summary>
+		/// Connects to the local port and sets up receiving events.
+		/// </summary>
+		/// <param name="port">The local port to connect to.</param>
+		async public Task Connect(int port)
+		{
+			if(udpClient != null) Close();
+			localPort = port;
+            udpClient = new DatagramSocket();
+            udpClient.MessageReceived += udpClient_MessageReceived;
 
+            try
+            {
+                await udpClient.BindServiceNameAsync(localPort);
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return;
+            }
+		}
+
+		/// <summary>
+		/// Event consumer for udp message received. Raises OSCPacketReceivedEvent.
+		/// </summary>
         public void udpClient_MessageReceived(object sender, DatagramSocketMessageReceivedEventArgs e)
         {
             DataReader reader = e.GetDataReader();
@@ -93,6 +130,9 @@ namespace gnow.util.osc
 
         public event OSCPacketReceivedEventHandler OSCPacketReceivedEvent;
 
+		/// <summary>
+		/// Event raised when a packet is received
+		/// </summary>
         private void OnOSCPacketReceivedEvent(OSCPacketReceivedEventArgs e)
         {
             OSCPacketReceivedEventHandler handler = OSCPacketReceivedEvent;
@@ -104,6 +144,9 @@ namespace gnow.util.osc
 
         
 
+		/// <summary>
+		/// Propery closes the port and frees resources.
+		/// </summary>
 		public void Close()
 		{
 			udpClient.Dispose();
@@ -112,8 +155,15 @@ namespace gnow.util.osc
 
 
 	}
+
+	/// <summary>
+	/// Arguments sent with <see cref="OSCPacketRecievedEventHandler"/>.
+	/// </summary>
     public class OSCPacketReceivedEventArgs : EventArgs
     {
+		/// <summary>
+		/// Received packet
+		/// </summary>
         public OSCPacket packet;
     }
 }

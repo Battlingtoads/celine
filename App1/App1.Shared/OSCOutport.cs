@@ -40,7 +40,7 @@ using System.Threading;
 namespace gnow.util.osc
 {
 	/// <summary>
-	/// OSCTransmitter
+	/// Singleton wrapper for udp port which sends OSC packets.
 	/// </summary>
 	public sealed class OSCOutPort
 	{
@@ -48,6 +48,9 @@ namespace gnow.util.osc
 
         private OSCOutPort() { }
 
+		/// <summary>
+		/// Gets the instance of the singleton OSCOutport
+		/// </summary>
         public static OSCOutPort Instance
         {
             get
@@ -56,11 +59,26 @@ namespace gnow.util.osc
             }
         }
 
+		/// <summary>
+		/// Socket where messages are sent from.
+		/// </summary>
 		private static DatagramSocket udpServer;
+
         private static DataWriter oscWriter;
+
+		/// <summary>
+		/// Port to send to.
+		/// </summary>
         public static string remotePort;
+
+		/// <summary>
+		/// IP address to send to.
+		/// </summary>
         public static HostName remoteHost;
 
+		/// <summary>
+		/// Initializes the socket to the <see cref="remoteHost"/> and <see cref="remotePort"/>.
+		/// </summary>
 		async public static Task Connect()
 		{
 			if(udpServer != null) Close();
@@ -78,12 +96,19 @@ namespace gnow.util.osc
             oscWriter = new DataWriter(udpServer.OutputStream);
 		}
 
+		/// <summary>
+		/// Closes the socket and frees resources.
+		/// </summary>
 		public static void Close()
 		{
 			udpServer.Dispose();
 			udpServer = null;
 		}
 
+		/// <summary>
+		/// Writes a packet to the socket.
+		/// </summary>
+		/// <param name="packet">The packet to be sent</param>
 		public async static Task SendAsync(OSCPacket packet)
 		{
 			int byteNum = 0;

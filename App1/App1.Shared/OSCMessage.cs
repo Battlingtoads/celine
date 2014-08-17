@@ -58,11 +58,17 @@ namespace gnow.util.osc
 
         //protected const char ALL     = '*';
 
+		
+		/// <summary>Creates a new OSC Message with a user-defined address.</summary>
+		/// <param name="address">Address to prefix the message with.</summary>
 		public OSCMessage(string address)
 		{
             this.typeTag = ",";
 			this.Address = address;
 		}
+		/// <summary>Creates a new OSC Message with a user-defined address and contains a value.</summary>
+		/// <param name="address">Address to prefix the message with.</summary>
+		/// <param name="value">Value to add to message.</summary>
 		public OSCMessage(string address, OSCData value)
 		{
             this.typeTag = ",";
@@ -70,6 +76,7 @@ namespace gnow.util.osc
 			Append(value);
 		}
 
+		/// <summary>Packs OSC address, tagstring, and values into a properly formatted OSC packet.</summary>
 		override protected void pack()
 		{
 			List<byte> data = new List<byte>();
@@ -89,6 +96,9 @@ namespace gnow.util.osc
             this.binaryData = (byte[])data.ToArray();
         }
 
+		/// <summary>Unpacks an array of bytes into a useable OSC message</summary>
+		/// <param name="bytes">The array to unpack</param>
+		/// <param name="start">The start of the message within the array</summary>
 		public static OSCMessage Unpack(byte[] bytes, ref int start)
 		{
 			string address = oscString.unpack(bytes, ref start);
@@ -117,6 +127,8 @@ namespace gnow.util.osc
             return msg;
         }
 
+		/// <summary>Adds a compatible object to the message</summary>
+		/// <param name="value">Value to append</param>
 		override public void Append(OSCData value)
 		{
             values.Add(value);
@@ -130,7 +142,11 @@ namespace gnow.util.osc
 //	        values.Add("undefined");
 	    }
 
+		/// <summary>Contains the tags of all objects in the message.</summary>
 	    protected string typeTag;
+
+		/// <summary>Adds a tag to the tag list</summary>
+		/// <param name="type">Type of value</param>
 		protected void AppendTag(char type)
 		{
 			typeTag += type;
@@ -138,6 +154,7 @@ namespace gnow.util.osc
 
 		override public bool IsBundle() { return false; }
 
+		/// <summary>Creates an easy to read string from the address and values in the message</summary>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
