@@ -23,7 +23,8 @@ namespace gnow.UI
         {
             this.InitializeComponent();
         }
-
+		///<summary>
+		///Sets the fill of the meter</summary>
         public void SetBackgroundFill(Brush color)
         {
             Background.Fill = color;
