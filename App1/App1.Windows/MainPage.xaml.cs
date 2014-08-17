@@ -29,6 +29,7 @@ namespace App1
     {
         List<Fader> faders;
         List<Meter> meters;
+        List<Button> navButtons;
         public MainPage()
         {
             this.InitializeComponent();
@@ -52,7 +53,7 @@ namespace App1
             meters = new List<Meter>();
 
             //setup meters
-            for(int i = 0; i < 64; i++)
+            for(int i = 0; i < meterGrid.ColumnDefinitions.Count; i++)
             {
                 Meter meterBase = new Meter();
                 LinearGradientBrush brsh = new LinearGradientBrush();
@@ -83,6 +84,46 @@ namespace App1
                 Grid.SetColumn(faders[i], i+1);
             }
 
+            //Navigation
+            navButtons = new List<Button>();
+            for(int i = 0; i < 10; i++)
+            {
+                Button buttonBase = new Button();
+                switch (i)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        buttonBase.Content = "Channel " + (i * 8 + 1).ToString() + "-" + (i * 8 + 8).ToString();
+                        break;
+                    case 4:
+                        buttonBase.Content = "Aux 1-8";
+                        break;
+                    case 5:
+                        buttonBase.Content = "FX Returns";
+                        break;
+                    case 6:
+                        buttonBase.Content = "Bus 1-8";
+                        break;
+                    case 7:
+                        buttonBase.Content = "Bus 9-16";
+                        break;
+                    case 8:
+                        buttonBase.Content = "Matrix/Main";
+                        break;
+                    case 9:
+                        buttonBase.Content = "DCA 1-8";
+                        break;
+                }
+                buttonBase.SetValue(HorizontalAlignmentProperty, HorizontalAlignment.Stretch);
+                buttonBase.SetValue(VerticalAlignmentProperty, VerticalAlignment.Stretch);
+                navGrid.Children.Add(buttonBase);
+                Grid.SetColumn(buttonBase, i + 1);
+                Grid.SetRow(buttonBase, 0);
+
+            }
+            
         }
 
     }
