@@ -17,9 +17,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace gnow.UI 
 {
-    public sealed partial class MyMeter : UserControl
+    public sealed partial class Meter : UserControl
     {
-        public MyMeter()
+        public Meter()
         {
             this.InitializeComponent();
         }

@@ -28,7 +28,7 @@ namespace App1
     public sealed partial class MainPage : Page
     {
         List<Fader> faders;
-        List<MyMeter> meters;
+        List<Meter> meters;
         public MainPage()
         {
             this.InitializeComponent();
@@ -49,12 +49,12 @@ namespace App1
         }
         void Page_Load()
         {
-            meters = new List<MyMeter>();
+            meters = new List<Meter>();
 
             //setup meters
             for(int i = 0; i < 64; i++)
             {
-                MyMeter meterBase = new MyMeter();
+                Meter meterBase = new Meter();
                 meterBase.SetBackgroundFill( new SolidColorBrush(new Color() { A = 255, B = 00, G = 255, R = 00 }));
                 meterBase.SetValue(MarginProperty, new Thickness() { Left = 2, Right = 2 });
                 meters.Add(meterBase);
