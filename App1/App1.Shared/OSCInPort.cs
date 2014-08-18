@@ -91,7 +91,7 @@ namespace gnow.util.osc
 		/// Connects to the local port and sets up receiving events.
 		/// </summary>
 		/// <param name="port">The local port to connect to.</param>
-		async public Task Connect(int port)
+		async public Task Connect(string port)
 		{
 			if(udpClient != null) Close();
 			localPort = port;
