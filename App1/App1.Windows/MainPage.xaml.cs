@@ -13,10 +13,12 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using gnow.util.osc;
+using Windows.System.Threading;
 using System.Diagnostics;
 using Windows.UI.Xaml.Shapes;
 using gnow.UI;
+using gnow.util;
+using gnow.util.osc;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -30,7 +32,7 @@ namespace App1
         List<Fader> faders;
         List<Meter> meters;
         List<Button> navButtons;
-        int currentPage;
+        Constants.FADER_GROUP currentPage;
         public MainPage()
         {
             this.InitializeComponent();
@@ -39,6 +41,10 @@ namespace App1
             
             //Set default fader set to Channel 1-8
             navButtons[0].BorderBrush = new SolidColorBrush(new Color { A = 255, B = 200 });
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
 
         }
         
@@ -58,18 +64,24 @@ namespace App1
         private void NavButtonClick(object sender, RoutedEventArgs e)
         {
             Button s = (Button)sender;
-            if(s == navButtons[currentPage])
+            if(s == navButtons[(int)currentPage])
             {
                 //do nothing
                 return;
             }
             s.BorderBrush = new SolidColorBrush(new Color { A = 255, B = 200 });
-            navButtons[currentPage].BorderBrush = new SolidColorBrush(Windows.UI.Colors.White);
-            currentPage = navButtons.IndexOf(s);
+            navButtons[(int)currentPage].BorderBrush = new SolidColorBrush(Windows.UI.Colors.White);
+            currentPage = (Constants.FADER_GROUP)navButtons.IndexOf(s);
+            GetChannelValues(currentPage);
 
         }
 
-        void Page_Load()
+        private void GetChannelValues(Constants.FADER_GROUP group)
+        {
+            GetValues.FromOSC(group);
+        }
+
+        private void Page_Load()
         {
             meters = new List<Meter>();
 
@@ -148,6 +160,7 @@ namespace App1
             }
             
         }
+
 
     }
 }
