@@ -176,7 +176,7 @@ namespace gnow.util
                     }
                     break;
                 case Constants.FADER_GROUP.AUX_1_8:
-                    for (int i = 0; i < 8; i++ )
+                    for (int i = 1; i < 9; i++ )
                     {
                         StringBuilder address = new StringBuilder();
                         string baseAddress = "/auxin" + '/' + i.ToString().PadLeft(2, '0');
@@ -194,7 +194,7 @@ namespace gnow.util
                     }
                     break;
                 case Constants.FADER_GROUP.FX_RETURNS:
-                    for (int i = 0; i < 8; i++ )
+                    for (int i = 1; i < 9; i++ )
                     {
                         StringBuilder address = new StringBuilder();
                         string baseAddress = "/fxrtn" + '/' + i.ToString().PadLeft(2, '0');
@@ -216,7 +216,8 @@ namespace gnow.util
                     for (int i = 0; i < 8; i++ )
                     {
                         StringBuilder address = new StringBuilder();
-                        string baseAddress = "/bus" + '/' + (1 + i + 8 * (int)group).ToString().PadLeft(2, '0');
+                        int multiplier = group == Constants.FADER_GROUP.BUS_1_8 ? 0 : 1;
+                        string baseAddress = "/bus" + '/' + (1 + i + 8 * multiplier).ToString().PadLeft(2, '0');
                                                
                         //Get main level
                         address.Append(baseAddress);
@@ -231,7 +232,7 @@ namespace gnow.util
                     }
                     break;
                 case Constants.FADER_GROUP.MATRIX_MAIN:
-                    for (int i = 0; i < 6; i++ )
+                    for (int i = 1; i < 7; i++ )
                     {
                         
                         StringBuilder address = new StringBuilder();

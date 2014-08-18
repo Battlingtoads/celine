@@ -74,25 +74,7 @@ namespace gnow.util.behringer
                 case "eq":
                     break;
                 case "mix":
-                    switch (subs[2])
-                    {
-                        case "on":
-                            Channels[e.channel-1].Mute = (Constants.ON_OFF)(int)(oscInt)e.value;
-                            break;
-                        case "fader":
-                            try
-                            {
-                                Channels[e.channel-1].Level.RawLevel = (float)(oscFloat)e.value;
-                            }
-                            catch (Exception err)
-                            {
-                                Debug.WriteLine(err.Message);
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-
+                    Channels[e.channel - 1].SetMixValues(subs[2], e.value);
                     break;
                 case "grp":
                     break;
@@ -102,31 +84,107 @@ namespace gnow.util.behringer
         private void Dispatch_AuxinReceivedEvent(object sender, AuxinReceivedEventArgs e)
         {
             //TODO Dispatch channel
-            Debug.WriteLine("received auxin...");
+            string[] subs = e.subAddress.Split('/');
+            switch (subs[1])
+            {
+                case "config":
+                    break;
+                case "preamp":
+                    break;
+                case "eq":
+                    break;
+                case "mix":
+                    AuxInputs[e.channel - 1].SetMixValues(subs[2], e.value);
+                    break;
+                case "grp":
+                    break;
+            }
         }
 
         private void Dispatch_FXReturnReceivedEvent(object sender, FXReturnReceivedEventArgs e)
         {
             //TODO Dispatch channel
             Debug.WriteLine("received FXReturn...");
+            string[] subs = e.subAddress.Split('/');
+            switch (subs[1])
+            {
+                case "config":
+                    break;
+                case "mix":
+                    FXReturns[e.channel - 1].SetMixValues(subs[2], e.value);
+                    break;
+                case "grp":
+                    break;
+            }
         }
 
         private void Dispatch_BusReceivedEvent(object sender, BusReceivedEventArgs e)
         {
             //TODO Dispatch channel
             Debug.WriteLine("received bus...");
+            string[] subs = e.subAddress.Split('/');
+            switch (subs[1])
+            {
+                case "config":
+                    break;
+                case "dyn":
+                    break;
+                case "insert":
+                    break;
+                case "eq":
+                    break;
+                case "mix":
+                    MixBusses[e.bus - 1].SetMixValues(subs[2], e.value);
+                    break;
+                case "grp":
+                    break;
+            }
         }
 
         private void Dispatch_MatrixReceivedEvent(object sender, MatrixReceivedEventArgs e)
         {
             //TODO Dispatch channel
             Debug.WriteLine("received matrix...");
+            string[] subs = e.subAddress.Split('/');
+            switch (subs[1])
+            {
+                case "config":
+                    break;
+                case "dyn":
+                    break;
+                case "insert":
+                    break;
+                case "eq":
+                    break;
+                case "mix":
+                    Matrices[e.matrix - 1].SetMixValues(subs[2], e.value);
+                    break;
+                case "grp":
+                    break;
+            }
         }
         
         private void Dispatch_MainReceivedEvent(object sender, MainReceivedEventArgs e)
         {
             //TODO Dispatch channel
             Debug.WriteLine("received main...");
+            string[] subs = e.subAddress.Split('/');
+            switch (subs[1])
+            {
+                case "config":
+                    break;
+                case "dyn":
+                    break;
+                case "insert":
+                    break;
+                case "eq":
+                    break;
+                case "mix":
+                    StereoMain.SetMixValues(subs[2], e.value);
+                    break;
+                case "grp":
+                    break;
+            }
         }
     }
 }
