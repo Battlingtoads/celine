@@ -23,6 +23,7 @@ namespace gnow.util.behringer
             eq = new X32Eq();
             color = Constants.COLOR.WHITE;
             isMuted = true;
+            pan = 0;
         }
     }
 }
