@@ -21,6 +21,7 @@ using gnow.util;
 using gnow.util.osc;
 using gnow.util.behringer;
 using gnow.util.behringer.events;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -35,6 +36,7 @@ namespace App1
         List<Meter> meters;
         List<Button> navButtons;
         Constants.FADER_GROUP currentPage;
+        bool runUpdate = true;
         public MainPage()
         {
             this.InitializeComponent();
@@ -44,6 +46,7 @@ namespace App1
             //Set default fader set to Channel 1-8
             navButtons[0].BorderBrush = new SolidColorBrush(new Color { A = 255, B = 200 });
             X32MessageDispatcher.Instance.ChannelReceivedEvent += Console_FaderChanged;
+            Task t = Task.Run(() => { requestMetersAsync(); });
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -88,6 +91,7 @@ namespace App1
             navButtons[(int)currentPage].BorderBrush = new SolidColorBrush(Windows.UI.Colors.White);
             currentPage = (Constants.FADER_GROUP)navButtons.IndexOf(s);
             GetChannelValues(currentPage);
+            runUpdate = false;
 
         }
 
@@ -179,6 +183,15 @@ namespace App1
 
             }
             
+        }
+        protected void requestMetersAsync()
+        {
+            while (runUpdate)
+            {
+                Debug.WriteLine("In other thread woohoo");
+
+                new System.Threading.ManualResetEvent(false).WaitOne(500);
+            }
         }
 
 
