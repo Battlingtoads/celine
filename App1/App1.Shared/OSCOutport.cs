@@ -111,7 +111,6 @@ namespace gnow.util.osc
 		/// <param name="packet">The packet to be sent</param>
 		public async static Task SendAsync(OSCPacket packet)
 		{
-			int byteNum = 0;
 			byte[] data = packet.BinaryData;
 			try 
 			{

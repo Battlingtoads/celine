@@ -145,7 +145,7 @@ namespace gnow.util
             }
         }
 
-        public void FromLocal()
+        public static void FromLocal()
         {
             //Generate fake received messages
 
