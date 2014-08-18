@@ -36,6 +36,10 @@ namespace App1
             this.InitializeComponent();
             Page_Load();
             currentPage = 0;
+            
+            //Set default fader set to Channel 1-8
+            navButtons[0].BorderBrush = new SolidColorBrush(new Color { A = 255, B = 200 });
+
         }
         
 
