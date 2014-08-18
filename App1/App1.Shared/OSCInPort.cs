@@ -142,6 +142,12 @@ namespace gnow.util.osc
             }
         }
 
+        public void RaiseEventFake(OSCPacket packet)
+        {
+            OSCPacketReceivedEventArgs args = new OSCPacketReceivedEventArgs();
+            args.packet = packet;
+            OnOSCPacketReceivedEvent(args);
+        }
         
 
 		/// <summary>

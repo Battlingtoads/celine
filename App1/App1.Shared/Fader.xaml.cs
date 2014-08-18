@@ -48,6 +48,10 @@ namespace gnow.UI
                 valueBox.Text = val.ToString("######.00");
         }
 
+        public void SetFaderValue(float val)
+        {
+            slider0.Value = val*100;           
+        }
          
         public delegate void FaderValueChangedEventHandler(object sender, RangeBaseValueChangedEventArgs e);
 

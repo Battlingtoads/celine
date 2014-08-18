@@ -148,7 +148,8 @@ namespace gnow.util
         public static void FromLocal()
         {
             //Generate fake received messages
-
+            OSCMessage msg = new OSCMessage("/ch/01/mix/level", (oscFloat).5f);
+            OSCInPort.Instance.RaiseEventFake(msg);
             //raise events
         }
     }

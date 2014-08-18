@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Shapes;
 using gnow.UI;
 using gnow.util;
 using gnow.util.osc;
+using gnow.util.behringer;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -41,11 +42,17 @@ namespace App1
             
             //Set default fader set to Channel 1-8
             navButtons[0].BorderBrush = new SolidColorBrush(new Color { A = 255, B = 200 });
+            OSCInPort.Instance.OSCPacketReceivedEvent += Console_FaderChanged;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
+        }
+
+        private void Console_FaderChanged(object sender, OSCPacketReceivedEventArgs e)
+        {
+            faders[0].SetFaderValue((oscFloat)e.packet.Values[0]);
         }
         
 
@@ -78,8 +85,12 @@ namespace App1
 
         private void GetChannelValues(Constants.FADER_GROUP group)
         {
+#if DEVEL
+            RequestValues.FromLocal();
+#else
             //ignore warning, it doesn't matter how long this takes
             RequestValues.FromOSC(group);
+#endif
         }
 
         private void Page_Load()
