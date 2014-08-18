@@ -52,7 +52,8 @@ namespace App1
 
         private void Console_FaderChanged(object sender, OSCPacketReceivedEventArgs e)
         {
-            faders[0].SetFaderValue((oscFloat)e.packet.Values[0]);
+            if (e.packet.Address == "/ch/02/mix/fader")
+                faders[1].SetFaderValue((oscFloat)e.packet.Values[0]);
         }
         
 
@@ -86,7 +87,7 @@ namespace App1
         private void GetChannelValues(Constants.FADER_GROUP group)
         {
 #if DEVEL
-            RequestValues.FromLocal();
+            RequestValues.FromLocal(group);
 #else
             //ignore warning, it doesn't matter how long this takes
             RequestValues.FromOSC(group);
