@@ -79,7 +79,7 @@ namespace App1
         private void GetChannelValues(Constants.FADER_GROUP group)
         {
             //ignore warning, it doesn't matter how long this takes
-            GetValues.FromOSC(group);
+            RequestValues.FromOSC(group);
         }
 
         private void Page_Load()
