@@ -114,6 +114,11 @@ namespace gnow.util.behringer
             SURFACE, CHANNEL_DETAIL, BUS_SEND, MATRIX_SEND,
             EFFECTS
         }
+        public enum FADER_GROUP
+        {
+            CHANNEL_1_8, CHANNEL_9_16, CHANNEL_17_24, CHANNEL_25_32, AUX_1_8,
+            FX_RETURNS, BUS_1_8, BUS_9_16, MATRIX_MAIN, DCA
+        }
 
     };
 

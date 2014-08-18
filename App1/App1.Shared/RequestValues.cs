@@ -4,6 +4,8 @@ using System.Text;
 using App1;
 using gnow.util.osc;
 using System.Threading.Tasks;
+using gnow.util.behringer;
+using System.IO;
 
 namespace gnow.util
 {
@@ -293,7 +295,23 @@ namespace gnow.util
                 new System.Threading.ManualResetEvent(false).WaitOne(2);
             }
 
-            //raise events
+        }
+        public static void FromLocal(Constants.METER_TYPE type)
+        {
+            List<float> temp = new List<float>();
+            Random randGen = new Random(DateTime.Now.Millisecond);
+            for(int i = 0; i < 70; i++)
+            {
+                temp.Add((float)randGen.NextDouble());
+            }
+
+            MemoryStream toSend = new MemoryStream();
+            for(int i = 0; i < 70; i++)
+            {
+                toSend.Write(BitConverter.GetBytes(temp[i]), 0, 4);
+            }
+            OSCMessage msg = new OSCMessage("/meters/0", (oscStream)toSend);
+            OSCInPort.Instance.RaiseEventFake(msg);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace App1
         List<Meter> meters;
         List<Button> navButtons;
         Constants.FADER_GROUP currentPage;
-        bool runUpdate = true;
+        long meterUpdateRate = 1000000;
         public MainPage()
         {
             this.InitializeComponent();
@@ -46,7 +46,18 @@ namespace App1
             //Set default fader set to Channel 1-8
             navButtons[0].BorderBrush = new SolidColorBrush(new Color { A = 255, B = 200 });
             X32MessageDispatcher.Instance.ChannelReceivedEvent += Console_FaderChanged;
-            Task t = Task.Run(() => { requestMetersAsync(); });
+            X32MessageDispatcher.Instance.MetersReceivedEvent += MeterUpdateReceived;
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(meterUpdateRate);
+            timer.Tick += timer_Tick;
+            timer.Start();
+
+        }
+
+        void timer_Tick(object sender, object e)
+        {
+            Debug.WriteLine("requesting meters......");
+            RequestValues.FromLocal(Constants.METER_TYPE.HOME);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -70,13 +81,6 @@ namespace App1
         private void Fader_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             var s = (Fader)sender;
-            for (int i = 0; i < 8; i++ )
-            {
-                meters[faders.IndexOf(s) + (i * 8)].SetLevel((float)e.NewValue / 100);
-            }
-            Debug.WriteLine(s.Name);
-
-
         }
 
         private void NavButtonClick(object sender, RoutedEventArgs e)
@@ -91,7 +95,22 @@ namespace App1
             navButtons[(int)currentPage].BorderBrush = new SolidColorBrush(Windows.UI.Colors.White);
             currentPage = (Constants.FADER_GROUP)navButtons.IndexOf(s);
             GetChannelValues(currentPage);
-            runUpdate = false;
+
+        }
+
+        private void MeterUpdateReceived(object sender, MetersReceivedEventArgs e)
+        {
+            X32MeterGroup meterGroup = new X32MeterGroup(e.data, e.type);
+            switch (e.type)
+            {
+                case gnow.util.behringer.Constants.METER_TYPE.HOME:
+                    for (int i = 0; i < meterGroup.Values.Count; i++ )
+                    {
+                        meters[i].SetLevel(meterGroup.Values[i]);
+                    }
+                    break;
+
+            }
 
         }
 
@@ -184,16 +203,5 @@ namespace App1
             }
             
         }
-        protected void requestMetersAsync()
-        {
-            while (runUpdate)
-            {
-                Debug.WriteLine("In other thread woohoo");
-
-                new System.Threading.ManualResetEvent(false).WaitOne(500);
-            }
-        }
-
-
     }
 }

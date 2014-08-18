@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using gnow.util.behringer.events;
 using gnow.util.osc;
 
@@ -76,8 +77,24 @@ namespace gnow.util.behringer
                         break;
                 }
                 oscStream str = (oscStream)e.packet.Values[0].getValue();
-                str.value.Read(args.data, 0, (int)str.value.Length);
-                OnMetersReceivedEvent(args);
+                args.data = new byte[str.value.Length];
+                try
+                {
+                    int i = 0;
+                    str.value.Position = 0;
+                    while (str.value.Position < str.value.Length)
+                    {
+                        args.data[i] = (byte)str.value.ReadByte();
+                        i++;
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    throw;
+                } OnMetersReceivedEvent(args);
 
             }
             else if(e.packet.Address.Substring(0, 7) == "/config")

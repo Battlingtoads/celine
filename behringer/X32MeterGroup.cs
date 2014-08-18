@@ -26,6 +26,7 @@ namespace gnow.util.behringer
 		/// <param name="t">The type of meter group</param>
         public X32MeterGroup(byte[] bytes, Constants.METER_TYPE t)
         {
+            values = new List<float>();
             _type = t;
             for(int i = 0; i < bytes.Length/4; i++)
             {
@@ -34,8 +35,9 @@ namespace gnow.util.behringer
                 {
                     bFloat[j] = bytes[i * 4 + j];
                 }
-                if (BitConverter.IsLittleEndian) bFloat = Utilities.swapEndian(bFloat);
-                values.Add(BitConverter.ToSingle(bFloat, 0));
+                //if (BitConverter.IsLittleEndian) bFloat = Utilities.swapEndian(bFloat);
+                float fFloat = BitConverter.ToSingle(bFloat, 0);
+                values.Add(fFloat);
             }
         }
     }
