@@ -29,10 +29,13 @@ namespace App1
     {
         List<Fader> faders;
         List<Meter> meters;
+        List<Button> navButtons;
+        int currentPage;
         public MainPage()
         {
             this.InitializeComponent();
             Page_Load();
+            currentPage = 0;
         }
         
 
@@ -47,15 +50,36 @@ namespace App1
 
 
         }
+
+        private void NavButtonClick(object sender, RoutedEventArgs e)
+        {
+            Button s = (Button)sender;
+            if(s == navButtons[currentPage])
+            {
+                //do nothing
+                return;
+            }
+            s.BorderBrush = new SolidColorBrush(new Color { A = 255, B = 200 });
+            navButtons[currentPage].BorderBrush = new SolidColorBrush(Windows.UI.Colors.White);
+            currentPage = navButtons.IndexOf(s);
+
+        }
+
         void Page_Load()
         {
             meters = new List<Meter>();
 
             //setup meters
-            for(int i = 0; i < 64; i++)
+            for(int i = 0; i < meterGrid.ColumnDefinitions.Count; i++)
             {
                 Meter meterBase = new Meter();
-                meterBase.SetBackgroundFill( new SolidColorBrush(new Color() { A = 255, B = 00, G = 255, R = 00 }));
+                LinearGradientBrush brsh = new LinearGradientBrush();
+                brsh.StartPoint = new Point(.5, 1);
+                brsh.EndPoint = new Point(.5, 0);
+                brsh.GradientStops.Add(new GradientStop { Color = new Color() { A=255, G = 255 }, Offset = 0.0 });
+                brsh.GradientStops.Add(new GradientStop { Color = new Color() { A=255, G = 255, R=255}, Offset = 0.70 });
+                brsh.GradientStops.Add(new GradientStop { Color = new Color() { A=255, R = 255 }, Offset = 1.0 });
+                meterBase.SetBackgroundFill(brsh);
                 meterBase.SetValue(MarginProperty, new Thickness() { Left = 2, Right = 2 });
                 meters.Add(meterBase);
                 meterGrid.Children.Add(meters[i]);
@@ -77,6 +101,48 @@ namespace App1
                 Grid.SetColumn(faders[i], i+1);
             }
 
+            //Navigation
+            navButtons = new List<Button>();
+            for(int i = 0; i < 10; i++)
+            {
+                Button buttonBase = new Button();
+                switch (i)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        buttonBase.Content = "Channel " + (i * 8 + 1).ToString() + "-" + (i * 8 + 8).ToString();
+                        break;
+                    case 4:
+                        buttonBase.Content = "Aux 1-8";
+                        break;
+                    case 5:
+                        buttonBase.Content = "FX Returns";
+                        break;
+                    case 6:
+                        buttonBase.Content = "Bus 1-8";
+                        break;
+                    case 7:
+                        buttonBase.Content = "Bus 9-16";
+                        break;
+                    case 8:
+                        buttonBase.Content = "Matrix/Main";
+                        break;
+                    case 9:
+                        buttonBase.Content = "DCA 1-8";
+                        break;
+                }
+                buttonBase.SetValue(HorizontalAlignmentProperty, HorizontalAlignment.Stretch);
+                buttonBase.SetValue(VerticalAlignmentProperty, VerticalAlignment.Stretch);
+                buttonBase.Click += NavButtonClick;
+                navButtons.Add(buttonBase);
+                navGrid.Children.Add(buttonBase);
+                Grid.SetColumn(buttonBase, i);
+                Grid.SetRow(buttonBase, 0);
+
+            }
+            
         }
 
     }
