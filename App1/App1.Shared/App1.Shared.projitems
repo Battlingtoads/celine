@@ -16,9 +16,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Class.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fader.xaml.cs">
       <DependentUpon>Fader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)RequestValues.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Meter.xaml.cs">
       <DependentUpon>Meter.xaml</DependentUpon>
     </Compile>
