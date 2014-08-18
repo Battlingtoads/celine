@@ -57,7 +57,6 @@ namespace App1
         void timer_Tick(object sender, object e)
         {
 #if(DEVEL)
-            Debug.WriteLine("requesting meters......");
             RequestValues.FromLocal(Constants.METER_TYPE.HOME);
 #else
             RequestValues.FromOSC(Constants.METER_TYPE.HOME);

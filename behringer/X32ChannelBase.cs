@@ -11,7 +11,7 @@ namespace gnow.util.behringer
         public X32Level Level;
         public string name;
         public Constants.COLOR color;
-        public bool isMuted;
+        public Constants.ON_OFF Mute;
         public X32Eq eq;
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace gnow.util.behringer
 {
-    class X32Main : X32ChannelBase
+    public class X32Main : X32ChannelBase
     {
 		public List<X32Level> matrixSends;
         public float pan;
@@ -22,7 +22,7 @@ namespace gnow.util.behringer
             }
             eq = new X32Eq();
             color = Constants.COLOR.WHITE;
-            isMuted = true;
+            Mute = Constants.ON_OFF.ON;
             pan = 0;
         }
     }
