@@ -11,7 +11,7 @@
     
     <Grid>
         <Rectangle x:Name="Background" x:FieldModifier="Public"/>
-        <Rectangle x:Name="Mask" VerticalAlignment="Top" Fill="#AF000000"/>
+        <Rectangle x:Name="Mask" VerticalAlignment="Top" Fill="#AF606060"/>
 
     </Grid>
 </UserControl>

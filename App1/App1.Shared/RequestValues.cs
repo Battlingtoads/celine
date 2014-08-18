@@ -313,5 +313,9 @@ namespace gnow.util
             OSCMessage msg = new OSCMessage("/meters/0", (oscStream)toSend);
             OSCInPort.Instance.RaiseEventFake(msg);
         }
+        public static void FromOSC(Constants.METER_TYPE type)
+        {
+            //TODO Implement this ya dummy
+        }
     }
 }
