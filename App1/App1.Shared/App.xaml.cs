@@ -22,6 +22,8 @@ using Windows.Networking;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
+using gnow.util.behringer;
+
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
 namespace App1
@@ -74,6 +76,7 @@ namespace App1
                 Debug.WriteLine(t.ToString());
             }
 
+            X32MessageDispatcher.Instance.Initialize();
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,

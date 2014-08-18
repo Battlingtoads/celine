@@ -55,7 +55,7 @@ namespace gnow.util.osc
         {
             get
             {
-                return Instance;
+                return instance;
             }
         }
 

@@ -279,16 +279,18 @@ namespace gnow.util
             {
                 if (s.EndsWith("on"))
                 {
-                    int rand = (new Random().Next(0,1));
+                    int rand = (new Random(DateTime.Now.Millisecond).Next(0,13))%2;
                     OSCMessage msg = new OSCMessage(s, (oscInt)rand);
                     OSCInPort.Instance.RaiseEventFake(msg);
                 }
+
                 else
                 {
-                    float rand = (new Random().Next(0,100));
+                    float rand = (new Random(DateTime.Now.Millisecond).Next(0,100));
                     OSCMessage msg = new OSCMessage(s, (oscFloat)(rand/100f));
                     OSCInPort.Instance.RaiseEventFake(msg);
                 }
+                new System.Threading.ManualResetEvent(false).WaitOne(2);
             }
 
             //raise events

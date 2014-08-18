@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using gnow.util.behringer;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -51,6 +52,18 @@ namespace gnow.UI
         public void SetFaderValue(float val)
         {
             slider0.Value = val*100;           
+        }
+
+        public void setMute(Constants.ON_OFF val)
+        {
+            if(val == Constants.ON_OFF.ON)
+            {
+                muteButton.IsChecked = false;
+            }
+            else
+            {
+                muteButton.IsChecked = true;
+            }
         }
          
         public delegate void FaderValueChangedEventHandler(object sender, RangeBaseValueChangedEventArgs e);
