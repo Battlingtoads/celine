@@ -24,12 +24,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Meter.xaml.cs">
       <DependentUpon>Meter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)OSCData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)OSCMessage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)OSCOutport.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)OSCPacket2.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)OSCTimeTag.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)OSCInPort.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Fader.xaml">

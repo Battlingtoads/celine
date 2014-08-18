@@ -26,7 +26,7 @@ namespace gnow.util.osc
         OSCData getValue();
     }
 
-    class oscInt : OSCData
+    public class oscInt : OSCData
     {
         public int value;
         public oscInt(int i) { value = i; }
@@ -55,7 +55,7 @@ namespace gnow.util.osc
         public OSCData getValue() { return (oscInt)value; }
         public override string ToString() { return value.ToString(); }
     }
-    class oscLong : OSCData
+    public class oscLong : OSCData
     {
         public long value;
         public oscLong(long l) { value = l; }
@@ -84,7 +84,7 @@ namespace gnow.util.osc
         public OSCData getValue() { return (oscInt)value; }
         public override string ToString() { return value.ToString(); }
     }
-    class oscFloat : OSCData
+    public class oscFloat : OSCData
     {
         public float value;
         public oscFloat(float f){value = f;}
@@ -113,7 +113,7 @@ namespace gnow.util.osc
         public OSCData getValue() { return (oscFloat)value; }
         public override string ToString() { return value.ToString(); }
     }
-    class oscDouble : OSCData
+    public class oscDouble : OSCData
     {
         public double value;
         public oscDouble(double d) { value = d; }
@@ -142,7 +142,7 @@ namespace gnow.util.osc
         public OSCData getValue() { return (oscDouble)value; }
         public override string ToString() { return value.ToString(); }
     }
-    class oscString : OSCData
+    public class oscString : OSCData
     {
         public oscString(string s){value = s;}
         public string value;
@@ -172,7 +172,7 @@ namespace gnow.util.osc
         public override string ToString() { return value.ToString(); }
     }
 
-    class oscChar : OSCData
+    public class oscChar : OSCData
     {
         public oscChar(char c) { value = c; }
         public char value;
@@ -200,7 +200,7 @@ namespace gnow.util.osc
         public override string ToString() { return value.ToString(); }
     }
 
-    class oscStream : OSCData
+    public class oscStream : OSCData
     {
         public Stream value;
         public oscStream(Stream s) { value = s; }
@@ -247,7 +247,7 @@ namespace gnow.util.osc
         public override string ToString() { return value.ToString(); }
     }
 
-    class oscDateTime : OSCData
+    public class oscDateTime : OSCData
     {
         public DateTime value;
         public oscDateTime(DateTime d) { value = d; }

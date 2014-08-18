@@ -108,6 +108,10 @@
       <Project>{0542135e-161b-4538-a8a8-a457d1f8d2ad}</Project>
       <Name>behringer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\OSC\OSC.csproj">
+      <Project>{f4879d79-f19b-4c78-bce8-991b3b00a30a}</Project>
+      <Name>OSC</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainPage.xaml.cs">
