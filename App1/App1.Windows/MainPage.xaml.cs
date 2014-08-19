@@ -22,6 +22,7 @@ using gnow.util.osc;
 using gnow.util.behringer;
 using gnow.util.behringer.events;
 using System.Threading.Tasks;
+using Windows.Networking;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -51,6 +52,19 @@ namespace App1
             timer.Interval = new TimeSpan(meterUpdateRate);
             timer.Tick += timer_Tick;
             timer.Start();
+            OSCOutPort.remoteHost = new HostName("10.5.3.53");
+            OSCOutPort.remotePort = "9000";
+            OSCInPort.localPort = "8001";
+            try
+            {
+                OSCInPort.Instance.Connect();
+                OSCOutPort.Connect();
+                new System.Threading.ManualResetEvent(false).WaitOne(500);
+            }
+            catch(Exception t)
+            {
+                Debug.WriteLine(t.ToString());
+            }
 
         }
 
@@ -84,6 +98,52 @@ namespace App1
         private void Fader_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             var s = (Fader)sender;
+            string address;
+            switch (currentPage)
+            {
+                case Constants.FADER_GROUP.CHANNEL_1_8:
+                    address = "/ch/" + (1 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    break;
+                case Constants.FADER_GROUP.CHANNEL_9_16:
+                    address = "/ch/" + (9 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    break;
+                case Constants.FADER_GROUP.CHANNEL_17_24:
+                    address = "/ch/" + (17 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    break;
+                case Constants.FADER_GROUP.CHANNEL_25_32:
+                    address = "/ch/" + (25 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    break;
+                case Constants.FADER_GROUP.AUX_1_8:
+                    address = "/auxin/" + (1 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    break;
+                case Constants.FADER_GROUP.BUS_1_8:
+                    address = "/bus/" + (1 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    break;
+                case Constants.FADER_GROUP.BUS_9_16:
+                    address = "/bus/" + (9 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    break;
+                case Constants.FADER_GROUP.MATRIX_MAIN:
+                    if (faders.IndexOf(s) < 6)
+                    {
+                        address = "/mtx/" + (1 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    }
+                    else if(faders.IndexOf(s) == 6)
+                    {
+                        address = "/main/st/mix/fader";
+                    }
+                    else
+                    {
+                        address = "/main/m/mix/fader";
+                    }
+                    break;
+                default:
+                    address = "/failure";
+                    break;
+            }
+            X32Level level = new X32Level(Constants.NO_LEVEL, 1024);
+            level.DbFSLevel = Fader.mapLogarithmic((float)e.NewValue);
+            OSCMessage msg = new OSCMessage(address, (oscFloat)(level.RawLevel));
+            OSCOutPort.SendAsync(msg);
         }
 
         private void NavButtonClick(object sender, RoutedEventArgs e)

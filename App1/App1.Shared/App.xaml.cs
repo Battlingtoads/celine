@@ -62,7 +62,7 @@ namespace App1
             }
 
 #endif
-            OSCOutPort.remoteHost = new HostName("10.5.3.52");
+            /*OSCOutPort.remoteHost = new HostName("10.5.3.53");
             OSCOutPort.remotePort = "9000";
             OSCInPort.localPort = "8001";
             try
@@ -74,7 +74,7 @@ namespace App1
             catch(Exception t)
             {
                 Debug.WriteLine(t.ToString());
-            }
+            }*/
 
             X32MessageDispatcher.Instance.Initialize();
             X32Console Console = new X32Console();
@@ -156,6 +156,7 @@ namespace App1
 
             // TODO: Save application state and stop any background activity
             deferral.Complete();
+            OSCOutPort.Close();
         }
     }
 }

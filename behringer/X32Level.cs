@@ -71,25 +71,33 @@ namespace gnow.util.behringer
         protected void getRaw(float fDB)
         {
             m_fRawLevel = fDB;
-            if (fDB < -100 || fDB > 10)
+            if (fDB < -100 )
+            {
+                m_fRawLevel = 0.0f;
                 return;
+            }
+            if(fDB > 10)
+            {
+                m_fRawLevel = 1.0f;
+                return;
+            }
             if(fDB == Constants.NO_LEVEL)
             {
                 m_fRawLevel = 0.0f;
             }
-            if (fDB <= -60)
+            else if (fDB <= -60)
             {
                 m_fRawLevel = m_fRawLevel.Remap(-100, 0.0f, -60, .0625f);
             }
-            if (fDB <= -30)
+            else if (fDB <= -30)
             {
                 m_fRawLevel = m_fRawLevel.Remap(-60, 0.0625f, -30, .25f);
             }
-            if (fDB <= -10)
+            else if (fDB <= -10)
             {
                 m_fRawLevel = m_fRawLevel.Remap(-30, 0.25f, -10, .5f);
             }
-            if (fDB <= 10)
+            else if (fDB <= 10)
             {
                 m_fRawLevel = m_fRawLevel.Remap(-10, 0.5f, 10, 1.0f);
             }

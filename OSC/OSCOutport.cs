@@ -83,9 +83,10 @@ namespace gnow.util.osc
 		{
 			if(udpServer != null) Close();
             udpServer = new DatagramSocket();
-
+            udpServer.Control.QualityOfService = SocketQualityOfService.LowLatency;
             try
             {
+                await udpServer.BindServiceNameAsync("11242");
                 await udpServer.ConnectAsync(remoteHost, remotePort);
             }
             catch(Exception e)
@@ -112,15 +113,17 @@ namespace gnow.util.osc
 		public async static Task SendAsync(OSCPacket packet)
 		{
 			byte[] data = packet.BinaryData;
+
 			try 
 			{
                 var tokenSource = new CancellationTokenSource();
                 var token = tokenSource.Token;
 
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 1; i++)
                 {
                     oscWriter.WriteBytes(data);
                     await oscWriter.StoreAsync();
+                    new System.Threading.ManualResetEvent(false).WaitOne(1);
                     Debug.WriteLine(packet.ToString() + DateTime.UtcNow.ToString() + DateTime.UtcNow.Millisecond.ToString());
                 }
 			}

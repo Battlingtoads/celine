@@ -43,7 +43,7 @@ namespace gnow.UI
 
         public void SetTextValue(float val)
         {
-            if (val < -100)
+            if (val <= -100)
                 valueBox.Text = "-" + '\u221E'.ToString();
             else
                 valueBox.Text = val.ToString("######.00");
@@ -79,12 +79,12 @@ namespace gnow.UI
             }
         }
 
-        public float mapLogarithmic(float value)
+        public static float mapLogarithmic(float value)
         {
             float retVal;
             if(value == 0)
             {
-                return -1000;
+                return Constants.NO_LEVEL;
             }
             else if(value == 1)
             {
