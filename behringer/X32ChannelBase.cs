@@ -24,21 +24,21 @@ namespace gnow.util.behringer
             Level = new X32Level(Constants.NO_LEVEL, 1024);
         }
 
-        public void SetMixValues(string[] parameters, object value)
+        public bool SetMixValues(string[] parameters, object value)
         {
+            bool setAValue = false;
             switch(parameters[2])
             {
                 case "on":
                     Mute = (Constants.ON_OFF)(int)(oscInt)value;
+                    setAValue = true;
                     break;
                 case "fader":
                     Level.RawLevel = (oscFloat)value;
+                    setAValue = true;
                     break;
-                    //TODO Decide what to do with these cases VVVV
                 case "pan":
-                    break;
                 case "st":
-                    
                 case "mono":
                 case "mlevel":
                     break;
@@ -48,21 +48,25 @@ namespace gnow.util.behringer
                     {
                         case "on":
                             Sends[send].Mute = (Constants.ON_OFF)(int)(oscInt)value;
+                            setAValue = true;
                             break;
                         case "level":
                             Sends[send].Level.RawLevel = (oscFloat)value;
+                            setAValue = true;
                             break;
                         case "pan":
                             break;
                         case "type":
                             Sends[send].Type = (Constants.MIX_TAP)(int)(oscInt)value;
                             Sends[send + 1].Type = (Constants.MIX_TAP)(int)(oscInt)value;
+                            setAValue = true;
                             break;
 
                     }
                     break;
                 
             }
+            return setAValue;
         }
 
     }

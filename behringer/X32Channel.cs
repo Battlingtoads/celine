@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using gnow.util.osc;
 
 namespace gnow.util.behringer
 {
@@ -25,6 +26,27 @@ namespace gnow.util.behringer
             StereoOn = Constants.ON_OFF.ON;
             MonoOn = Constants.ON_OFF.OFF;
             MonoLevel = new X32Level(0.0f, 161);
+        }
+
+        public override void SetMixValues(string[] parameters, object value)
+        {
+            if(!base.SetMixValues(parameters, value))
+            {
+                switch (parameters[2])
+                {
+                    case "pan":
+                        break;
+                    case "st":
+                        StereoOn = (Constants.ON_OFF)(int)(oscInt)value;
+                        break;
+                    case "mono":
+                        MonoOn = (Constants.ON_OFF)(int)(oscInt)value;
+                        break;
+                    case "mlevel":
+                        MonoLevel.RawLevel = (oscFloat)value;
+                        break;
+                }
+            }
         }
 	}
 }
