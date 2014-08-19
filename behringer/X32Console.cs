@@ -62,6 +62,7 @@ namespace gnow.util.behringer
             switch (subs[1])
             {
                 case "config":
+                    Channels[e.channel - 1].SetConfigValues(subs[2], e.value);
                     break;
                 case "delay":
                     break;
@@ -88,6 +89,7 @@ namespace gnow.util.behringer
             switch (subs[1])
             {
                 case "config":
+                    AuxInputs[e.channel - 1].SetConfigValues(subs[2], e.value);
                     break;
                 case "preamp":
                     break;
@@ -109,6 +111,7 @@ namespace gnow.util.behringer
             switch (subs[1])
             {
                 case "config":
+                    FXReturns[e.channel - 1].SetConfigValues(subs[2], e.value);
                     break;
                 case "mix":
                     FXReturns[e.channel - 1].SetMixValues(subs, e.value);
@@ -126,6 +129,7 @@ namespace gnow.util.behringer
             switch (subs[1])
             {
                 case "config":
+                    MixBusses[e.bus - 1].SetConfigValues(subs[2], e.value);
                     break;
                 case "dyn":
                     break;
@@ -149,6 +153,7 @@ namespace gnow.util.behringer
             switch (subs[1])
             {
                 case "config":
+                    Matrices[e.matrix - 1].SetConfigValues(subs[2], e.value);
                     break;
                 case "dyn":
                     break;
@@ -172,6 +177,7 @@ namespace gnow.util.behringer
             switch (subs[1])
             {
                 case "config":
+                    StereoMain.SetConfigValues(subs[2], e.value);
                     break;
                 case "dyn":
                     break;

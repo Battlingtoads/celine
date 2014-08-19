@@ -15,16 +15,38 @@ namespace gnow.util.behringer
         public Constants.ON_OFF Mute;
         public X32Eq eq;
         public List<X32Send> Sends;
+        public string Name;
 
 
         public X32ChannelBase()
         {
+            Name = "Unnamed";
             color = Constants.COLOR.WHITE;
             Mute = Constants.ON_OFF.ON;
             Level = new X32Level(Constants.NO_LEVEL, 1024);
         }
 
-        public bool SetMixValues(string[] parameters, object value)
+        public bool SetConfigValues(string parameter, object value)
+        {
+            bool setAValue = false;
+            switch (parameter)
+            {
+                case "name":
+                    Name = (oscString)value;
+                    setAValue = true;
+                    break;
+                case "color":
+                    color = (Constants.COLOR)(int)(oscInt)value;
+                    setAValue = true;
+                    break;
+                default:
+                    break;
+            }
+
+            return setAValue;
+        }
+
+        public virtual bool SetMixValues(string[] parameters, object value)
         {
             bool setAValue = false;
             switch(parameters[2])
@@ -37,11 +59,15 @@ namespace gnow.util.behringer
                     Level.RawLevel = (oscFloat)value;
                     setAValue = true;
                     break;
+
+                //these cases are handled must be handled in a method in the subclass
                 case "pan":
                 case "st":
                 case "mono":
                 case "mlevel":
                     break;
+
+                //sends
                 default:
                     int send = Convert.ToInt32(parameters[2]) - 1;
                     switch (parameters[3])
@@ -64,10 +90,10 @@ namespace gnow.util.behringer
 
                     }
                     break;
-                
             }
             return setAValue;
         }
+
 
     }
 }
