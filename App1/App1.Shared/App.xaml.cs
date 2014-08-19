@@ -23,6 +23,8 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 
 using gnow.util.behringer;
+using Windows.Storage.Streams;
+using Windows.Networking.Sockets;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -62,19 +64,20 @@ namespace App1
             }
 
 #endif
-            /*OSCOutPort.remoteHost = new HostName("10.5.3.53");
+            OSCOutPort.remoteHost = new HostName("10.5.3.53");
             OSCOutPort.remotePort = "9000";
             OSCInPort.localPort = "8001";
             try
             {
                 OSCInPort.Instance.Connect();
-                OSCOutPort.Connect();
+                OSCOutPort.Instance.Connect();
                 new System.Threading.ManualResetEvent(false).WaitOne(500);
             }
             catch(Exception t)
             {
                 Debug.WriteLine(t.ToString());
-            }*/
+            }
+            SendMessages();
 
             X32MessageDispatcher.Instance.Initialize();
             X32Console Console = new X32Console();
@@ -157,6 +160,47 @@ namespace App1
             // TODO: Save application state and stop any background activity
             deferral.Complete();
             OSCOutPort.Close();
+        }
+        private async Task SendMessages()
+        {
+            DatagramSocket socket = new DatagramSocket();
+            socket.MessageReceived += socket_MessageReceived;
+            await socket.ConnectAsync(new HostName("10.5.3.52"), "8005");
+            bool retry = false;
+            for (long i = 0; i < 2000; i++)
+            {
+                try
+                {
+                    var stream = socket.OutputStream;
+                    var writer = new DataWriter(stream);
+                    writer.WriteBytes(BitConverter.GetBytes(i));
+                    await writer.StoreAsync();
+                    await Task.Delay(100);
+                    retry = false;
+                }
+                catch (Exception e)
+                {
+                    retry = true;
+                    Debug.WriteLine(e.Message);
+                }
+                if( retry == true)
+                {
+                    socket.Dispose();
+                    await socket.ConnectAsync(new HostName("10.5.3.52"), "8005");
+                }
+            }
+            try
+            {
+                socket.Dispose();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
+        }
+        private void socket_MessageReceived(object sender, DatagramSocketMessageReceivedEventArgs e)
+        {
+
         }
     }
 }

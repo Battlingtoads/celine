@@ -43,7 +43,7 @@ namespace App1
             this.InitializeComponent();
             Page_Load();
             currentPage = 0;
-            
+
             //Set default fader set to Channel 1-8
             navButtons[0].BorderBrush = new SolidColorBrush(new Color { A = 255, B = 200 });
             X32MessageDispatcher.Instance.ChannelReceivedEvent += Console_FaderChanged;
@@ -52,19 +52,6 @@ namespace App1
             timer.Interval = new TimeSpan(meterUpdateRate);
             timer.Tick += timer_Tick;
             timer.Start();
-            OSCOutPort.remoteHost = new HostName("10.5.3.53");
-            OSCOutPort.remotePort = "9000";
-            OSCInPort.localPort = "8001";
-            try
-            {
-                OSCInPort.Instance.Connect();
-                OSCOutPort.Connect();
-                new System.Threading.ManualResetEvent(false).WaitOne(500);
-            }
-            catch(Exception t)
-            {
-                Debug.WriteLine(t.ToString());
-            }
 
         }
 
@@ -143,7 +130,7 @@ namespace App1
             X32Level level = new X32Level(Constants.NO_LEVEL, 1024);
             level.DbFSLevel = Fader.mapLogarithmic((float)e.NewValue);
             OSCMessage msg = new OSCMessage(address, (oscFloat)(level.RawLevel));
-            OSCOutPort.SendAsync(msg);
+            OSCOutPort.Instance.SendAsync(msg);
         }
 
         private void NavButtonClick(object sender, RoutedEventArgs e)

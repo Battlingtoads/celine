@@ -143,7 +143,7 @@ namespace gnow.util
             foreach(string s in requests)
             {
                 OSCMessage msg = new OSCMessage(s);
-                await OSCOutPort.SendAsync(msg);
+                await OSCOutPort.Instance.SendAsync(msg);
             }
         }
 

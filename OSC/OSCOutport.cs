@@ -62,9 +62,9 @@ namespace gnow.util.osc
 		/// <summary>
 		/// Socket where messages are sent from.
 		/// </summary>
-		private static DatagramSocket udpServer;
+		private DatagramSocket udpServer;
 
-        private static DataWriter oscWriter;
+        private DataWriter oscWriter;
 
 		/// <summary>
 		/// Port to send to.
@@ -79,14 +79,13 @@ namespace gnow.util.osc
 		/// <summary>
 		/// Initializes the socket to the <see cref="remoteHost"/> and <see cref="remotePort"/>.
 		/// </summary>
-		async public static Task Connect()
+		async public Task Connect()
 		{
 			if(udpServer != null) Close();
             udpServer = new DatagramSocket();
-            udpServer.Control.QualityOfService = SocketQualityOfService.LowLatency;
+            udpServer.MessageReceived += udpServer_MessageReceived;
             try
             {
-                await udpServer.BindServiceNameAsync("11242");
                 await udpServer.ConnectAsync(remoteHost, remotePort);
             }
             catch(Exception e)
@@ -95,35 +94,44 @@ namespace gnow.util.osc
                 return;
             }
             oscWriter = new DataWriter(udpServer.OutputStream);
+            for(int i = 0; i<1000; i++)
+            {
+                oscWriter.WriteBytes(BitConverter.GetBytes(i));
+                await oscWriter.StoreAsync();
+                await Task.Delay(25);
+            }
+            
 		}
+
+        static void udpServer_MessageReceived(DatagramSocket sender, DatagramSocketMessageReceivedEventArgs args)
+        {
+            //we whouldn't get any messages here
+        }
 
 		/// <summary>
 		/// Closes the socket and frees resources.
 		/// </summary>
 		public static void Close()
 		{
-			udpServer.Dispose();
-			udpServer = null;
+			Instance.udpServer.Dispose();
+			Instance.udpServer = null;
 		}
 
 		/// <summary>
 		/// Writes a packet to the socket.
 		/// </summary>
 		/// <param name="packet">The packet to be sent</param>
-		public async static Task SendAsync(OSCPacket packet)
+		public async Task SendAsync(OSCPacket packet)
 		{
 			byte[] data = packet.BinaryData;
 
 			try 
 			{
-                var tokenSource = new CancellationTokenSource();
-                var token = tokenSource.Token;
 
                 for (int i = 0; i < 1; i++)
                 {
                     oscWriter.WriteBytes(data);
                     await oscWriter.StoreAsync();
-                    new System.Threading.ManualResetEvent(false).WaitOne(1);
                     Debug.WriteLine(packet.ToString() + DateTime.UtcNow.ToString() + DateTime.UtcNow.Millisecond.ToString());
                 }
 			}
