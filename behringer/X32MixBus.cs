@@ -8,20 +8,22 @@ namespace gnow.util.behringer
 {
     public class X32MixBus: X32ChannelBase
     {
-		public List<X32Level> matrixSends;
 
-        public X32MixBus()
+        public Constants.ON_OFF StereoOn;
+        public Constants.ON_OFF MonoOn;
+        public X32Level MonoLevel;
+
+        public X32MixBus() : base()
         {
-            Level = new X32Level(Constants.NO_LEVEL, 1024);
-            matrixSends = new List<X32Level>(6);
+            Sends = new List<X32Send>(6);
             for(int i = 0; i<6; i++)
             {
-                X32Level temp = new X32Level(Constants.NO_LEVEL, 161);
-                matrixSends.Add(temp);
+                Sends.Add(new X32Send());
             }
             eq = new X32Eq();
-            color = Constants.COLOR.YELLOW;
-            Mute = Constants.ON_OFF.ON;
+            StereoOn = Constants.ON_OFF.ON;
+            MonoOn = Constants.ON_OFF.OFF;
+            MonoLevel = new X32Level(0.0f, 161);
         }
     }
 }

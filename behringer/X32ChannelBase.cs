@@ -14,9 +14,19 @@ namespace gnow.util.behringer
         public Constants.COLOR color;
         public Constants.ON_OFF Mute;
         public X32Eq eq;
-        public void SetMixValues(string parameter, object value)
+        public List<X32Send> Sends;
+
+
+        public X32ChannelBase()
         {
-            switch(parameter)
+            color = Constants.COLOR.WHITE;
+            Mute = Constants.ON_OFF.ON;
+            Level = new X32Level(Constants.NO_LEVEL, 1024);
+        }
+
+        public void SetMixValues(string[] parameters, object value)
+        {
+            switch(parameters[2])
             {
                 case "on":
                     Mute = (Constants.ON_OFF)(int)(oscInt)value;
@@ -24,7 +34,36 @@ namespace gnow.util.behringer
                 case "fader":
                     Level.RawLevel = (oscFloat)value;
                     break;
+                    //TODO Decide what to do with these cases VVVV
+                case "pan":
+                    break;
+                case "st":
+                    
+                case "mono":
+                case "mlevel":
+                    break;
+                default:
+                    int send = Convert.ToInt32(parameters[2]) - 1;
+                    switch (parameters[3])
+                    {
+                        case "on":
+                            Sends[send].Mute = (Constants.ON_OFF)(int)(oscInt)value;
+                            break;
+                        case "level":
+                            Sends[send].Level.RawLevel = (oscFloat)value;
+                            break;
+                        case "pan":
+                            break;
+                        case "type":
+                            Sends[send].Type = (Constants.MIX_TAP)(int)(oscInt)value;
+                            Sends[send + 1].Type = (Constants.MIX_TAP)(int)(oscInt)value;
+                            break;
+
+                    }
+                    break;
+                
             }
         }
+
     }
 }

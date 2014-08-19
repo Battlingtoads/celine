@@ -74,7 +74,7 @@ namespace gnow.util.behringer
                 case "eq":
                     break;
                 case "mix":
-                    Channels[e.channel - 1].SetMixValues(subs[2], e.value);
+                    Channels[e.channel - 1].SetMixValues(subs, e.value);
                     break;
                 case "grp":
                     break;
@@ -94,7 +94,7 @@ namespace gnow.util.behringer
                 case "eq":
                     break;
                 case "mix":
-                    AuxInputs[e.channel - 1].SetMixValues(subs[2], e.value);
+                    AuxInputs[e.channel - 1].SetMixValues(subs, e.value);
                     break;
                 case "grp":
                     break;
@@ -111,7 +111,7 @@ namespace gnow.util.behringer
                 case "config":
                     break;
                 case "mix":
-                    FXReturns[e.channel - 1].SetMixValues(subs[2], e.value);
+                    FXReturns[e.channel - 1].SetMixValues(subs, e.value);
                     break;
                 case "grp":
                     break;
@@ -134,7 +134,7 @@ namespace gnow.util.behringer
                 case "eq":
                     break;
                 case "mix":
-                    MixBusses[e.bus - 1].SetMixValues(subs[2], e.value);
+                    MixBusses[e.bus - 1].SetMixValues(subs, e.value);
                     break;
                 case "grp":
                     break;
@@ -157,7 +157,7 @@ namespace gnow.util.behringer
                 case "eq":
                     break;
                 case "mix":
-                    Matrices[e.matrix - 1].SetMixValues(subs[2], e.value);
+                    Matrices[e.matrix - 1].SetMixValues(subs, e.value);
                     break;
                 case "grp":
                     break;
@@ -180,7 +180,7 @@ namespace gnow.util.behringer
                 case "eq":
                     break;
                 case "mix":
-                    StereoMain.SetMixValues(subs[2], e.value);
+                    StereoMain.SetMixValues(subs, e.value);
                     break;
                 case "grp":
                     break;
