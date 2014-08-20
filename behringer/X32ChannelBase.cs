@@ -32,11 +32,11 @@ namespace gnow.util.behringer
             switch (parameter)
             {
                 case "name":
-                    Name = (oscString)value;
+                    Name = (string)value;
                     setAValue = true;
                     break;
                 case "color":
-                    color = (Constants.COLOR)(int)(oscInt)value;
+                    color = (Constants.COLOR)(int)value;
                     setAValue = true;
                     break;
                 default:
@@ -52,11 +52,11 @@ namespace gnow.util.behringer
             switch(parameters[2])
             {
                 case "on":
-                    Mute = (Constants.ON_OFF)(int)(oscInt)value;
+                    Mute = (Constants.ON_OFF)(int)value;
                     setAValue = true;
                     break;
                 case "fader":
-                    Level.RawLevel = (oscFloat)value;
+                    Level.RawLevel = (float)value;
                     setAValue = true;
                     break;
 
@@ -73,18 +73,18 @@ namespace gnow.util.behringer
                     switch (parameters[3])
                     {
                         case "on":
-                            Sends[send].Mute = (Constants.ON_OFF)(int)(oscInt)value;
+                            Sends[send].Mute = (Constants.ON_OFF)(int)value;
                             setAValue = true;
                             break;
                         case "level":
-                            Sends[send].Level.RawLevel = (oscFloat)value;
+                            Sends[send].Level.RawLevel = (float)value;
                             setAValue = true;
                             break;
                         case "pan":
                             break;
                         case "type":
-                            Sends[send].Type = (Constants.MIX_TAP)(int)(oscInt)value;
-                            Sends[send + 1].Type = (Constants.MIX_TAP)(int)(oscInt)value;
+                            Sends[send].Type = (Constants.MIX_TAP)(int)value;
+                            Sends[send + 1].Type = (Constants.MIX_TAP)(int)value;
                             setAValue = true;
                             break;
 

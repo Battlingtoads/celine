@@ -19,6 +19,7 @@ namespace gnow.util.behringer.events
     {
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void ConfigReceivedEventHandler(object sender, ConfigReceivedEventArgs e);
@@ -28,6 +29,7 @@ namespace gnow.util.behringer.events
         public int channel;
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void ChannelReceivedEventHandler(object sender, ChannelReceivedEventArgs e);
@@ -37,6 +39,7 @@ namespace gnow.util.behringer.events
         public int channel;
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void AuxinReceivedEventHandler(object sender, AuxinReceivedEventArgs e);
@@ -46,6 +49,7 @@ namespace gnow.util.behringer.events
         public int channel;
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void FXReturnReceivedEventHandler(object sender, FXReturnReceivedEventArgs e);
@@ -55,6 +59,7 @@ namespace gnow.util.behringer.events
         public int bus;
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void BusReceivedEventHandler(object sender, BusReceivedEventArgs e);
@@ -64,6 +69,7 @@ namespace gnow.util.behringer.events
         public int matrix;
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void MatrixReceivedEventHandler(object sender, MatrixReceivedEventArgs e);
@@ -72,6 +78,7 @@ namespace gnow.util.behringer.events
     {
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void MainReceivedEventHandler(object sender, MainReceivedEventArgs e);
@@ -80,6 +87,7 @@ namespace gnow.util.behringer.events
     {
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void MonoReceivedEventHandler(object sender, MonoReceivedEventArgs e);
@@ -89,6 +97,7 @@ namespace gnow.util.behringer.events
         public int dca;
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void DCAReceivedEventHandler(object sender, DCAReceivedEventArgs e);
@@ -98,6 +107,7 @@ namespace gnow.util.behringer.events
         public int effect;
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void EffectReceivedEventHandler(object sender, EffectReceivedEventArgs e);
@@ -107,6 +117,7 @@ namespace gnow.util.behringer.events
         public int mainout;
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void MainOutReceivedEventHandler(object sender, MainOutReceivedEventArgs e);
@@ -116,6 +127,7 @@ namespace gnow.util.behringer.events
         public int auxout;
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void AuxOutReceivedEventHandler(object sender, AuxOutReceivedEventArgs e);
@@ -125,6 +137,7 @@ namespace gnow.util.behringer.events
         public int p16out;
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void P16OutReceivedEventHandler(object sender, P16OutReceivedEventArgs e);
@@ -134,6 +147,7 @@ namespace gnow.util.behringer.events
         public int aesout;
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void AESOutReceivedEventHandler(object sender, AESOutReceivedEventArgs e);
@@ -143,6 +157,7 @@ namespace gnow.util.behringer.events
         public int recordout;
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void RecordOutReceivedEventHandler(object sender, RecordOutReceivedEventArgs e);
@@ -152,6 +167,7 @@ namespace gnow.util.behringer.events
         public int headamp;
         public string subAddress;
         public object value;
+        public bool fromLocal = false;
     }
 
     public delegate void HeadampReceivedEventHandler(object sender, HeadampReceivedEventArgs e);

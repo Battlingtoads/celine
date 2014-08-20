@@ -122,6 +122,12 @@ namespace gnow.util.behringer
 
         public static readonly int NO_LEVEL = -100;
 
+        public enum COMPONENT_TYPE
+        {
+            CHANNEL, AUX_INPUT, FXRETURN, MIX_BUS, 
+            MATRIX, DCA, MAIN
+        }
+
     };
 
     public static class ExtensionMethods

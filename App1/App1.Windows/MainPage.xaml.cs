@@ -71,13 +71,22 @@ namespace App1
 
         private void Console_FaderChanged(object sender, ChannelReceivedEventArgs e)
         {
+            if(e.fromLocal == true)
+            {
+                return;
+            }
+            if(e.channel < (int)currentPage * 8 ||
+               e.channel > ((int)currentPage + 1) * 8)
+            {
+                return;
+            }
             if (e.subAddress == "/mix/fader")
             {
-                faders[e.channel % 8].SetFaderValue((oscFloat)e.value);
+                faders[e.channel % 8].SetFaderValue((float)e.value);
             }
-            else
+            else if(e.subAddress == "/mix/on")
             {
-                faders[e.channel % 8].setMute((gnow.util.behringer.Constants.ON_OFF)(int)(oscInt)e.value);
+                faders[e.channel % 8].setMute((gnow.util.behringer.Constants.ON_OFF)e.value);
             }
         }
         
@@ -86,51 +95,86 @@ namespace App1
         {
             var s = (Fader)sender;
             string address;
+            string subAddress;
+            Constants.COMPONENT_TYPE type;
+            int channel;
             switch (currentPage)
             {
                 case Constants.FADER_GROUP.CHANNEL_1_8:
-                    address = "/ch/" + (1 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    subAddress = "/mix/fader";
+                    channel = (1 + faders.IndexOf(s));
+                    address = "/ch/" + channel.ToString().PadLeft(2, '0') + subAddress;
+                    type = Constants.COMPONENT_TYPE.CHANNEL;
                     break;
                 case Constants.FADER_GROUP.CHANNEL_9_16:
-                    address = "/ch/" + (9 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    subAddress = "/mix/fader";
+                    channel = (9 + faders.IndexOf(s));
+                    address = "/ch/" + channel.ToString().PadLeft(2, '0') + subAddress;
+                    type = Constants.COMPONENT_TYPE.CHANNEL;
                     break;
                 case Constants.FADER_GROUP.CHANNEL_17_24:
-                    address = "/ch/" + (17 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    subAddress = "/mix/fader";
+                    channel = (17 + faders.IndexOf(s));
+                    address = "/ch/" + channel.ToString().PadLeft(2, '0') + subAddress;
+                    type = Constants.COMPONENT_TYPE.CHANNEL;
                     break;
                 case Constants.FADER_GROUP.CHANNEL_25_32:
-                    address = "/ch/" + (25 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    subAddress = "/mix/fader";
+                    channel = (25 + faders.IndexOf(s));
+                    address = "/ch/" + channel.ToString().PadLeft(2, '0') + subAddress;
+                    type = Constants.COMPONENT_TYPE.CHANNEL;
                     break;
                 case Constants.FADER_GROUP.AUX_1_8:
-                    address = "/auxin/" + (1 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    subAddress = "/mix/fader";
+                    channel = 1 + faders.IndexOf(s);
+                    address = "/auxin/" + channel.ToString().PadLeft(2, '0') + subAddress;
+                    type = Constants.COMPONENT_TYPE.AUX_INPUT;
                     break;
                 case Constants.FADER_GROUP.BUS_1_8:
-                    address = "/bus/" + (1 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    subAddress = "/mix/fader";
+                    channel = 1 + faders.IndexOf(s);
+                    address = "/bus/" + channel.ToString().PadLeft(2, '0') + subAddress;
+                    type = Constants.COMPONENT_TYPE.MIX_BUS;
                     break;
                 case Constants.FADER_GROUP.BUS_9_16:
-                    address = "/bus/" + (9 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                    subAddress = "/mix/fader";
+                    channel = 9 + faders.IndexOf(s);
+                    address = "/bus/" + channel.ToString().PadLeft(2, '0') + subAddress;
+                    type = Constants.COMPONENT_TYPE.MIX_BUS;
                     break;
                 case Constants.FADER_GROUP.MATRIX_MAIN:
+                    subAddress = "/mix/fader";
                     if (faders.IndexOf(s) < 6)
                     {
-                        address = "/mtx/" + (1 + faders.IndexOf(s)).ToString().PadLeft(2, '0') + "/mix/fader";
+                        channel = 1 + faders.IndexOf(s);
+                        type = Constants.COMPONENT_TYPE.MATRIX;
+                        address = "/mtx/" + channel.ToString().PadLeft(2, '0') + subAddress;
                     }
                     else if(faders.IndexOf(s) == 6)
                     {
+                        channel = 0;
+                        type = Constants.COMPONENT_TYPE.MAIN;
                         address = "/main/st/mix/fader";
                     }
                     else
                     {
+                        channel = 1;
+                        type = Constants.COMPONENT_TYPE.MAIN;
                         address = "/main/m/mix/fader";
                     }
                     break;
                 default:
                     address = "/failure";
+                    type = Constants.COMPONENT_TYPE.CHANNEL;
+                    subAddress = "/failure";
+                    channel = 0;
                     break;
             }
             X32Level level = new X32Level(Constants.NO_LEVEL, 1024);
             level.DbFSLevel = Fader.mapLogarithmic((float)e.NewValue);
             OSCMessage msg = new OSCMessage(address, (oscFloat)(level.RawLevel));
             OSCOutPort.Instance.SendAsync(msg);
+            X32MessageDispatcher.Instance.UpdateFromUI(type, channel, level.RawLevel, subAddress );
         }
 
         private void NavButtonClick(object sender, RoutedEventArgs e)
@@ -192,7 +236,6 @@ namespace App1
         private void Page_Load()
         {
             meters = new List<Meter>();
-
             //setup meters
             for(int i = 0; i < meterGrid.ColumnDefinitions.Count; i++)
             {
@@ -268,5 +311,6 @@ namespace App1
             }
             
         }
+
     }
 }

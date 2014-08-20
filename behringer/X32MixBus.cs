@@ -35,13 +35,13 @@ namespace gnow.util.behringer
                     case "pan":
                         break;
                     case "st":
-                        StereoOn = (Constants.ON_OFF)(int)(oscInt)value;
+                        StereoOn = (Constants.ON_OFF)(int)value;
                         break;
                     case "mono":
-                        MonoOn = (Constants.ON_OFF)(int)(oscInt)value;
+                        MonoOn = (Constants.ON_OFF)(int)value;
                         break;
                     case "mlevel":
-                        MonoLevel.RawLevel = (oscFloat)value;
+                        MonoLevel.RawLevel = (float)value;
                         break;
                 }
             }

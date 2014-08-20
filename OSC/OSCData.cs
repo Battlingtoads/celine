@@ -23,7 +23,7 @@ namespace gnow.util.osc
     {
         byte[] pack();
         char GetTag();
-        OSCData getValue();
+        object getValue();
     }
 
     public class oscInt : OSCData
@@ -52,7 +52,7 @@ namespace gnow.util.osc
             return i.value;
         }
         public char GetTag() { return 'i'; }
-        public OSCData getValue() { return (oscInt)value; }
+        public object getValue() { return value; }
         public override string ToString() { return value.ToString(); }
     }
     public class oscLong : OSCData
@@ -81,7 +81,7 @@ namespace gnow.util.osc
             return i.value;
         }
         public char GetTag() { return 'h'; }
-        public OSCData getValue() { return (oscInt)value; }
+        public object getValue() { return value; }
         public override string ToString() { return value.ToString(); }
     }
     public class oscFloat : OSCData
@@ -110,7 +110,7 @@ namespace gnow.util.osc
             return i.value;
         }
         public char GetTag() { return 'f'; }
-        public OSCData getValue() { return (oscFloat)value; }
+        public object getValue() { return value; }
         public override string ToString() { return value.ToString(); }
     }
     public class oscDouble : OSCData
@@ -139,7 +139,7 @@ namespace gnow.util.osc
             return i.value;
         }
         public char GetTag() { return 'd'; }
-        public OSCData getValue() { return (oscDouble)value; }
+        public object getValue() { return value; }
         public override string ToString() { return value.ToString(); }
     }
     public class oscString : OSCData
@@ -168,7 +168,7 @@ namespace gnow.util.osc
             return s.value;
         }
         public char GetTag() { return 's'; }
-        public OSCData getValue() { return (oscString)value; }
+        public object getValue() { return value; }
         public override string ToString() { return value.ToString(); }
     }
 
@@ -196,7 +196,7 @@ namespace gnow.util.osc
             return s.value;
         }
         public char GetTag() { return 'c'; }
-        public OSCData getValue() { return (oscChar)value; }
+        public object getValue() { return value; }
         public override string ToString() { return value.ToString(); }
     }
 
@@ -243,7 +243,7 @@ namespace gnow.util.osc
             return s.value;
         }
         public char GetTag() { return 'b'; }
-        public OSCData getValue() { return (oscStream)value;}
+        public object getValue() { return value;}
         public override string ToString() { return value.ToString(); }
     }
 
@@ -275,7 +275,7 @@ namespace gnow.util.osc
         {
             return s.value;
         }
-        public OSCData getValue() { return (oscDateTime)value;}
+        public object getValue() { return value;}
         public override string ToString() { return value.ToString(); }
     }
  

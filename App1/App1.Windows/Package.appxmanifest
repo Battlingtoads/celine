@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="3d14142d-4f97-4e2f-b7f8-26cf5ee2bab8" Publisher="CN=Daniel" Version="1.0.0.0" />
+  <Identity Name="3d14142d-4f97-4e2f-b7f8-26cf5ee2bab8" Publisher="CN=Daniel" Version="0.0.1.0" />
   <Properties>
     <DisplayName>App1.Windows</DisplayName>
     <PublisherDisplayName>Daniel</PublisherDisplayName>
@@ -22,6 +22,6 @@
   </Applications>
   <Capabilities>
     <Capability Name="internetClientServer" />
-    <Capability Name="privateNetworkClientServer"/>
+    <Capability Name="privateNetworkClientServer" />
   </Capabilities>
 </Package>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using gnow.util.behringer.events;
 using gnow.util.osc;
+using System.IO;
 
 
 namespace gnow.util.behringer
@@ -76,15 +77,15 @@ namespace gnow.util.behringer
                     default:
                         break;
                 }
-                oscStream str = (oscStream)e.packet.Values[0].getValue();
-                args.data = new byte[str.value.Length];
+                Stream str = (Stream)e.packet.Values[0].getValue();
+                args.data = new byte[str.Length];
                 try
                 {
                     int i = 0;
-                    str.value.Position = 0;
-                    while (str.value.Position < str.value.Length)
+                    str.Position = 0;
+                    while (str.Position < str.Length)
                     {
-                        args.data[i] = (byte)str.value.ReadByte();
+                        args.data[i] = (byte)str.ReadByte();
                         i++;
                     }
 
@@ -243,7 +244,72 @@ namespace gnow.util.behringer
                 
         }
 
-        private bool goodPacket(OSCPacket oSCPacket)
+        public void UpdateFromUI(Constants.COMPONENT_TYPE type, int channel, object newValue, string address)
+        {
+            switch (type)
+            {
+                case Constants.COMPONENT_TYPE.CHANNEL:
+                    ChannelReceivedEventArgs args = new ChannelReceivedEventArgs();
+                    args.channel = channel;
+                    args.value = newValue;
+                    args.subAddress = address;
+                    args.fromLocal = true;
+                    OnChannelReceivedEvent(args);
+                    break;  
+                case Constants.COMPONENT_TYPE.AUX_INPUT:
+                    AuxinReceivedEventArgs auxArgs = new AuxinReceivedEventArgs();
+                    auxArgs.channel = channel;
+                    auxArgs.value = newValue;
+                    auxArgs.subAddress = address;
+                    auxArgs.fromLocal = true;
+                    OnAuxinReceivedEvent(auxArgs);
+                    break;
+                case Constants.COMPONENT_TYPE.FXRETURN:
+                    FXReturnReceivedEventArgs fxArgs = new FXReturnReceivedEventArgs();
+                    fxArgs.channel = channel;
+                    fxArgs.value = newValue;
+                    fxArgs.subAddress = address;
+                    fxArgs.fromLocal = true;
+                    OnFXReturnReceivedEvent(fxArgs);
+                    break;
+                case Constants.COMPONENT_TYPE.MIX_BUS:
+                    BusReceivedEventArgs busArgs = new BusReceivedEventArgs();
+                    busArgs.bus = channel;
+                    busArgs.value = newValue;
+                    busArgs.subAddress = address;
+                    busArgs.fromLocal = true;
+                    OnBusReceivedEvent(busArgs);
+                    break;
+                case Constants.COMPONENT_TYPE.MATRIX:
+                    MatrixReceivedEventArgs matrixArgs = new MatrixReceivedEventArgs();
+                    matrixArgs.matrix = channel;
+                    matrixArgs.value = newValue;
+                    matrixArgs.subAddress = address;
+                    matrixArgs.fromLocal = true;
+                    OnMatrixReceivedEvent(matrixArgs);
+                    break;
+                case Constants.COMPONENT_TYPE.MAIN:
+                    MainOutReceivedEventArgs mainArgs = new MainOutReceivedEventArgs();
+                    mainArgs.mainout = channel;
+                    mainArgs.value = newValue;
+                    mainArgs.subAddress = address;
+                    mainArgs.fromLocal = true;
+                    OnMainOutReceivedEvent(mainArgs);
+                    break;
+                case Constants.COMPONENT_TYPE.DCA:
+                    DCAReceivedEventArgs dcaArgs = new DCAReceivedEventArgs();
+                    dcaArgs.dca = channel;
+                    dcaArgs.value = newValue;
+                    dcaArgs.subAddress = address;
+                    dcaArgs.fromLocal = true;
+                    OnDCAReceivedEvent(dcaArgs);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private bool goodPacket(OSCPacket packet)
         {
             //TODO: check incoming packet for proper osc data
             return true;
