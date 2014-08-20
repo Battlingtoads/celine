@@ -36,7 +36,6 @@ namespace gnow.UI
 
         private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            meter.SetLevel((float)e.NewValue/100);
             SetTextValue(mapLogarithmic((float)e.NewValue));
             OnFaderValueChangedEvent(e);
         }
@@ -47,6 +46,11 @@ namespace gnow.UI
                 valueBox.Text = "-" + '\u221E'.ToString();
             else
                 valueBox.Text = val.ToString("######.00");
+        }
+
+        public void SetMeterValue(float value)
+        {
+            meter.SetLevel(value);
         }
 
         public void SetFaderValue(float val)

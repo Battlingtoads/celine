@@ -158,6 +158,21 @@ namespace App1
                     {
                         meters[i].SetLevel(meterGroup.Values[i]);
                     }
+                    if (currentPage != Constants.FADER_GROUP.DCA &&
+                       currentPage != Constants.FADER_GROUP.MATRIX_MAIN)
+                    {
+                        for (int i = 0; i < 8; i++)
+                        {
+                            faders[i].SetMeterValue(meterGroup.Values[(int)currentPage + i]);
+                        }
+                    }
+                    else if(currentPage == Constants.FADER_GROUP.MATRIX_MAIN)
+                    {
+                        for( int i = 0; i < 6; i++)
+                        {
+                            faders[i].SetMeterValue(meterGroup.Values[(int)currentPage + i]);
+                        }
+                    }
                     break;
 
             }
