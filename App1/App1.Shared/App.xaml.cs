@@ -77,7 +77,6 @@ namespace App1
             {
                 Debug.WriteLine(t.ToString());
             }
-            SendMessages();
 
             X32MessageDispatcher.Instance.Initialize();
             X32Console Console = new X32Console();
@@ -160,47 +159,6 @@ namespace App1
             // TODO: Save application state and stop any background activity
             deferral.Complete();
             OSCOutPort.Close();
-        }
-        private async Task SendMessages()
-        {
-            DatagramSocket socket = new DatagramSocket();
-            socket.MessageReceived += socket_MessageReceived;
-            await socket.ConnectAsync(new HostName("10.5.3.52"), "8005");
-            bool retry = false;
-            for (long i = 0; i < 2000; i++)
-            {
-                try
-                {
-                    var stream = socket.OutputStream;
-                    var writer = new DataWriter(stream);
-                    writer.WriteBytes(BitConverter.GetBytes(i));
-                    await writer.StoreAsync();
-                    await Task.Delay(100);
-                    retry = false;
-                }
-                catch (Exception e)
-                {
-                    retry = true;
-                    Debug.WriteLine(e.Message);
-                }
-                if( retry == true)
-                {
-                    socket.Dispose();
-                    await socket.ConnectAsync(new HostName("10.5.3.52"), "8005");
-                }
-            }
-            try
-            {
-                socket.Dispose();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-            }
-        }
-        private void socket_MessageReceived(object sender, DatagramSocketMessageReceivedEventArgs e)
-        {
-
         }
     }
 }

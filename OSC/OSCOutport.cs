@@ -94,13 +94,6 @@ namespace gnow.util.osc
                 return;
             }
             oscWriter = new DataWriter(udpServer.OutputStream);
-            for(int i = 0; i<1000; i++)
-            {
-                oscWriter.WriteBytes(BitConverter.GetBytes(i));
-                await oscWriter.StoreAsync();
-                await Task.Delay(25);
-            }
-            
 		}
 
         static void udpServer_MessageReceived(DatagramSocket sender, DatagramSocketMessageReceivedEventArgs args)
