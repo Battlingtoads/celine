@@ -1,66 +1,83 @@
 ﻿<UserControl
-    x:Class="App1.CompressorSmall"
+    x:Class="App1.DynamicOverview"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:App1"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dc="using:gnow.UI"
     mc:Ignorable="d"
-    d:DesignHeight="700"
+    d:DesignHeight="600"
     d:DesignWidth="400">
     
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="3*"/>
-        </Grid.RowDefinitions>
-        <Grid x:Name="DynamicGrid">
+    <Border Margin="2" BorderBrush="Aquamarine" BorderThickness="2">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
 
-            <Rectangle Grid.Column="0" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Left"/>
-            <Rectangle Grid.Column="0" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
-            <Rectangle Grid.Column="1" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
-            <Rectangle Grid.Column="2" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
-            <Rectangle Grid.Column="3" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
-            <Rectangle Grid.Column="4" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
-            <Rectangle Grid.Column="5" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
-            <Rectangle Grid.Column="6" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
-            <Rectangle Grid.Column="7" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
-
-            <Rectangle Grid.Row="0" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Top"/>
-            <Rectangle Grid.Row="0" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
-            <Rectangle Grid.Row="1" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
-            <Rectangle Grid.Row="2" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
-            <Rectangle Grid.Row="3" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
-            <Rectangle Grid.Row="4" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
-            <Rectangle Grid.Row="5" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
-            <Rectangle Grid.Row="6" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
-            <Rectangle Grid.Row="7" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
-
+            <TextBlock x:Name="titleBlock" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"/>
             
+            <Grid x:Name="DynamicGrid" Grid.Row="1" Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Grid.Column="0" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Left"/>
+                <Rectangle Grid.Column="0" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
+                <Rectangle Grid.Column="1" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
+                <Rectangle Grid.Column="2" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
+                <Rectangle Grid.Column="3" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
+                <Rectangle Grid.Column="4" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
+                <Rectangle Grid.Column="5" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
+                <Rectangle Grid.Column="6" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
+                <Rectangle Grid.Column="7" Grid.RowSpan="8" Fill="#C0C0C0" Width="1" HorizontalAlignment="Right"/>
+
+                <Rectangle Grid.Row="0" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Top"/>
+                <Rectangle Grid.Row="0" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
+                <Rectangle Grid.Row="1" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
+                <Rectangle Grid.Row="2" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
+                <Rectangle Grid.Row="3" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
+                <Rectangle Grid.Row="4" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
+                <Rectangle Grid.Row="5" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
+                <Rectangle Grid.Row="6" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
+                <Rectangle Grid.Row="7" Grid.ColumnSpan="8" Fill="#C0C0C0" Height="1" VerticalAlignment="Bottom"/>
+
+                <dc:Meter x:Name="gainReduction" Grid.Row="0" Grid.Column="8" Grid.RowSpan="8" Margin="4 0 4 0"/>
+
+                
+            </Grid>
+
+            <local:Knob x:Name="Threshold" Grid.Row="2"/>
+            <StackPanel Grid.Row="2" Grid.Column="1">
+                <TextBlock Text="Threshold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="15"/>
+                <TextBlock Text="0.0db" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+            </StackPanel>
+
         </Grid>
-
-        <local:Knob x:Name="Threshold" Grid.Row="2"/>
-
-    </Grid>
+    </Border>
 </UserControl>

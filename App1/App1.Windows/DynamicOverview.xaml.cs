@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -17,11 +18,34 @@ using Windows.UI.Xaml.Navigation;
 
 namespace App1
 {
-    public sealed partial class CompressorSmall : UserControl
+    public sealed partial class DynamicOverview : UserControl
     {
-        public CompressorSmall()
+        public DynamicOverview()
         {
             this.InitializeComponent();
+            gainReduction.SetBackgroundFill(new SolidColorBrush(Colors.Red));
+
         }
+
+
+        public string Title
+        {
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value);
+            titleBlock.Text = value;
+            }
+        }
+
+        // Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TitleProperty =
+            DependencyProperty.Register("Title", typeof(string), typeof(DynamicOverview), new PropertyMetadata("text", onValueChanged));
+
+
+        private static void onValueChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+        
+        
     }
 }
