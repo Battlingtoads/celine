@@ -25,7 +25,8 @@
             <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
 
-        <local:Knob />
+        <local:Knob x:Name="Knob1" ValueChanged="Knob1_ValueChanged"/>
+        <local:Eq Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
 
         <Grid x:Name="navGrid" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="8">
             <Grid.ColumnDefinitions>

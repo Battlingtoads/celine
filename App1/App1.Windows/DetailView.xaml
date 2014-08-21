@@ -5,9 +5,31 @@
     xmlns:local="using:App1"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dc="using:gnow.UI"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height ="10*"/>
+            <RowDefinition Height ="10*"/>
+            <RowDefinition Height ="10*"/>
+            <RowDefinition Height ="10*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+
+        <dc:Fader x:Name="fader" Grid.Row="1" Grid.RowSpan="3"/>
+        <local:PreAmpSection x:Name="preAmp" Grid.Row="0" Grid.Column="0"/>
+        <local:DynamicOverview x:Name="miniCompressor" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"/>
+
+        <local:Eq x:Name="eqOverview" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="2"/>
 
     </Grid>
 </Page>

@@ -312,5 +312,10 @@ namespace App1
             
         }
 
+        private void Knob1_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            Debug.WriteLine(e.NewValue.ToString());
+        }
+
     }
 }

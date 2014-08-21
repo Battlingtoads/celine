@@ -116,8 +116,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicOverview.xaml.cs">
+      <DependentUpon>DynamicOverview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DetailView.xaml.cs">
       <DependentUpon>DetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Eq.xaml.cs">
+      <DependentUpon>Eq.xaml</DependentUpon>
     </Compile>
     <Compile Include="Knob.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -125,6 +131,9 @@
     </Compile>
     <Compile Include="MyUserControl1.xaml.cs">
       <DependentUpon>MyUserControl1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PreAmpSection.xaml.cs">
+      <DependentUpon>PreAmpSection.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -141,7 +150,15 @@
     <Content Include="Assets\StoreLogo.scale-100.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="DynamicOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Eq.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -150,6 +167,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MyUserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PreAmpSection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
