@@ -58,6 +58,7 @@
     <Compile Include="LinearFloat.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="X32AuxIn.cs" />
+    <Compile Include="X32Dynamic.cs" />
     <Compile Include="X32MixBus.cs" />
     <Compile Include="X32Channel.cs" />
     <Compile Include="X32ChannelBase.cs" />

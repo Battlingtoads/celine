@@ -143,7 +143,7 @@ namespace gnow.util.behringer
         /// <summary>Rounds a float to nearest specified step</summary>
         public static float ToStep(this float value, float stepSize)
         {
-            return stepSize * Round((double)(value * 1000)/(stepSize * 1000));
+            return (float)(stepSize * Math.Round((double)(value * 1000) / (stepSize * 1000)));
         }
     }
 }
