@@ -101,6 +101,7 @@ namespace gnow.util.behringer
             {
                 m_fRawLevel = m_fRawLevel.Remap(-10, 0.5f, 10, 1.0f);
             }
+                m_fRawLevel.ToStep( 1.0f / m_nSteps );
         }
     }
 }

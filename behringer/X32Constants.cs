@@ -80,6 +80,8 @@ namespace gnow.util.behringer
 
         public enum EQ_TYPE { LCUT, LSHV, PEQ, VEQ, HSHV, HCUT };
 
+        public enum HP_SLOPE { _12, _18, _24 };
+
 		/// <summary>Tap point for sends</summary>
         public enum MIX_TAP { PRE_EQ, POST_EQ, PRE, POST, GRP };
 
