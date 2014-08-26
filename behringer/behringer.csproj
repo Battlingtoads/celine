@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LinearFloat.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="X32AuxIn.cs" />
     <Compile Include="X32MixBus.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="X32EqBand.cs" />
     <Compile Include="X32Events.cs" />
     <Compile Include="X32FXReturn.cs" />
+    <Compile Include="X32Gate.cs" />
     <Compile Include="X32Level.cs" />
     <Compile Include="X32Main.cs" />
     <Compile Include="X32Matrix.cs" />

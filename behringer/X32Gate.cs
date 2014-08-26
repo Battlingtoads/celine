@@ -11,7 +11,7 @@ namespace gnow.util.behringer
    {
       public Constants.ON_OFF m_isOn;
       public Constants.GATE_MODE m_Mode;
-      public float m_Threshold;
+      public LinearFloat m_Threshold = new LinearFloat(-80.0f, 0.0f, .5f);
       public float m_Range;
       public float m_Attack;
       public float m_Hold;
@@ -25,7 +25,6 @@ namespace gnow.util.behringer
       {
          m_isOn = Constants.ON_OFF.OFF;
          m_Mode = Constants.GATE_MODE.GATE;
-         m_Threshold = -80.0f;
          m_Range = 3.0f;
          m_Attack = 0.0f;
          m_Hold = 0.02f;

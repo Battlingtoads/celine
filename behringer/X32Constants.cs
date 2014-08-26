@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Math;
 using System.Threading.Tasks;
 
 namespace gnow.util.behringer
@@ -135,6 +136,12 @@ namespace gnow.util.behringer
         public static float Remap(this float value, float from1, float to1, float from2, float to2)
         {
             return (value - from1) * ((to2 - to1)/(from2 - from1)) + to1;
+        }
+
+        /// <summary>Rounds a float to nearest specified step</summary>
+        public static float ToStep(this float value, float stepSize)
+        {
+            return stepSize * Round((double)(value * 1000)/(stepSize * 1000));
         }
     }
 }

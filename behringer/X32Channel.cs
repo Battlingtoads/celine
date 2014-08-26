@@ -50,5 +50,49 @@ namespace gnow.util.behringer
             }
             return true;
         }
-	}
+
+        public void SetGateValues(string[] parameters, object value)
+        {
+            switch (parameters[2])
+            {
+                case "on":
+                    m_Gate.m_isOn = (Constants.ON_OFF)(int)value;
+                    break;
+                case "mode":
+                    m_Gate.m_Mode = (Constants.GATE_MODE)(int)value;
+                    break;
+                case "thr":
+                    m_Gate.m_Threshold.Value = (float)value;
+                    break;
+                case "range":
+                    m_Gate.m_Range = (float)value;
+                    break;
+                case "attack":
+                    m_Gate.m_Attack = (float)value;
+                    break;
+                case "hold":
+                    m_Gate.m_Hold = (float)value;
+                    break;
+                case "release":
+                    m_Gate.m_Release = (float)value;
+                    break;
+                case "keysrc":
+                    m_Gate.m_KeySource = (int)value;
+                    break;
+                default:
+                    switch(parameters[3])
+                    {
+                        case "on":
+                            m_Gate.m_FilterOn = (Constants.ON_OFF)(int)value;
+                            break;
+                        case "type":
+                            m_Gate.m_FilterType = (Constants.FILTER_TYPE)value;
+                            break;
+                        case "f":
+                            m_Gate.m_FilterFrequency = (float)value;
+                            break;
+                    }
+            }
+        }
+    }
 }
