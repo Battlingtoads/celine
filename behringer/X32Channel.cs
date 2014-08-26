@@ -13,6 +13,7 @@ namespace gnow.util.behringer
         public Constants.ON_OFF StereoOn;
         public Constants.ON_OFF MonoOn;
         public X32Level MonoLevel;
+        public X32Gate m_Gate;
 
         public X32Channel() : base()
         {

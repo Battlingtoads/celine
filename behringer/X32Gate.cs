@@ -27,6 +27,13 @@ namespace gnow.util.behringer
          m_Mode = Constants.GATE_MODE.GATE;
          m_Threshold = -80.0f;
          m_Range = 3.0f;
+         m_Attack = 0.0f;
+         m_Hold = 0.02f;
+         m_Release = 5.0f;
+         m_KeySource = 0;
+         m_FilterOn = Constants.ON_OFF.OFF;
+         m_FilterType = Constants.FILTER_TYPE.LC6;
+         m_FilterFrequency = 20.0f;
       }
    }
 }
