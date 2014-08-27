@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Math;
 using System.Threading.Tasks;
 
 namespace gnow.util.behringer

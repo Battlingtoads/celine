@@ -1,5 +1,4 @@
 using System;
-using System.Math;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +16,7 @@ namespace gnow.util.behringer
             get{return _Value;}
             set
             {
-                _Value = stepSize * Round((double)((value * 1000)/(stepSize * 1000)));
+                _Value = (float)(stepSize * Math.Round((double)((value * 1000) / (stepSize * 1000))));
             }
         }
 

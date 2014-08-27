@@ -24,7 +24,7 @@ namespace gnow.util.behringer
                     m_Dynamic.m_isOn = (Constants.ON_OFF)(int)value;
                     break;
                 case "mode":
-                    m_Dynamic.m_Mode = (Constants.GATE_MODE)(int)value;
+                    m_Dynamic.m_Mode = (Constants.DYN_MODE)(int)value;
                     break;
                 case "det":
                     m_Dynamic.m_Determiner = (Constants.DYN_DET)(int)value;
@@ -52,6 +52,7 @@ namespace gnow.util.behringer
                     break;
                 case "pos":
                     m_Dynamic.m_TapPoint = (Constants.SIMPLE_POS)(int)value;
+                    break;
                 case "keysrc":
                     m_Dynamic.m_KeySource = (int)value;
                     break;
@@ -68,6 +69,7 @@ namespace gnow.util.behringer
                             m_Dynamic.m_FilterFrequency = (float)value;
                             break;
                     }
+                    break;
             }
         }
     }

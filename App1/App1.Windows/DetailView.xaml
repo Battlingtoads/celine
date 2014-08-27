@@ -10,10 +10,8 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height ="5*"/>
             <RowDefinition Height ="10*"/>
-            <RowDefinition Height ="10*"/>
-            <RowDefinition Height ="10*"/>
+            <RowDefinition Height ="30*"/>
             <RowDefinition Height ="10*"/>
         </Grid.RowDefinitions>
 
@@ -26,15 +24,15 @@
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
 
-        <Border BorderBrush="BlanchedAlmond" Grid.Row="2" Grid.RowSpan="3" BorderThickness="2" Margin="2">
-            <dc:Fader x:Name="fader" Grid.Row="2" Grid.RowSpan="3"/>
-        </Border>
-        <local:PreAmpSection x:Name="preAmp" Grid.Row="1" Grid.Column="0"/>
-        <local:DynamicOverview x:Name="miniCompressor" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Title="Dyn"/>
-        <local:DynamicOverview x:Name="miniGate" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Title="Gate"/>
+        <local:PreAmpSection x:Name="preamp" Grid.Column="0" Grid.Row="1"/>
+        <local:DynamicOverview x:Name="Gate" Grid.Column="1" Grid.Row="1"/>
+        <local:Eq x:Name="eq" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1"/>
+        <local:DynamicOverview x:Name="Dynamic" Grid.Column="4" Grid.Row="1"/>
+        
 
-        <local:Eq x:Name="eqOverview" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="2"/>
-        <local:MiniSends x:Name="MiniSends" Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="3"/>
+        
+
+
 
     </Grid>
 </Page>
