@@ -24,10 +24,13 @@
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
 
+        <Button x:Name="RefreshView" Content="Refresh" Click="RefreshView_Click" />
+
         <local:PreAmpSection x:Name="preamp" Grid.Column="0" Grid.Row="1"/>
-        <local:DynamicOverview x:Name="Gate" Grid.Column="1" Grid.Row="1"/>
+        <local:DynamicOverview x:Name="Gate" Grid.Column="1" Grid.Row="1" Title="Gate"/>
         <local:Eq x:Name="eq" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1"/>
-        <local:DynamicOverview x:Name="Dynamic" Grid.Column="4" Grid.Row="1"/>
+        <local:DynamicOverview x:Name="Dynamic" Grid.Column="4" Grid.Row="1" Title="Dynamic"/>
+        <local:MiniSends x:Name="Sends" Grid.Column="5" Grid.Row="1"/>
         
 
         

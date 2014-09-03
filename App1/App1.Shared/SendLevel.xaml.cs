@@ -13,26 +13,25 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace App1
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class DetailView : Page
+    public sealed partial class SendLevel : UserControl
     {
-        public DetailView()
+        public SendLevel()
         {
             this.InitializeComponent();
         }
 
-        private void RefreshView_Click(object sender, RoutedEventArgs e)
+        public void SetBackgroundFill(Brush color)
         {
-            for(int i = 1; i < 17; i++)
-            {
-                Sends.SetLevel(i, .5f);
-            }
+            content.Fill = color;
+        }
+
+        public void SetLevel(float Value)
+        {
+            Mask.Width = content.ActualWidth - content.ActualWidth * Value;
         }
     }
 }

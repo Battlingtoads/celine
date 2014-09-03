@@ -317,5 +317,10 @@ namespace App1
             Debug.WriteLine(e.NewValue.ToString());
         }
 
+        private void gotoDetail_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(DetailView));
+        }
+
     }
 }
