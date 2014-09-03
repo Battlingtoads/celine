@@ -13,15 +13,10 @@ namespace gnow.util.behringer
         public Constants.ON_OFF StereoOn;
         public Constants.ON_OFF MonoOn;
         public X32Level MonoLevel;
-        public X32Gate m_Gate;
+        public X32Gate m_Gate = new X32Gate();
         public X32Dynamic m_Dynamic = new X32Dynamic();
-        public LinearFloat m_Trim = new LinearFloat(-12.000f, 12.000f, 0.250f);
-        public Constants.ON_OFF m_PreampInvert = Constants.ON_OFF.OFF;
-        public Constants.ON_OFF m_HighPassOn = Constants.ON_OFF.OFF;
-        public Constants.HP_SLOPE m_HighPassSlope = Constants.HP_SLOPE._12;
+        public X32PreAmp m_PreAmp = new X32PreAmp();
 
-        //TODO Change to logfloat
-        public float m_HighPassFrequency = 0.0f;
 
         public X32Channel()
             : base()
@@ -60,26 +55,5 @@ namespace gnow.util.behringer
             return true;
         }
 
-        public void SetPreampValues(string parameter, object value)
-        {
-            switch (parameter)
-            {
-                case "trim":
-                    m_Trim.Value = (float)value;
-                    break;
-                case "invert":
-                    m_PreampInvert = (Constants.ON_OFF)(int)value;
-                    break;
-                case "hpon":
-                    m_HighPassOn = (Constants.ON_OFF)(int)value;
-                    break;
-                case "hpslope":
-                    m_HighPassSlope = (Constants.HP_SLOPE)(int)value;
-                    break;
-                case "hpf":
-                    m_HighPassFrequency = (float)value;
-                    break;
-            }
-        }
     }
 }

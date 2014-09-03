@@ -12,8 +12,7 @@ namespace gnow.util.behringer
         public Constants.ON_OFF StereoOn;
         public Constants.ON_OFF MonoOn;
         public X32Level MonoLevel;
-        public LinearFloat m_Trim = new LinearFloat(-12.000f, 12.000f, 0.250f);
-        public Constants.ON_OFF m_PreampInvert = Constants.ON_OFF.OFF;
+        public X32PreAmp m_PreAmp = new X32PreAmp();
 
         public X32AuxIn() : base()
         {
@@ -47,19 +46,6 @@ namespace gnow.util.behringer
                 }
             }
             return true;
-        }
-
-        public void SetPreampValues(string parameter, object value)
-        {
-            switch (parameter)
-            {
-                case "trim":
-                    m_Trim.Value = (float)value;
-                    break;
-                case "invert":
-                    m_PreampInvert = (Constants.ON_OFF)(int)value;
-                    break;
-            }
         }
     }
 }
