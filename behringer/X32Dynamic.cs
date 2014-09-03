@@ -18,13 +18,13 @@ namespace gnow.util.behringer
         public LinearFloat m_Knee = new LinearFloat(0.000f, 5.000f, 1.000f);
         public LinearFloat m_Gain = new LinearFloat(0.000f, 24.000f, .500f);
         public LinearFloat m_Attack = new LinearFloat(0.000f, 120.000f, 1.000f);
-        public float m_Hold = 0.02f;
-        public float m_Release = 5.0f;
+        public LogFloat m_Hold = new LogFloat(0.020f, 2000f, 101);
+        public LogFloat m_Release = new LogFloat(5.000f, 4000.000f, 101);
         public Constants.SIMPLE_POS m_TapPoint = Constants.SIMPLE_POS.PRE;
         public int m_KeySource = 0;
         public Constants.ON_OFF m_FilterOn = Constants.ON_OFF.OFF;
         public Constants.FILTER_TYPE m_FilterType = Constants.FILTER_TYPE.LC6;
-        public float m_FilterFrequency = 20.0f;
+        public LogFloat m_FilterFrequency = new LogFloat(20.000f, 200000f, 201);
 
         public bool SetValuesFromOSC(string[] parameters, object value)
         {
@@ -55,10 +55,10 @@ namespace gnow.util.behringer
                     m_Attack.Value = (float)value;
                     break;
                 case "hold":
-                    m_Hold = (float)value;
+                    m_Hold.Value = (float)value;
                     break;
                 case "release":
-                    m_Release = (float)value;
+                    m_Release.Value = (float)value;
                     break;
                 case "pos":
                     m_TapPoint = (Constants.SIMPLE_POS)(int)value;
@@ -76,7 +76,7 @@ namespace gnow.util.behringer
                             m_FilterType = (Constants.FILTER_TYPE)value;
                             break;
                         case "f":
-                            m_FilterFrequency = (float)value;
+                            m_FilterFrequency.Value = (float)value;
                             break;
                     }
                     break;

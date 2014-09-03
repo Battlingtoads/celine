@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace gnow.util.behringer
 {
-    class LogFloat
+    public class LogFloat
     {
         private float minimum;
         private float maximum;
@@ -30,7 +30,7 @@ namespace gnow.util.behringer
             maximum = max;
             numSteps = steps;
             Value = min;
-            double range = Math.Log((double)maximum) - Math.Log((double)minimum);
+            double range = Math.Abs(Math.Log((double)maximum) - Math.Log((double)minimum));
             stepSize = (float)(range / numSteps);
         }
 

@@ -14,23 +14,20 @@ namespace gnow.util.behringer
       public LinearFloat m_Threshold = new LinearFloat(-80.0f, 0.0f, .5f);
       public LinearFloat m_Range = new LinearFloat(3.00f, 60.0f, 1.00f);
       public LinearFloat m_Attack = new LinearFloat(0.00f, 120.00f, 1.00f);
-      public float m_Hold;
-      public float m_Release;
+      public LogFloat m_Hold = new LogFloat(0.020f, 2000, 101);
+      public LogFloat m_Release = new LogFloat(5.000f, 4000.000f, 101);
       public int m_KeySource;
       public Constants.ON_OFF m_FilterOn;
       public Constants.FILTER_TYPE m_FilterType;
-      public float m_FilterFrequency;
+      public LogFloat m_FilterFrequency = new LogFloat(20.000f, 20000f, 201);
 
       public X32Gate()
       {
          m_isOn = Constants.ON_OFF.OFF;
          m_Mode = Constants.GATE_MODE.GATE;
-         m_Hold = 0.02f;
-         m_Release = 5.0f;
          m_KeySource = 0;
          m_FilterOn = Constants.ON_OFF.OFF;
          m_FilterType = Constants.FILTER_TYPE.LC6;
-         m_FilterFrequency = 20.0f;
       }
 
       public bool SetValuesFromOSC(string[] parameters, object value)
@@ -53,10 +50,10 @@ namespace gnow.util.behringer
                   m_Attack.Value = (float)value;
                   break;
               case "hold":
-                  m_Hold = (float)value;
+                  m_Hold.Value = (float)value;
                   break;
               case "release":
-                  m_Release = (float)value;
+                  m_Release.Value = (float)value;
                   break;
               case "keysrc":
                   m_KeySource = (int)value;
@@ -71,7 +68,7 @@ namespace gnow.util.behringer
                           m_FilterType = (Constants.FILTER_TYPE)value;
                           break;
                       case "f":
-                          m_FilterFrequency = (float)value;
+                          m_FilterFrequency.Value = (float)value;
                           break;
                   }
                   break;

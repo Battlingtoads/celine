@@ -14,7 +14,7 @@ namespace gnow.util.behringer
         public Constants.HP_SLOPE m_HighPassSlope = Constants.HP_SLOPE._12;
 
         //TODO Change to logfloat
-        public float m_HighPassFrequency = 0.0f;
+        public LogFloat m_HighPassFrequency = new LogFloat(20.000f, 400.000f, 101);
 
         public bool SetValuesFromOSC(string[] parameters, object value)
         {
@@ -33,7 +33,7 @@ namespace gnow.util.behringer
                     m_HighPassSlope = (Constants.HP_SLOPE)(int)value;
                     break;
                 case "hpf":
-                    m_HighPassFrequency = (float)value;
+                    m_HighPassFrequency.Value = (float)value;
                     break;
                 default:
                     return false;
