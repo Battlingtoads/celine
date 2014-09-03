@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
@@ -24,6 +23,7 @@ namespace App1
         {
             this.InitializeComponent();
             gainReduction.SetBackgroundFill(new SolidColorBrush(Colors.Red));
+            this.Loaded += (o, e) => DrawGraph();
 
         }
 
@@ -45,7 +45,27 @@ namespace App1
         {
 
         }
-        
+
+        private void DrawGraph()
+        {
+            //make graph square
+
+            //set meter height
+
+            //draw gridlines
+
+            //draw curve
+
+                //make pathgeometry
+
+                //make pathfigure
+
+                //add segments
+
+                //add fig to geo
+
+                //set geo to curve.data
+        }
         
     }
 }
