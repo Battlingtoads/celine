@@ -10,7 +10,7 @@
     d:DesignWidth="400">
     
     <Grid>
-        <Rectangle x:Name="Background" x:FieldModifier="Public"/>
+        <Rectangle x:Name="content" x:FieldModifier="Public"/>
         <Rectangle x:Name="Mask" VerticalAlignment="Top" Fill="#AF606060"/>
 
     </Grid>

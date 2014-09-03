@@ -29,12 +29,12 @@ namespace gnow.UI
         ///</summary>
         public void SetBackgroundFill(Brush color)
         {
-            Background.Fill = color;
+            content.Fill = color;
         }
         //sets the level of the meter. input should be between 0 and 1
         public void SetLevel(float Value)
         {
-            Mask.Height = Background.ActualHeight - Background.ActualHeight * Value;
+            Mask.Height = content.ActualHeight - content.ActualHeight * Value;
         }
     }
 }
