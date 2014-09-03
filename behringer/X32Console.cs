@@ -59,6 +59,9 @@ namespace gnow.util.behringer
         private void Dispatch_ChannelReceivedEvent(object sender, ChannelReceivedEventArgs e)
         {
             string[] subs = e.subAddress.Split('/');
+
+            //the first substring will be a null character because the format of the 'subaddress
+            //string is '/<parameter>/....'
             switch (subs[1])
             {
                 case "config":
@@ -68,10 +71,13 @@ namespace gnow.util.behringer
                 case "delay":
                     break;
                 case "preamp":
+                    Channels[e.channel - 1].m_PreAmp.SetValuesFromOSC(subs, e.value);
                     break;
                 case "gate":
+                    Channels[e.channel - 1].m_Gate.SetValuesFromOSC(subs, e.value);
                     break;
                 case "dyn":
+                    Channels[e.channel - 1].m_Dynamic.SetValuesFromOSC(subs, e.value);
                     break;
                 case "eq":
                     break;
@@ -91,6 +97,7 @@ namespace gnow.util.behringer
                     AuxInputs[e.channel - 1].SetValuesFromOSC(subs, e.value);
                     break;
                 case "preamp":
+                    AuxInputs[e.channel - 1].m_PreAmp.SetValuesFromOSC(subs, e.value);
                     break;
                 case "eq":
                     break;
@@ -127,6 +134,7 @@ namespace gnow.util.behringer
                     MixBusses[e.bus - 1].SetValuesFromOSC(subs, e.value);
                     break;
                 case "dyn":
+                    MixBusses[e.bus - 1].m_Dynamic.SetValuesFromOSC(subs, e.value);
                     break;
                 case "insert":
                     break;
@@ -149,6 +157,7 @@ namespace gnow.util.behringer
                     Matrices[e.matrix - 1].SetValuesFromOSC(subs, e.value);
                     break;
                 case "dyn":
+                    Matrices[e.matrix - 1].m_Dynamic.SetValuesFromOSC(subs, e.value);
                     break;
                 case "insert":
                     break;
@@ -171,6 +180,7 @@ namespace gnow.util.behringer
                     StereoMain.SetValuesFromOSC(subs, e.value);
                     break;
                 case "dyn":
+                    StereoMain.m_Dynamic.SetValuesFromOSC(subs, e.value);
                     break;
                 case "insert":
                     break;
