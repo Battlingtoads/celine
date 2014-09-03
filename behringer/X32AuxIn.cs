@@ -27,9 +27,9 @@ namespace gnow.util.behringer
             MonoOn = Constants.ON_OFF.OFF;
             MonoLevel = new X32Level(0.0f, 161);
         }
-        public override bool SetMixValues(string[] parameters, object value)
+        public override bool SetValuesFromOSC(string[] parameters, object value)
         {
-            if(!base.SetMixValues(parameters, value))
+            if(!base.SetValuesFromOSC(parameters, value))
             {
                 switch (parameters[2])
                 {

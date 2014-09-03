@@ -8,7 +8,7 @@ using gnow.util.osc;
 namespace gnow.util.behringer
 {
 	/// <summary>Base class for X32 input and output components</summary>
-    public abstract class X32ChannelBase
+    public abstract class X32ChannelBase : SettableFromOSC
     {
 		/// <summary>Main level</summary>
         public X32Level Level;
@@ -38,78 +38,77 @@ namespace gnow.util.behringer
             Level = new X32Level(Constants.NO_LEVEL, 1024);
         }
 
-		/// <summary>Sets a configuration value based on the passed parameters</summary>
-		/// <param name="parameter">The parameter to be set</param>
-		/// <param name="value">The value for the parameter</param>
-        public bool SetConfigValues(string parameter, object value)
+        public virtual bool SetValuesFromOSC(string[] parameters, object value)
         {
-            bool setAValue = false;
-            switch (parameter)
+            if(parameters[1] == "config")
             {
-                case "name":
-                    Name = (string)value;
-                    setAValue = true;
-                    break;
-                case "color":
-                    color = (Constants.COLOR)(int)value;
-                    setAValue = true;
-                    break;
-                default:
-                    break;
+                bool setAValue = false;
+                switch (parameters[2])
+                {
+                    case "name":
+                        Name = (string)value;
+                        setAValue = true;
+                        break;
+                    case "color":
+                        color = (Constants.COLOR)(int)value;
+                        setAValue = true;
+                        break;
+                    default:
+                        break;
+                }
+
+                return setAValue;
+
             }
-
-            return setAValue;
-        }
-
-		/// <summary>Sets a mix parameter</summary>
-		/// <param name="parameters">An array of the parameter hierarchy</param>
-		/// <param name="value">The value to set</param>
-        public virtual bool SetMixValues(string[] parameters, object value)
-        {
-            bool setAValue = false;
-            switch(parameters[2])
+            else if (parameters[1] == "mix")
             {
-                case "on":
-                    Mute = (Constants.ON_OFF)(int)value;
-                    setAValue = true;
-                    break;
-                case "fader":
-                    Level.RawLevel = (float)value;
-                    setAValue = true;
-                    break;
+                bool setAValue = false;
+                switch(parameters[2])
+                {
+                    case "on":
+                        Mute = (Constants.ON_OFF)(int)value;
+                        setAValue = true;
+                        break;
+                    case "fader":
+                        Level.RawLevel = (float)value;
+                        setAValue = true;
+                        break;
 
-                //these cases are handled must be handled in a method in the subclass
-                case "pan":
-                case "st":
-                case "mono":
-                case "mlevel":
-                    break;
+                    //these cases are handled must be handled in a method in the subclass
+                    case "pan":
+                    case "st":
+                    case "mono":
+                    case "mlevel":
+                        break;
 
-                //sends
-                default:
-                    int send = Convert.ToInt32(parameters[2]) - 1;
-                    switch (parameters[3])
-                    {
-                        case "on":
-                            Sends[send].Mute = (Constants.ON_OFF)(int)value;
-                            setAValue = true;
-                            break;
-                        case "level":
-                            Sends[send].Level.RawLevel = (float)value;
-                            setAValue = true;
-                            break;
-                        case "pan":
-                            break;
-                        case "type":
-                            Sends[send].Type = (Constants.MIX_TAP)(int)value;
-                            Sends[send + 1].Type = (Constants.MIX_TAP)(int)value;
-                            setAValue = true;
-                            break;
+                    //sends
+                    default:
+                        int send = Convert.ToInt32(parameters[2]) - 1;
+                        switch (parameters[3])
+                        {
+                            case "on":
+                                Sends[send].Mute = (Constants.ON_OFF)(int)value;
+                                setAValue = true;
+                                break;
+                            case "level":
+                                Sends[send].Level.RawLevel = (float)value;
+                                setAValue = true;
+                                break;
+                            case "pan":
+                                break;
+                            case "type":
+                                Sends[send].Type = (Constants.MIX_TAP)(int)value;
+                                Sends[send + 1].Type = (Constants.MIX_TAP)(int)value;
+                                setAValue = true;
+                                break;
 
-                    }
-                    break;
+                        }
+                        break;
+                }
+                return setAValue;
+
             }
-            return setAValue;
+            return false;
         }
 
 

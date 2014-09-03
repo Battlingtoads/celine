@@ -62,7 +62,8 @@ namespace gnow.util.behringer
             switch (subs[1])
             {
                 case "config":
-                    Channels[e.channel - 1].SetConfigValues(subs[2], e.value);
+                case "mix":
+                    Channels[e.channel - 1].SetValuesFromOSC(subs, e.value);
                     break;
                 case "delay":
                     break;
@@ -73,9 +74,6 @@ namespace gnow.util.behringer
                 case "dyn":
                     break;
                 case "eq":
-                    break;
-                case "mix":
-                    Channels[e.channel - 1].SetMixValues(subs, e.value);
                     break;
                 case "grp":
                     break;
@@ -89,14 +87,12 @@ namespace gnow.util.behringer
             switch (subs[1])
             {
                 case "config":
-                    AuxInputs[e.channel - 1].SetConfigValues(subs[2], e.value);
+                case "mix":
+                    AuxInputs[e.channel - 1].SetValuesFromOSC(subs, e.value);
                     break;
                 case "preamp":
                     break;
                 case "eq":
-                    break;
-                case "mix":
-                    AuxInputs[e.channel - 1].SetMixValues(subs, e.value);
                     break;
                 case "grp":
                     break;
@@ -111,10 +107,8 @@ namespace gnow.util.behringer
             switch (subs[1])
             {
                 case "config":
-                    FXReturns[e.channel - 1].SetConfigValues(subs[2], e.value);
-                    break;
                 case "mix":
-                    FXReturns[e.channel - 1].SetMixValues(subs, e.value);
+                    FXReturns[e.channel - 1].SetValuesFromOSC(subs, e.value);
                     break;
                 case "grp":
                     break;
@@ -129,16 +123,14 @@ namespace gnow.util.behringer
             switch (subs[1])
             {
                 case "config":
-                    MixBusses[e.bus - 1].SetConfigValues(subs[2], e.value);
+                case "mix":
+                    MixBusses[e.bus - 1].SetValuesFromOSC(subs, e.value);
                     break;
                 case "dyn":
                     break;
                 case "insert":
                     break;
                 case "eq":
-                    break;
-                case "mix":
-                    MixBusses[e.bus - 1].SetMixValues(subs, e.value);
                     break;
                 case "grp":
                     break;
@@ -153,16 +145,14 @@ namespace gnow.util.behringer
             switch (subs[1])
             {
                 case "config":
-                    Matrices[e.matrix - 1].SetConfigValues(subs[2], e.value);
+                case "mix":
+                    Matrices[e.matrix - 1].SetValuesFromOSC(subs, e.value);
                     break;
                 case "dyn":
                     break;
                 case "insert":
                     break;
                 case "eq":
-                    break;
-                case "mix":
-                    Matrices[e.matrix - 1].SetMixValues(subs, e.value);
                     break;
                 case "grp":
                     break;
@@ -177,16 +167,14 @@ namespace gnow.util.behringer
             switch (subs[1])
             {
                 case "config":
-                    StereoMain.SetConfigValues(subs[2], e.value);
+                case "mix":
+                    StereoMain.SetValuesFromOSC(subs, e.value);
                     break;
                 case "dyn":
                     break;
                 case "insert":
                     break;
                 case "eq":
-                    break;
-                case "mix":
-                    StereoMain.SetMixValues(subs, e.value);
                     break;
                 case "grp":
                     break;

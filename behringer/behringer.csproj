@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LinearFloat.cs" />
+    <Compile Include="SettableFromOSC.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="X32AuxIn.cs" />
     <Compile Include="X32Dynamic.cs" />

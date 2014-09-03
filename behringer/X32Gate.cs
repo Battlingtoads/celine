@@ -7,7 +7,7 @@ using gnow.util.osc;
 
 namespace gnow.util.behringer
 {
-   public class X32Gate
+   public class X32Gate : SettableFromOSC
    {
       public Constants.ON_OFF m_isOn;
       public Constants.GATE_MODE m_Mode;
@@ -33,7 +33,7 @@ namespace gnow.util.behringer
          m_FilterFrequency = 20.0f;
       }
 
-      public void setValuesFromOSC(string[] parameters, object value)
+      public bool SetValuesFromOSC(string[] parameters, object value)
       {
           switch (parameters[2])
           {
@@ -61,7 +61,7 @@ namespace gnow.util.behringer
               case "keysrc":
                   m_KeySource = (int)value;
                   break;
-              default:
+              case "filter":
                   switch (parameters[3])
                   {
                       case "on":
@@ -74,7 +74,11 @@ namespace gnow.util.behringer
                           m_FilterFrequency = (float)value;
                           break;
                   }
+                  break;
+              default:
+                  return false;
           }
+          return true;
       }
    }
 }

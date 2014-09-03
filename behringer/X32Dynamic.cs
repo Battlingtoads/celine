@@ -7,7 +7,7 @@ using gnow.util.osc;
 
 namespace gnow.util.behringer
 {
-    public class X32Dynamic
+    public class X32Dynamic : SettableFromOSC
     {
         public Constants.ON_OFF m_isOn = Constants.ON_OFF.OFF;
         public Constants.DYN_MODE m_Mode = Constants.DYN_MODE.COMP;
@@ -25,6 +25,66 @@ namespace gnow.util.behringer
         public Constants.ON_OFF m_FilterOn = Constants.ON_OFF.OFF;
         public Constants.FILTER_TYPE m_FilterType = Constants.FILTER_TYPE.LC6;
         public float m_FilterFrequency = 20.0f;
+
+        public bool SetValuesFromOSC(string[] parameters, object value)
+        {
+            switch (parameters[2])
+            {
+                case "on":
+                    m_isOn = (Constants.ON_OFF)(int)value;
+                    break;
+                case "mode":
+                    m_Mode = (Constants.DYN_MODE)(int)value;
+                    break;
+                case "det":
+                    m_Determiner = (Constants.DYN_DET)(int)value;
+                    break;
+                case "env":
+                    m_Envelope = (Constants.DYN_ENV)(int)value;
+                    break;
+                case "thr":
+                    m_Threshold.Value = (float)value;
+                    break;
+                case "ratio":
+                    m_Ratio = (Constants.DYN_RATIO)(int)value;
+                    break;
+                case "knee":
+                    m_Knee.Value = (float)value;
+                    break;
+                case "attack":
+                    m_Attack.Value = (float)value;
+                    break;
+                case "hold":
+                    m_Hold = (float)value;
+                    break;
+                case "release":
+                    m_Release = (float)value;
+                    break;
+                case "pos":
+                    m_TapPoint = (Constants.SIMPLE_POS)(int)value;
+                    break;
+                case "keysrc":
+                    m_KeySource = (int)value;
+                    break;
+                case "filter":
+                    switch (parameters[3])
+                    {
+                        case "on":
+                            m_FilterOn = (Constants.ON_OFF)(int)value;
+                            break;
+                        case "type":
+                            m_FilterType = (Constants.FILTER_TYPE)value;
+                            break;
+                        case "f":
+                            m_FilterFrequency = (float)value;
+                            break;
+                    }
+                    break;
+                default:
+                    return false;
+            }
+            return true;
+        }
 
     }
 }

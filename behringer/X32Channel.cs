@@ -7,7 +7,7 @@ using gnow.util.osc;
 
 namespace gnow.util.behringer
 {
-    public class X32Channel : X32ChannelBase
+    public class X32Channel : X32ChannelBase , SettableFromOSC
     {
         public float pan;
         public Constants.ON_OFF StereoOn;
@@ -38,9 +38,9 @@ namespace gnow.util.behringer
             MonoLevel = new X32Level(0.0f, 161);
         }
 
-        public override bool SetMixValues(string[] parameters, object value)
+        public override bool SetValuesFromOSC(string[] parameters, object value)
         {
-            if (!base.SetMixValues(parameters, value))
+            if (!base.SetValuesFromOSC(parameters, value))
             {
                 switch (parameters[2])
                 {
