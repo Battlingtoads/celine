@@ -13,6 +13,7 @@ namespace gnow.util.behringer
         public Constants.ON_OFF MonoOn;
         public X32Level MonoLevel;
         public X32PreAmp m_PreAmp = new X32PreAmp();
+        public X32Eq m_Eq = new X32Eq(4);
 
         public X32AuxIn() : base()
         {

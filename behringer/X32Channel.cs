@@ -16,6 +16,7 @@ namespace gnow.util.behringer
         public X32Gate m_Gate = new X32Gate();
         public X32Dynamic m_Dynamic = new X32Dynamic();
         public X32PreAmp m_PreAmp = new X32PreAmp();
+        public X32Eq m_Eq = new X32Eq(4);
 
 
         public X32Channel()

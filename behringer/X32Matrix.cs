@@ -9,12 +9,6 @@ namespace gnow.util.behringer
     public class X32Matrix : X32ChannelBase
     {
         public X32Dynamic m_Dynamic = new X32Dynamic();
-        public X32Matrix()
-        {
-            Level = new X32Level(Constants.NO_LEVEL, 1024);
-            eq = new X32Eq();
-            color = Constants.COLOR.WHITE;
-            Mute = Constants.ON_OFF.ON;
-        }
+        public X32Eq m_Eq = new X32Eq(6);
     }
 }

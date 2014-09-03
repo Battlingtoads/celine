@@ -19,9 +19,6 @@ namespace gnow.util.behringer
 		/// <summary>Mute state of the channel</summary>
         public Constants.ON_OFF Mute;
 
-		/// <summary>Equalizer</summary>
-        public X32Eq eq;
-
 		/// <summary>List of the auxiliary//matrix sends this channel sends to.</summary>
         public List<X32Send> Sends;
 

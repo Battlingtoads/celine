@@ -12,8 +12,9 @@ namespace gnow.util.behringer
 
         public Constants.ON_OFF StereoOn;
         public Constants.ON_OFF MonoOn;
-        public X32Level MonoLevel;
+        public X32Level MonoLevel = new X32Level(0.0f, 161);
         public X32Dynamic m_Dynamic;
+        public X32Eq m_Eq = new X32Eq(6);
 
         public X32MixBus() : base()
         {
@@ -22,10 +23,7 @@ namespace gnow.util.behringer
             {
                 Sends.Add(new X32Send());
             }
-            eq = new X32Eq();
-            StereoOn = Constants.ON_OFF.ON;
-            MonoOn = Constants.ON_OFF.OFF;
-            MonoLevel = new X32Level(0.0f, 161);
+            
         }
         public override bool SetValuesFromOSC(string[] parameters, object value)
         {
