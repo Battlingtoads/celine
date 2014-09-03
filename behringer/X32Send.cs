@@ -11,6 +11,7 @@ namespace gnow.util.behringer
         public X32Level Level;
         public Constants.ON_OFF Mute;
         public Constants.MIX_TAP Type;
+        public LinearFloat m_Pan = new LinearFloat(-100.00f, 100.00f, 2.00f);
 
         public X32Send()
         {

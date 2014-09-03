@@ -92,6 +92,8 @@ namespace gnow.util.behringer
                                 setAValue = true;
                                 break;
                             case "pan":
+                                Sends[send].m_Pan.Value = (float)value;
+                                Sends[send + 1].m_Pan.Value = -(float)value;
                                 break;
                             case "type":
                                 Sends[send].Type = (Constants.MIX_TAP)(int)value;
