@@ -17,6 +17,7 @@ namespace gnow.util.behringer
         public X32Dynamic m_Dynamic = new X32Dynamic();
         public X32PreAmp m_PreAmp = new X32PreAmp();
         public X32Eq m_Eq = new X32Eq(4);
+        public byte m_MuteGroup = 0;
 
 
         public X32Channel()
@@ -38,19 +39,33 @@ namespace gnow.util.behringer
         {
             if (!base.SetValuesFromOSC(parameters, value))
             {
-                switch (parameters[2])
+                if(parameters[1] == "grp")
                 {
-                    case "pan":
-                        break;
-                    case "st":
-                        StereoOn = (Constants.ON_OFF)(int)value;
-                        break;
-                    case "mono":
-                        MonoOn = (Constants.ON_OFF)(int)value;
-                        break;
-                    case "mlevel":
-                        MonoLevel.RawLevel = (float)value;
-                        break;
+                    switch(parameters[2])
+                    {
+                        case "dca":
+                            break;
+                        case "mute":
+                            m_MuteGroup = (byte)value;
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (parameters[2])
+                    {
+                        case "pan":
+                            break;
+                        case "st":
+                            StereoOn = (Constants.ON_OFF)(int)value;
+                            break;
+                        case "mono":
+                            MonoOn = (Constants.ON_OFF)(int)value;
+                            break;
+                        case "mlevel":
+                            MonoLevel.RawLevel = (float)value;
+                            break;
+                    }
                 }
             }
             return true;

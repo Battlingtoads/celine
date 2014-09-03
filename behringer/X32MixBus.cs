@@ -15,6 +15,7 @@ namespace gnow.util.behringer
         public X32Level MonoLevel = new X32Level(0.0f, 161);
         public X32Dynamic m_Dynamic;
         public X32Eq m_Eq = new X32Eq(6);
+        public Byte m_MuteGroup = 0;
 
         public X32MixBus() : base()
         {
