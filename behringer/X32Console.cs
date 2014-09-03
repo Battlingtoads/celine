@@ -80,6 +80,7 @@ namespace gnow.util.behringer
                     Channels[e.channel - 1].m_Dynamic.SetValuesFromOSC(subs, e.value);
                     break;
                 case "eq":
+                    Channels[e.channel - 1].m_Eq.SetValuesFromOSC(subs, e.value);
                     break;
                 case "grp":
                     break;
@@ -100,6 +101,7 @@ namespace gnow.util.behringer
                     AuxInputs[e.channel - 1].m_PreAmp.SetValuesFromOSC(subs, e.value);
                     break;
                 case "eq":
+                    AuxInputs[e.channel - 1].m_Eq.SetValuesFromOSC(subs, e.value);
                     break;
                 case "grp":
                     break;
@@ -139,6 +141,7 @@ namespace gnow.util.behringer
                 case "insert":
                     break;
                 case "eq":
+                    MixBusses[e.bus - 1].m_Eq.SetValuesFromOSC(subs, e.value);
                     break;
                 case "grp":
                     break;
@@ -162,6 +165,7 @@ namespace gnow.util.behringer
                 case "insert":
                     break;
                 case "eq":
+                    Matrices[e.matrix - 1].m_Eq.SetValuesFromOSC(subs, e.value);
                     break;
                 case "grp":
                     break;
@@ -185,6 +189,7 @@ namespace gnow.util.behringer
                 case "insert":
                     break;
                 case "eq":
+                    StereoMain.m_Eq.SetValuesFromOSC(subs, e.value);
                     break;
                 case "grp":
                     break;
