@@ -125,15 +125,15 @@
     <Compile Include="Eq.xaml.cs">
       <DependentUpon>Eq.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GateOverview.xaml.cs">
+      <DependentUpon>GateOverview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Knob.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MiniSends.xaml.cs">
       <DependentUpon>MiniSends.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyUserControl1.xaml.cs">
-      <DependentUpon>MyUserControl1.xaml</DependentUpon>
     </Compile>
     <Compile Include="PreAmpSection.xaml.cs">
       <DependentUpon>PreAmpSection.xaml</DependentUpon>
@@ -165,15 +165,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GateOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MiniSends.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyUserControl1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
