@@ -22,6 +22,7 @@ namespace App1
 {
     public sealed partial class DynamicOverview : UserControl
     {
+        public float ratio = (1.0f / 3.5f);
         public DynamicOverview()
         {
             this.InitializeComponent();
@@ -135,7 +136,7 @@ namespace App1
             
             threshHoldPoint.Point = new Point(responseGraph.ActualWidth * fractionalValue,
                                                responseGraph.ActualHeight * (1 - fractionalValue));
-            endPoint.Point = new Point(responseGraph.ActualWidth, responseGraph.ActualHeight * (1 - fractionalValue) * .5);
+            endPoint.Point = new Point(responseGraph.ActualWidth, responseGraph.ActualHeight * (1 - fractionalValue) * (1 - ratio));
         }
         
     }

@@ -42,7 +42,7 @@
         </Grid>
                 
 
-            <local:Knob x:Name="Threshold" Grid.Row="2" Minimum="-80.0" Maximum="0.00" Value="0.00"/>
+            <local:Knob x:Name="Threshold" Grid.Row="2" Minimum="-80.0" Maximum="0.00" Value="0.00" SmallChange=".5"/>
             <StackPanel Grid.Row="2" Grid.Column="1">
                 <TextBlock Text="Threshold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="15"/>
                 <TextBlock x:Name="ThreshHoldText" Text="0.0db" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
