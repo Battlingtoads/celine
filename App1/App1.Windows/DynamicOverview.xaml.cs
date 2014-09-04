@@ -12,6 +12,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Shapes;
+
+using gnow.util.behringer;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -46,8 +49,12 @@ namespace App1
 
         }
 
+        public LineSegment threshHoldPoint;
+        public LineSegment endPoint;
+
         private void DrawGraph()
         {
+            Threshold.ValueChanged+=Threshold_ValueChanged;
             //make graph square
             if(responseGraph.ActualWidth > responseGraph.ActualHeight)
             {
@@ -59,7 +66,8 @@ namespace App1
             }
 
             //set meter height
-            gainReduction.Height = responseGraph.ActualHeight;
+            gainReduction.Height = responseGraph.Height;
+            UpdateLayout();
 
             //draw gridlines
             for(int i =0; i < 9; i++)
@@ -78,7 +86,7 @@ namespace App1
                 Vertical.X1 = (responseGraph.ActualWidth / 8) * i;
                 Vertical.Y1 = 0;
                 Vertical.X2 = (responseGraph.ActualWidth / 8) * i;
-                Vertical.Y2 = resposneGraph.ActualHeight;
+                Vertical.Y2 = responseGraph.ActualHeight;
                 responseGraph.Children.Add(Vertical);
             }
 
@@ -106,9 +114,8 @@ namespace App1
                  */
 
                 //add segments
-                LineSegment threshHoldPoint = new LineSegment(){Point = new Point(responseGraph.ActualWidth*.7, responseGraph.ActualHeight*.3)};
-                LineSegment endPoint = new LineSegment(){Point = new Point(responsegraph.ActualWidth,
-                        responseGraph.ActualHeight*.3*.5)};
+                threshHoldPoint = new LineSegment(){Point = new Point(responseGraph.ActualWidth, 0)};
+                endPoint = new LineSegment(){Point = new Point(responseGraph.ActualWidth, 0)};
 
                 curveFig.Segments.Add(threshHoldPoint);
                 curveFig.Segments.Add(endPoint);
@@ -118,6 +125,17 @@ namespace App1
 
                 //set geo to curve.data
                 curve.Data = curveGeo;
+                Canvas.SetZIndex(curve, 10);
+        }
+
+        private void Threshold_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            ThreshHoldText.Text = e.NewValue.ToString("##0.00") + "dB";
+            float fractionalValue = ((float)e.NewValue).Remap((float)Threshold.Minimum, 0.0f, (float)Threshold.Maximum, 1f);;
+            
+            threshHoldPoint.Point = new Point(responseGraph.ActualWidth * fractionalValue,
+                                               responseGraph.ActualHeight * (1 - fractionalValue));
+            endPoint.Point = new Point(responseGraph.ActualWidth, responseGraph.ActualHeight * (1 - fractionalValue) * .5);
         }
         
     }

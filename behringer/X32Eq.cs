@@ -41,6 +41,7 @@ namespace gnow.util.behringer
                             eqBands[band].q.Value = (float)value;
                             break;
                     }
+                    break;
             }
             return true;
         }

@@ -33,9 +33,6 @@
                                         Margin="0"
                                         Fill="Black">
                             </Rectangle>
-                            <Canvas.RenderTransform>
-                                <RotateTransform x:Name="knobRotation" Angle="-27"/>
-                            </Canvas.RenderTransform>
                         </Canvas>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">

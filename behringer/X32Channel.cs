@@ -29,7 +29,6 @@ namespace gnow.util.behringer
                 
                 Sends.Add(new X32Send());
             }
-            eq = new X32Eq();
             StereoOn = Constants.ON_OFF.ON;
             MonoOn = Constants.ON_OFF.OFF;
             MonoLevel = new X32Level(0.0f, 161);

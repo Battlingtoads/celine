@@ -35,17 +35,17 @@
                 <Canvas x:Name="responseGraph" >
 
 
-                    <Path x:Name="curve" Stroke="Yellow" StrokeThickness="2" ZIndex="2" >
+                    <Path x:Name="curve" Stroke="Yellow" StrokeThickness="2" >
                     </Path>
                 </Canvas>
                 <dc:Meter x:Name="gainReduction" Grid.Row="0" Grid.Column="1" Margin="4 0 4 0"/>
         </Grid>
                 
 
-            <local:Knob x:Name="Threshold" Grid.Row="2"/>
+            <local:Knob x:Name="Threshold" Grid.Row="2" Minimum="-80.0" Maximum="0.00" Value="0.00"/>
             <StackPanel Grid.Row="2" Grid.Column="1">
                 <TextBlock Text="Threshold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="15"/>
-                <TextBlock Text="0.0db" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock x:Name="ThreshHoldText" Text="0.0db" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13"/>
             </StackPanel>
 
         </Grid>
