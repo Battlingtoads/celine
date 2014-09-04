@@ -5,14 +5,41 @@
     xmlns:local="using:App1"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dc="using:gnow.UI"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="30*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="15*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <TextBlock Text="Range" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="15"/>
+            <local:Knob x:Name="RangeKnob" Minimum="3.00" Maximum="60.00" SmallChange="1.00" Value="60.00" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2">
+            <TextBlock Text="Attack" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="15"/>
+            <local:Knob x:Name="AttackKnob" Minimum="0.00" Maximum="120.00" SmallChange="1.00" Value="0" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="3">
+            <TextBlock Text="Hold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="15"/>
+            <local:Knob x:Name="HoldKnob" Minimum="0" Maximum="101.00" SmallChange="1.00" Value="0" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="4">
+            <TextBlock Text="Release" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="15"/>
+            <local:Knob x:Name="ReleaseKnob" Minimum="0.00" Maximum="101.00" SmallChange="1.00" Value="0" />
+        </StackPanel>
 
     </Grid>
 </Page>
