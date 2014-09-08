@@ -22,6 +22,12 @@ namespace App1
         public PreAmpSection()
         {
             this.InitializeComponent();
+            gain.ValueChanged += gain_ValueChanged;
+        }
+
+        void gain_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            gainValue.Text = e.NewValue.ToString("##.00") + "dB";
         }
     }
 }

@@ -45,6 +45,7 @@ namespace App1
             this.DefaultStyleKey = typeof(Knob);
             this.Loaded += Knob_Loaded;
             SmallChange = .5;
+            ChangeSpeed = 2;
         }
 
         private void Knob_Loaded(object sender, RoutedEventArgs e)
@@ -95,7 +96,7 @@ namespace App1
             Point end = e.GetCurrentPoint(this).Position;
             Point start = dragStart;
             float oldAngle = angle;
-            double distance = (start.Y - end.Y) / 2;
+            double distance = (start.Y - end.Y) / ChangeSpeed;
             int smallChanges = (int)(distance / SmallChange);
             
             //TODO: This deals with small movement cases. Make this work better
@@ -139,5 +140,19 @@ namespace App1
             Value += change / AngleValueRatio;
             OnValueChanged(oldValue, Value);
         }
+
+
+
+        public int ChangeSpeed
+        {
+            get { return (int)GetValue(ChangeSpeedProperty); }
+            set { SetValue(ChangeSpeedProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ChangeSpeed.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ChangeSpeedProperty =
+            DependencyProperty.Register("ChangeSpeed", typeof(int), typeof(Knob), new PropertyMetadata(0));
+
+        
     }
 }
