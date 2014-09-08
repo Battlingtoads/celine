@@ -27,7 +27,7 @@
 
             <TextBlock x:Name="Title" Text="Gain" FontSize="25" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBlock x:Name="gainValue" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-            <local:Knob x:Name="gain" Grid.Column="1" Grid.Row="1" Minimum="-12.00" Maximum="60.00" SmallChange=".50" Value="-12.00" ChangeSpeed="4"/>
+            <local:Knob x:Name="gain" Grid.Column="1" Grid.Row="1" Minimum="-12.00" Maximum="60.00" SmallChange=".50" Value="-12.00" ChangeSpeed=".25"/>
             <ToggleButton x:Name="phantomPower" Content="+48V" Grid.Row="3" Grid.RowSpan="2" FontSize="22" HorizontalAlignment="Center" MinHeight="60" MinWidth="150"/>
             <ToggleButton x:Name="phase" Content="&#x2205;" Grid.Row="4" FontSize="30" Grid.RowSpan="2" HorizontalAlignment="Center" MinHeight="50" MinWidth="150"/>
             <ToggleButton x:Name="link" Content="Link" Grid.Row="5" Grid.RowSpan="2" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" MinHeight="50" MinWidth="150"/>
