@@ -30,6 +30,7 @@ namespace App1
         private const string CanvasPartName = "PART_Canvas";
         private static readonly float MINIMUM_ANGLE = -150.0f;
         private static readonly float MAXIMUM_ANGLE = 150.0f;
+        private static readonly double CHANGE_THRESHOLD = 1.0f;
         private float angle = 0;
         private Point dragStart;
         private bool capturing;
@@ -96,6 +97,19 @@ namespace App1
             float oldAngle = angle;
             double distance = (start.Y - end.Y) / 2;
             int smallChanges = (int)(distance / SmallChange);
+            
+            //TODO: This deals with small movement cases. Make this work better
+            if (smallChanges < 1 && Math.Abs(distance) > CHANGE_THRESHOLD )
+            {
+                if (distance < 0)
+                {
+                    smallChanges = -1;
+                }
+                else
+                {
+                    smallChanges = 1;
+                }
+            }
             RotateKnob((float)(smallChanges * SmallChange)*AngleValueRatio);
             dragStart.Y = end.Y;
             base.OnPointerMoved(e);
