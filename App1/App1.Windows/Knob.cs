@@ -99,7 +99,7 @@ namespace App1
             int smallChanges = (int)(distance / SmallChange);
             
             //TODO: This deals with small movement cases. Make this work better
-            if (smallChanges < 1 && Math.Abs(distance) > CHANGE_THRESHOLD )
+            if (Math.Abs(smallChanges) < 1 && Math.Abs(distance) > CHANGE_THRESHOLD )
             {
                 if (distance < 0)
                 {
