@@ -258,6 +258,9 @@ namespace App1
             {
                 Fader faderBase = new Fader();
                 faderBase.FaderValueChangedEvent += Fader_ValueChanged;
+                faderBase.SetValue(HorizontalAlignmentProperty, HorizontalAlignment.Stretch);
+                faderBase.SetValue(VerticalAlignmentProperty, VerticalAlignment.Stretch);
+                faderBase.LabelText = "Channel " + (i + 1).ToString();
                 faders.Add(faderBase);
                 MainGrid.Children.Add(faders[i]);
                 Grid.SetRow(faders[i], 2);
@@ -303,7 +306,7 @@ namespace App1
                 navGrid.Children.Add(buttonBase);
                 Grid.SetColumn(buttonBase, i);
                 Grid.SetRow(buttonBase, 0);
-
+                UpdateLayout();
             }
             
         }
