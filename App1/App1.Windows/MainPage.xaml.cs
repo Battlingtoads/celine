@@ -322,5 +322,10 @@ namespace App1
             this.Frame.Navigate(typeof(DetailView));
         }
 
+        private void gotoGate_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(GateView));
+        }
+
     }
 }

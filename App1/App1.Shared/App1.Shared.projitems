@@ -19,6 +19,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Fader.xaml.cs">
       <DependentUpon>Fader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)GateGraph.xaml.cs">
+      <DependentUpon>GateGraph.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)LevelConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RequestValues.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Meter.xaml.cs">
       <DependentUpon>Meter.xaml</DependentUpon>
@@ -26,9 +30,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)SendLevel.xaml.cs">
       <DependentUpon>SendLevel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)TimeConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Fader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)GateGraph.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -26,5 +26,11 @@ namespace App1
         {
             this.InitializeComponent();
         }
+
+        private void ThresholdKnob_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            if(Graph != null)
+                Graph.threshHoldValue = e.NewValue;
+        }
     }
 }

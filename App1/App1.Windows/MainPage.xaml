@@ -26,6 +26,7 @@
         </Grid.RowDefinitions>
 
         <Button x:Name="gotoDetail" Content="Detail" Click="gotoDetail_Click" />
+        <Button x:Name="gotoGate" Content="Gate" Click="gotoGate_Click" VerticalAlignment="Bottom"/>
 
 
         <Grid x:Name="navGrid" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="8">
