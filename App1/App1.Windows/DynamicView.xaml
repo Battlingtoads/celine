@@ -1,0 +1,66 @@
+﻿<Page
+    x:Class="App1.DynamicView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dc="using:gnow.UI"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <local:TimeConverter x:Key="TimeConverter"/>
+            <local:LevelConverter x:Key="LevelConverter"/>
+            <local:RatioConverter x:Key="RatioConverter"/>
+        </Grid.Resources>
+
+        <local:DynamicGraph x:Name="Graph" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Margin="3" />
+
+        <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" >
+            <TextBlock Text="Threshold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="15"/>
+            <local:Knob x:Name="ThresholdKnob" Minimum="-80.00" Maximum="0.00" SmallChange=".5" Value="0.00" ValueChanged="ThresholdKnob_ValueChanged"/>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="15" Text="{Binding ElementName=ThresholdKnob, Path=Value, Converter={StaticResource ResourceKey=LevelConverter}}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="3"  VerticalAlignment="Center" >
+            <TextBlock Text="Ratio" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="15"/>
+            <local:Knob x:Name="RatioKnob" Minimum="1" Maximum="12" SmallChange="1" Value="1" ValueChanged="RatioKnob_ValueChanged"/>
+            <TextBlock x:Name="RatioValue" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="15" Text="{Binding ElementName=RatioKnob, Path=Value, Converter={StaticResource ResourceKey=RatioConverter}}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="4"  VerticalAlignment="Center" >
+            <TextBlock Text="Range" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="15"/>
+            <local:Knob x:Name="RangeKnob" Minimum="3.00" Maximum="60.00" SmallChange="1.00" Value="60.00" />
+            <TextBlock x:Name="RangeValue" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="15" Text="{Binding ElementName=RangeKnob, Path=Value, Converter={StaticResource ResourceKey=LevelConverter}}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" >
+            <TextBlock Text="Attack" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="15"/>
+            <local:Knob x:Name="AttackKnob" Minimum="0.00" Maximum="120.00" SmallChange="1.00" Value="0" />
+            <TextBlock x:Name="AttackValue" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="15" Text="{Binding ElementName=AttackKnob, Path=Value, Converter={StaticResource ResourceKey=TimeConverter}}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" >
+            <TextBlock Text="Hold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="15"/>
+            <local:Knob x:Name="HoldKnob" Minimum="0" Maximum="101.00" SmallChange="1.00" Value="0" />
+            <TextBlock x:Name="HoldValue" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="15" Text="{Binding ElementName=HoldKnob, Path=Value, Converter={StaticResource ResourceKey=TimeConverter}}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" >
+            <TextBlock Text="Release" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="15"/>
+            <local:Knob x:Name="ReleaseKnob" Minimum="0.00" Maximum="101.00" SmallChange="1.00" Value="0" />
+            <TextBlock x:Name="ReleaseValue" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Margin="15" Text="{Binding ElementName=ReleaseKnob, Path=Value, Converter={StaticResource ResourceKey=TimeConverter}}"/>
+        </StackPanel>
+
+    </Grid>
+</Page>

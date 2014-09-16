@@ -327,5 +327,10 @@ namespace App1
             this.Frame.Navigate(typeof(GateView));
         }
 
+        private void gotoDynamic_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(DynamicView));
+        }
+
     }
 }

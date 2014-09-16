@@ -72,7 +72,7 @@ namespace App1
             {
                 OSCInPort.Instance.Connect();
                 OSCOutPort.Instance.Connect();
-                new System.Threading.ManualResetEvent(false).WaitOne(500);
+                new System.Threading.ManualResetEvent(false).WaitOne(250);
             }
             catch(Exception t)
             {

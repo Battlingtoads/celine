@@ -16,6 +16,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Class.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DynamicGraph.xaml.cs">
+      <DependentUpon>DynamicGraph.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Fader.xaml.cs">
       <DependentUpon>Fader.xaml</DependentUpon>
     </Compile>
@@ -23,6 +26,7 @@
       <DependentUpon>GateGraph.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)LevelConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RatioConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RequestValues.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Meter.xaml.cs">
       <DependentUpon>Meter.xaml</DependentUpon>
@@ -33,6 +37,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)TimeConverter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)DynamicGraph.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Fader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

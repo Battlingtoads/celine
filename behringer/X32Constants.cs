@@ -130,6 +130,50 @@ namespace gnow.util.behringer
             MATRIX, DCA, MAIN
         }
 
+        public static float GetRatioAsFloat(DYN_RATIO ratio)
+        {
+            switch (ratio)
+            {
+                case DYN_RATIO._1_1:
+                    return (1 / 1.1f);
+                    
+                case DYN_RATIO._1_3:
+                    return (1 / 1.3f);
+                    
+                case DYN_RATIO._1_5:
+                    return (1 / 1.5f);
+                    
+                case DYN_RATIO._2:
+                    return .5f;
+                    
+                case DYN_RATIO._2_5:
+                    return (1 / 2.5f);
+                    
+                case DYN_RATIO._3:
+                    return (1/ 3.0f);
+                    
+                case DYN_RATIO._4:
+                    return (1/ 4.0f);
+                    
+                case DYN_RATIO._5:
+                    return 0.2f;
+                    
+                case DYN_RATIO._7:
+                    return (1 / 7.0f);
+                    
+                case DYN_RATIO._10:
+                    return 0.1f;
+                    
+                case DYN_RATIO._20:
+                    return 0.05f;
+                    
+                case DYN_RATIO._100:
+                    return 0.01f;
+                    
+            }
+            return 0.0f;
+        }
+
     };
 
     public static class ExtensionMethods

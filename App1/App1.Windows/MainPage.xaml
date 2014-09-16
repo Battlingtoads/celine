@@ -25,6 +25,7 @@
             <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
 
+        <Button x:Name="gotoDynamic" Content="Dynamic" Click="gotoDynamic_Click" VerticalAlignment="Top"/>
         <Button x:Name="gotoDetail" Content="Detail" Click="gotoDetail_Click" />
         <Button x:Name="gotoGate" Content="Gate" Click="gotoGate_Click" VerticalAlignment="Bottom"/>
 
