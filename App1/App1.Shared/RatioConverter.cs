@@ -11,7 +11,7 @@ namespace App1
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double v = (double)value;
-            if(v!= null)
+            if(v != 0)
             {
                 string ratioString;
                 switch ((int)v)

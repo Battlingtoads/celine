@@ -64,10 +64,6 @@ namespace App1
 #endif
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-
-        }
 
         private void Console_FaderChanged(object sender, ChannelReceivedEventArgs e)
         {
@@ -312,11 +308,6 @@ namespace App1
             
         }
 
-        private void Knob1_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
-        {
-            Debug.WriteLine(e.NewValue.ToString());
-        }
-
         private void gotoDetail_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(DetailView));
@@ -329,8 +320,14 @@ namespace App1
 
         private void gotoDynamic_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(DynamicView));
+            NavigationArgs args  = new NavigationArgs(){type = new X32Channel(), index=1};
+            this.Frame.Navigate(typeof(DynamicView), args);
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Presenter.Instance.CurrentPage = this;
+            Presenter.Instance.selectedChannelType = null;
+        }
     }
 }

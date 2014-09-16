@@ -26,6 +26,8 @@
       <DependentUpon>GateGraph.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)LevelConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NavigationArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presenter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RatioConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RequestValues.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Meter.xaml.cs">
