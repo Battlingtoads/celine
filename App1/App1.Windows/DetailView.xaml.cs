@@ -36,10 +36,6 @@ namespace App1
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Presenter.Instance.CurrentPage = this;
-            NavigationArgs args = (NavigationArgs)e.Parameter;
-            Presenter.Instance.selectedChannelType = args.type;
-            Presenter.Instance.selectedChannelIndex = args.index;
 
         }
     }

@@ -329,8 +329,6 @@ namespace App1
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Presenter.Instance.CurrentPage = this;
-            Presenter.Instance.selectedChannelType = null;
         }
     }
 }

@@ -19,12 +19,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)DynamicGraph.xaml.cs">
       <DependentUpon>DynamicGraph.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DynamicPresenter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fader.xaml.cs">
       <DependentUpon>Fader.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)GateGraph.xaml.cs">
       <DependentUpon>GateGraph.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)IDynamicView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IGateView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LevelConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NavigationArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Presenter.cs" />

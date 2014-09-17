@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Windows.UI.Xaml.Controls;
-using gnow.util.behringer;
 
-namespace gnow.util
+namespace gnow.util 
 {
-    public abstract class Presenter
+    public interface IView
     {
-        protected IView view;
+        void UpdateUI();
 
     }
 }

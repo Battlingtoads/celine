@@ -133,13 +133,43 @@ namespace App1
             {
                 angle = MAXIMUM_ANGLE;
             }
-            canvas = GetTemplateChild(CanvasPartName) as Canvas;
-            canvas.RenderTransform = new RotateTransform();
-            (canvas.RenderTransform as RotateTransform).Angle = angle;
+            SetKnobAngle(angle);
             double oldValue = Value;
             Value += change / AngleValueRatio;
             OnValueChanged(oldValue, Value);
         }
+
+        private void SetKnobAngle(float angle)
+        {
+            if(angle < MINIMUM_ANGLE)
+            {
+                angle = MINIMUM_ANGLE;
+            }
+            if(angle > MAXIMUM_ANGLE)
+            {
+                angle = MAXIMUM_ANGLE;
+            }
+            canvas = GetTemplateChild(CanvasPartName) as Canvas;
+            canvas.RenderTransform = new RotateTransform();
+            (canvas.RenderTransform as RotateTransform).Angle = angle;
+        }
+
+        public void SetValue(double v)
+        {
+            Value = v;
+            float newAngle = ((float)Value).Remap((float)Minimum, MINIMUM_ANGLE, (float)Maximum, MAXIMUM_ANGLE);
+            if(angle < MINIMUM_ANGLE)
+            {
+                angle = MINIMUM_ANGLE;
+            }
+            if(angle > MAXIMUM_ANGLE)
+            {
+                angle = MAXIMUM_ANGLE;
+            }
+            SetKnobAngle(newAngle);
+        }
+
+
 
 
 
