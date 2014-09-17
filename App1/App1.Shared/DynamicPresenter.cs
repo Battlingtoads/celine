@@ -6,9 +6,9 @@ namespace gnow.util
 {
     class DynamicPresenter : Presenter
     {
-        public DynamicPresenter(IGateView view)
+        public DynamicPresenter(IDynamicView view)
         {
-            this.view = (IGateView)view;
+            this.view = (IDynamicView)view;
         }
     }
 }

@@ -139,5 +139,20 @@ namespace App1
             endPoint.Point = new Point(responseGraph.ActualWidth, responseGraph.ActualHeight * (1 - fractionalValue) * (1 - ratio));
         }
         
+        public void SetThreshold(float value)
+        {
+            Threshold.SetValue(value);
+            ThreshHoldText.Text = value.ToString("##0.00") + "dB";
+            float fractionalValue = ((float)value).Remap((float)Threshold.Minimum, 0.0f, (float)Threshold.Maximum, 1f);;
+            
+            threshHoldPoint.Point = new Point(responseGraph.ActualWidth * fractionalValue,
+                                               responseGraph.ActualHeight * (1 - fractionalValue));
+            endPoint.Point = new Point(responseGraph.ActualWidth, responseGraph.ActualHeight * (1 - fractionalValue) * (1 - ratio));
+        }
+
+        public float GetThreshold()
+        {
+            return (float)Threshold.Value;
+        }
     }
 }

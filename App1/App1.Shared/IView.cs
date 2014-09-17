@@ -7,7 +7,6 @@ namespace gnow.util
 {
     public interface IView
     {
-        void UpdateUI();
 
     }
 }

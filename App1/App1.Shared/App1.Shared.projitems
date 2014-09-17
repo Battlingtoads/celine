@@ -16,6 +16,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Class.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DetailPresenter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DynamicGraph.xaml.cs">
       <DependentUpon>DynamicGraph.xaml</DependentUpon>
     </Compile>
@@ -26,6 +27,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)GateGraph.xaml.cs">
       <DependentUpon>GateGraph.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)GatePresenter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IDetailView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IDynamicView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IGateView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IView.cs" />

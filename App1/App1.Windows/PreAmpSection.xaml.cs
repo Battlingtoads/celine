@@ -29,5 +29,45 @@ namespace App1
         {
             gainValue.Text = e.NewValue.ToString("##.00") + "dB";
         }
+
+        public void SetGain(double v)
+        {
+            gain.SetValue(v);
+        }
+
+        public float GetGain()
+        {
+            return (float)gain.Value;
+        }
+
+        public void SetPhantomPower(bool b)
+        {
+            phantomPower.IsChecked = b;
+        }
+
+        public bool? GetPhantomPower()
+        {
+            return phantomPower.IsChecked;
+        }
+
+        public void SetPhase(bool b)
+        {
+            phase.IsChecked = b;
+        }
+
+        public bool? GetPhase()
+        {
+            return phase.IsChecked;
+        }
+
+        public void SetLink(bool b)
+        {
+            link.IsChecked = b;
+        }
+
+        public bool? GetLink()
+        {
+            return link.IsChecked;
+        }
     }
 }

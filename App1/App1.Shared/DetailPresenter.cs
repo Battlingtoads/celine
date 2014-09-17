@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,17 +6,12 @@ using gnow.util.behringer;
 
 namespace gnow.util
 {
-    public class DetailPresenter
+    public class DetailPresenter : Presenter
     {
-        public DetailPresenter(IView view)
+        public DetailPresenter(IDetailView view)
         {
             this.view = view;
             //TODO: Add console events and register this as a listener
         }
-        public void UpdateControls(PresenterUpdateArgs args)
-        {
-            view.Update(args)
-        }
-
     }
 }

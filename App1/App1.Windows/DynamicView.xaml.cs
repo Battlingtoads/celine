@@ -24,9 +24,11 @@ namespace App1
     /// </summary>
     public sealed partial class DynamicView : Page, IDynamicView
     {
+        DynamicPresenter presenter;
         public DynamicView()
         {
             this.InitializeComponent();
+            presenter = new DynamicPresenter(this);
         }
 
         private void ThresholdKnob_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
