@@ -31,6 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IDetailView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IDynamicView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IGateView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IMainView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LevelConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NavigationArgs.cs" />

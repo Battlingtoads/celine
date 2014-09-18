@@ -23,6 +23,7 @@ namespace gnow.UI
     public sealed partial class Fader : UserControl
     {
         private string _LabelText;
+        public double FaderValue { get; set; }
         public string LabelText
         {
             get { return _LabelText; }
@@ -38,6 +39,7 @@ namespace gnow.UI
             brsh.GradientStops.Add(new GradientStop { Color = new Color() { A=255, G = 255, R=255}, Offset = 0.70 });
             brsh.GradientStops.Add(new GradientStop { Color = new Color() { A=255, R = 255 }, Offset = 1.0 });
             meter.SetBackgroundFill(brsh);
+            FaderValue = slider0.Value;
         }
 
 

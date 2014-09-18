@@ -31,8 +31,9 @@ namespace App1
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : Page, IMainView
     {
+        List<float> faderValues = new List<float>();
         List<Fader> faders;
         List<Meter> meters;
         List<Button> navButtons;
@@ -329,6 +330,51 @@ namespace App1
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+        }
+
+        public IEnumerable<float> FaderValues
+        {
+            get
+            {
+                faderValues.Add((float)faders[0].FaderValue);
+                return faderValues;
+            }
+        }
+
+        public IEnumerable<bool> Mutes
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IEnumerable<X32ScribbleStrip> Labels
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Constants.FADER_GROUP Bank
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
