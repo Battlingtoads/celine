@@ -54,7 +54,6 @@ namespace App1
 
             //Set default fader set to Channel 1-8
             navButtons[0].BorderBrush = new SolidColorBrush(new Color { A = 255, B = 200 });
-            X32MessageDispatcher.Instance.ChannelReceivedEvent += Console_FaderChanged;
             X32MessageDispatcher.Instance.MetersReceivedEvent += MeterUpdateReceived;
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(meterUpdateRate);
@@ -73,29 +72,6 @@ namespace App1
             RequestValues.FromOSC(Constants.METER_TYPE.HOME);
 #endif
         }
-
-
-        private void Console_FaderChanged(object sender, ChannelReceivedEventArgs e)
-        {
-            if(e.fromLocal == true)
-            {
-                return;
-            }
-            if(e.channel < (int)currentPage * 8 ||
-               e.channel > ((int)currentPage + 1) * 8)
-            {
-                return;
-            }
-            if (e.subAddress == "/mix/fader")
-            {
-                faders[e.channel % 8].SetFaderValue((float)e.value);
-            }
-            else if(e.subAddress == "/mix/on")
-            {
-                faders[e.channel % 8].setMute((gnow.util.behringer.Constants.ON_OFF)e.value);
-            }
-        }
-        
 
         private void Fader_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
@@ -176,11 +152,6 @@ namespace App1
                     channel = 0;
                     break;
             }
-            X32Level level = new X32Level(Constants.NO_LEVEL, 1024);
-            level.DbFSLevel = Fader.mapLogarithmic((float)e.NewValue);
-            OSCMessage msg = new OSCMessage(address, (oscFloat)(level.RawLevel));
-            OSCOutPort.Instance.SendAsync(msg);
-            X32MessageDispatcher.Instance.UpdateFromUI(type, channel, level.RawLevel, subAddress );
         }
 
         private void NavButtonClick(object sender, RoutedEventArgs e)
