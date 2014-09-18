@@ -24,6 +24,7 @@ namespace gnow.UI
     {
         private string _LabelText;
         public double FaderValue { get; set; }
+        public bool Mute { get; set; }
         public string LabelText
         {
             get { return _LabelText; }
@@ -112,6 +113,16 @@ namespace gnow.UI
             {
                 return value * 10 / 30 - 23.3333f;
             }
+        }
+
+        private void muteButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Mute = false;
+        }
+
+        private void muteButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Mute = true;
         }
     }
 }

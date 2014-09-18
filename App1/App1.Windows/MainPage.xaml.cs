@@ -34,16 +34,23 @@ namespace App1
     public sealed partial class MainPage : Page, IMainView
     {
         List<float> faderValues = new List<float>();
+        List<bool> mutes = new List<bool>();
+        List<X32ScribbleStrip> labels = new List<X32ScribbleStrip>();
         List<Fader> faders;
         List<Meter> meters;
         List<Button> navButtons;
         Constants.FADER_GROUP currentPage;
+
+        MainPresenter presenter;
+
         long meterUpdateRate = 1000000;
         public MainPage()
         {
             this.InitializeComponent();
             Page_Load();
             currentPage = 0;
+
+            presenter = new MainPresenter(this);
 
             //Set default fader set to Channel 1-8
             navButtons[0].BorderBrush = new SolidColorBrush(new Color { A = 255, B = 200 });
@@ -53,6 +60,8 @@ namespace App1
             timer.Interval = new TimeSpan(meterUpdateRate);
             timer.Tick += timer_Tick;
             timer.Start();
+            //TODO: Remove this for release
+            Bank = Constants.FADER_GROUP.CHANNEL_1_8;
 
         }
 
@@ -336,7 +345,7 @@ namespace App1
         {
             get
             {
-                faderValues.Add((float)faders[0].FaderValue);
+                AssignFaderBank();
                 return faderValues;
             }
         }
@@ -345,11 +354,8 @@ namespace App1
         {
             get
             {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
+                AssignFaderBank();
+                return Mutes;
             }
         }
 
@@ -357,23 +363,29 @@ namespace App1
         {
             get
             {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
+                AssignFaderBank();
+                return Labels;
             }
         }
 
         public Constants.FADER_GROUP Bank
         {
-            get
+            get;
+            set;
+        }
+
+        private void AssignFaderBank()
+        {
+            faderValues.Clear();
+            for(int i = 0; i < 8; i++)
             {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
+                faderValues.Add((float)faders[i + (int)Bank * 8].FaderValue);
+                mutes.Add(faders[i + (int)Bank * 8].Mute);
+                X32ScribbleStrip tempStrip = new X32ScribbleStrip();
+                //TODO: get actual color
+                tempStrip.Color = Constants.COLOR.WHITE;
+                tempStrip.Name = faders[i + (int)Bank * 8].LabelText;
+                labels.Add(tempStrip);
             }
         }
     }

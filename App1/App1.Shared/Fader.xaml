@@ -27,7 +27,7 @@
         <TextBlock x:Name="valueBox" Text="-&#x221E;" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Slider x:Name ="slider0" Orientation="Vertical" StepFrequency=".25"  Grid.Row="2" HorizontalAlignment="Center" ValueChanged="Slider_ValueChanged" IsThumbToolTipEnabled="False"/>
         <dc:Meter x:Name="meter" Grid.Row="2" Grid.Column="2" />
-        <ToggleButton x:Name="muteButton" IsChecked="True" Grid.Column="0" Grid.ColumnSpan="3" Content="MUTE" Grid.Row="3" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF0000"/>
+        <ToggleButton x:Name="muteButton" IsChecked="True" Grid.Column="0" Grid.ColumnSpan="3" Content="MUTE" Grid.Row="3" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF0000" Checked="muteButton_Checked" Unchecked="muteButton_Unchecked"/>
 
     </Grid>
 </UserControl>

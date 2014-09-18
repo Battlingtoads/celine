@@ -16,27 +16,24 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Class.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DetailPresenter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\LevelConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\RatioConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DynamicGraph.xaml.cs">
       <DependentUpon>DynamicGraph.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)DynamicPresenter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fader.xaml.cs">
       <DependentUpon>Fader.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)GateGraph.xaml.cs">
       <DependentUpon>GateGraph.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)GatePresenter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IDetailView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IDynamicView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IGateView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IMainView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LevelConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NavigationArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Presenter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RatioConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presenters\DetailPresenter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presenters\DynamicPresenter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presenters\GatePresenter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presenters\MainPresenter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Presenters\Presenter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RequestValues.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Meter.xaml.cs">
       <DependentUpon>Meter.xaml</DependentUpon>
@@ -44,7 +41,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)SendLevel.xaml.cs">
       <DependentUpon>SendLevel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)TimeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\IDetailView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\IDynamicView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\IGateView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\IMainView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\IView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)DynamicGraph.xaml">
