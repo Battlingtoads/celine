@@ -80,8 +80,7 @@ namespace App1
             }
 
             X32MessageDispatcher.Instance.Initialize();
-            X32Console Console = new X32Console();
-            Resources.Add("Console", Console);
+            Resources.Add("Console", X32Console.Instance);
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,

@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DynamicGraph.xaml.cs">
       <DependentUpon>DynamicGraph.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)EventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fader.xaml.cs">
       <DependentUpon>Fader.xaml</DependentUpon>
     </Compile>

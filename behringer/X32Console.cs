@@ -9,8 +9,18 @@ using gnow.util.osc;
 
 namespace gnow.util.behringer
 {
-    public class X32Console
+    public sealed  class X32Console
     {
+        private static readonly X32Console instance = new X32Console();
+
+        public static X32Console Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         public List<X32Channel> Channels;
         public List<X32AuxIn> AuxInputs;
         public List<X32FXReturn> FXReturns;
@@ -19,7 +29,7 @@ namespace gnow.util.behringer
         public X32Main StereoMain;
         public X32Main MonoMain;
 
-        public X32Console()
+        private X32Console()
         {
             Channels = new List<X32Channel>(32);
             for(int i = 0; i < 32; i++)

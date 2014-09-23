@@ -39,7 +39,6 @@ namespace App1
         List<Fader> faders;
         List<Meter> meters;
         List<Button> navButtons;
-        Constants.FADER_GROUP currentPage;
 
         MainPresenter presenter;
 
@@ -48,7 +47,7 @@ namespace App1
         {
             this.InitializeComponent();
             Page_Load();
-            currentPage = 0;
+            Bank = 0;
 
             presenter = new MainPresenter(this);
 
@@ -80,7 +79,9 @@ namespace App1
             string subAddress;
             Constants.COMPONENT_TYPE type;
             int channel;
-            switch (currentPage)
+            FaderValueChangedArgs args = new FaderValueChangedArgs() { offset = faders.IndexOf(s), bank = Bank, value = (float)e.NewValue };
+            OnFaderValueChanged(args);
+            switch (Bank)
             {
                 case Constants.FADER_GROUP.CHANNEL_1_8:
                     subAddress = "/mix/fader";
@@ -157,15 +158,15 @@ namespace App1
         private void NavButtonClick(object sender, RoutedEventArgs e)
         {
             Button s = (Button)sender;
-            if(s == navButtons[(int)currentPage])
+            if(s == navButtons[(int)Bank])
             {
                 //do nothing
                 return;
             }
             s.BorderBrush = new SolidColorBrush(new Color { A = 255, B = 200 });
-            navButtons[(int)currentPage].BorderBrush = new SolidColorBrush(Windows.UI.Colors.White);
-            currentPage = (Constants.FADER_GROUP)navButtons.IndexOf(s);
-            GetChannelValues(currentPage);
+            navButtons[(int)Bank].BorderBrush = new SolidColorBrush(Windows.UI.Colors.White);
+            Bank = (Constants.FADER_GROUP)navButtons.IndexOf(s);
+            GetChannelValues(Bank);
 
         }
 
@@ -179,19 +180,19 @@ namespace App1
                     {
                         meters[i].SetLevel(meterGroup.Values[i]);
                     }
-                    if (currentPage != Constants.FADER_GROUP.DCA &&
-                       currentPage != Constants.FADER_GROUP.MATRIX_MAIN)
+                    if (Bank != Constants.FADER_GROUP.DCA &&
+                       Bank != Constants.FADER_GROUP.MATRIX_MAIN)
                     {
                         for (int i = 0; i < 8; i++)
                         {
-                            faders[i].SetMeterValue(meterGroup.Values[(int)currentPage + i]);
+                            faders[i].SetMeterValue(meterGroup.Values[(int)Bank + i]);
                         }
                     }
-                    else if(currentPage == Constants.FADER_GROUP.MATRIX_MAIN)
+                    else if(Bank == Constants.FADER_GROUP.MATRIX_MAIN)
                     {
                         for( int i = 0; i < 6; i++)
                         {
-                            faders[i].SetMeterValue(meterGroup.Values[(int)currentPage + i]);
+                            faders[i].SetMeterValue(meterGroup.Values[(int)Bank + i]);
                         }
                     }
                     break;
@@ -343,6 +344,16 @@ namespace App1
         {
             get;
             set;
+        }
+
+        public event FaderValueChangedEventHandler FaderValueChanged;
+
+        private void OnFaderValueChanged(FaderValueChangedArgs e)
+        {
+            if(FaderValueChanged != null)
+            {
+                FaderValueChanged(this, e);
+            }
         }
 
         private void AssignFaderBank()

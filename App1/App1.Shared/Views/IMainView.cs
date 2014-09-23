@@ -11,5 +11,7 @@ namespace gnow.util
         IEnumerable<bool> Mutes { get; }
         IEnumerable<X32ScribbleStrip> Labels { get; }
         Constants.FADER_GROUP Bank { get; set; }
+
+        event FaderValueChangedEventHandler FaderValueChanged;
     }
 }
