@@ -13,5 +13,6 @@ namespace gnow.util
         Constants.FADER_GROUP Bank { get; set; }
 
         event FaderValueChangedEventHandler FaderValueChanged;
+        event MuteValueChangedEventHandler MuteValueChanged;
     }
 }

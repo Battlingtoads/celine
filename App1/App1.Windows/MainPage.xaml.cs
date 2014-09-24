@@ -356,6 +356,17 @@ namespace App1
             }
         }
 
+        public event MuteValueChangedEventHandler MuteValueChanged;
+
+        private void OnMuteValueChanged(MuteValueChangedArgs e)
+        {
+            if(MuteValueChanged != null)
+            {
+                MuteValueChanged(this, e);
+            }
+        }
+
+
         private void AssignFaderBank()
         {
             faderValues.Clear();

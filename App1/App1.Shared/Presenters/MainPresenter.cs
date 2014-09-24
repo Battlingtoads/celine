@@ -13,6 +13,7 @@ namespace gnow.util
         {
             this.view = view;
             this.view.FaderValueChanged += FaderChangedUI;
+            this.view.MuteValueChanged += MuteChangedUI;
         }
         private void FaderChangedUI(object sender, FaderValueChangedArgs e)
         {
@@ -103,7 +104,12 @@ namespace gnow.util
                     break;
             }
         }
+
+        private void MuteChangedUI(object sender, MuteValueChangedArgs e)
+        {
+        }
     }
     public delegate void FaderValueChangedEventHandler(object sender, FaderValueChangedArgs e);
+    public delegate void MuteValueChangedEventHandler(object sender, FaderValueChangedArgs e);
 
 }
