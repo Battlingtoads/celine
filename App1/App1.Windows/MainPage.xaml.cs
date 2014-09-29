@@ -58,7 +58,6 @@ namespace App1
             timer.Interval = new TimeSpan(meterUpdateRate);
             timer.Tick += timer_Tick;
             timer.Start();
-            //TODO: Remove this for release
 
         }
 
@@ -117,7 +116,15 @@ namespace App1
                 default:
                     break;
             }
-            GetChannelValues(Bank.getEnum());
+            try
+            {
+                GetChannelValues(Bank.getEnum());
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.StackTrace);
+            }
 
         }
 

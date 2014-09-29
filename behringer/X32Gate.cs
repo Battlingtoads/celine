@@ -35,7 +35,7 @@ namespace gnow.util.behringer
           switch (parameters[2])
           {
               case "on":
-                  m_isOn = (bool)value;
+                  m_isOn = Convert.ToBoolean(value);
                   break;
               case "mode":
                   m_Mode = (Constants.GATE_MODE)(int)value;
@@ -62,7 +62,7 @@ namespace gnow.util.behringer
                   switch (parameters[3])
                   {
                       case "on":
-                          m_FilterOn = (bool)value;
+                          m_FilterOn = Convert.ToBoolean(value);
                           break;
                       case "type":
                           m_FilterType = (Constants.FILTER_TYPE)value;

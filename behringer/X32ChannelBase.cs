@@ -63,7 +63,7 @@ namespace gnow.util.behringer
                 switch(parameters[2])
                 {
                     case "on":
-                        On = (bool)value;
+                        On = Convert.ToBoolean(value);
                         setAValue = true;
                         break;
                     case "fader":
@@ -84,7 +84,7 @@ namespace gnow.util.behringer
                         switch (parameters[3])
                         {
                             case "on":
-                                Sends[send].On = (bool)value;
+                                Sends[send].On = Convert.ToBoolean(value);
                                 setAValue = true;
                                 break;
                             case "level":

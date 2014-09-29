@@ -49,10 +49,10 @@ namespace gnow.util.behringer
                        case "pan":
                            break;
                        case "st":
-                           StereoOn = (bool)value;
+                           StereoOn = Convert.ToBoolean(value);
                            break;
                        case "mono":
-                           MonoOn = (bool)value;
+                           MonoOn = Convert.ToBoolean(value);
                            break;
                        case "mlevel":
                            MonoLevel.RawLevel = (float)value;

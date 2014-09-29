@@ -24,10 +24,10 @@ namespace gnow.util.behringer
                     m_Trim.Value = (float)value;
                     break;
                 case "invert":
-                    m_PreampInvert = (bool)value;
+                    m_PreampInvert = Convert.ToBoolean(value);
                     break;
                 case "hpon":
-                    m_HighPassOn = (bool)value;
+                    m_HighPassOn = Convert.ToBoolean(value);
                     break;
                 case "hpslope":
                     m_HighPassSlope = (Constants.HP_SLOPE)(int)value;

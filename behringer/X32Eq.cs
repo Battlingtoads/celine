@@ -22,7 +22,7 @@ namespace gnow.util.behringer
             switch(parameters[2])
             {
                 case "on":
-                    isOn = (bool)value;
+                    isOn = Convert.ToBoolean(value);
                     break;
                 default:
                     int band = Convert.ToInt32(parameters[2]) - 1;
