@@ -15,7 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Class.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LevelConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\RatioConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeConverter.cs" />

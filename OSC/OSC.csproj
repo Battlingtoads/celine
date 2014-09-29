@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="OSCData.cs" />
+    <Compile Include="OSCException.cs" />
     <Compile Include="OSCInPort.cs" />
     <Compile Include="OSCMessage.cs" />
     <Compile Include="OSCOutport.cs" />
