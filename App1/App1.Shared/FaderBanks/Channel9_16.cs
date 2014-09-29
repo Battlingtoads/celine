@@ -5,13 +5,13 @@ using gnow.util.behringer;
 
 namespace gnow.util
 {
-    public class MixBus9_16 : FaderBank
+    public class Channel9_16 : FaderBank
     {
         public void setMute(int index, bool value)
         {
             int channel = 9 + index;
             string subAddress = "mix/on";
-            string address = "/bus/" + channel.ToString().PadLeft(2, '0') + subAddress;
+            string address = "/ch/" + channel.ToString().PadLeft(2, '0') + subAddress;
             X32Console.Instance.Channels[channel].StereoOn = (Constants.ON_OFF)value;
         }
 
@@ -19,13 +19,13 @@ namespace gnow.util
         {
             int channel = 9 + index;
             string subAddress = "mix/fader";
-            string address = "/bus/" + channel.ToString().PadLeft(2, '0') + subAddress;
+            string address = "/ch/" + channel.ToString().PadLeft(2, '0') + subAddress;
             X32Console.Instance.Channels[channel].Level.DbFSLevel = value;
         }
 
         public Constants.FADER_GROUP getEnum()
         {
-            return Constants.FADER_GROUP.BUS_9_16;
+            return Constants.FADER_GROUP.CHANNEL_9_16;
         }
     }
 }

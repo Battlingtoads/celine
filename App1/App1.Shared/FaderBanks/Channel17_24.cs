@@ -5,7 +5,7 @@ using gnow.util.behringer;
 
 namespace gnow.util
 {
-    class Channel17_24 : FaderBank
+    public class Channel17_24 : FaderBank
     {
         public void setMute(int index, bool value)
         {

@@ -5,7 +5,7 @@ using gnow.util.behringer;
 
 namespace gnow.util
 {
-    class AuxInBank : FaderBank
+    public class AuxInBank : FaderBank
     {
         public void setMute(int index, bool value)
         {
