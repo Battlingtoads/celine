@@ -25,6 +25,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Fader.xaml.cs">
       <DependentUpon>Fader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)FaderBanks\Channel17_24.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FaderBanks\AuxInBank.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FaderBanks\MatrixMainBank.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FaderBanks\MixBus9_16.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FaderBanks\MixBus1_8.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FaderBanks\Channel25_32.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FaderBanks\Channel9_16.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FaderBanks\Channel1_8.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FaderBanks\FaderBank.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GateGraph.xaml.cs">
       <DependentUpon>GateGraph.xaml</DependentUpon>
     </Compile>

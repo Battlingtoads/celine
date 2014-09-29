@@ -17,7 +17,9 @@ namespace gnow.util
         }
         private void FaderChangedUI(object sender, FaderValueChangedArgs e)
         {
-            string address;
+
+            view.Bank.setLevel(e.offset, e.value);
+            /*string address;
             string subAddress;
             Constants.COMPONENT_TYPE type;
             int channel;
@@ -103,13 +105,15 @@ namespace gnow.util
                     channel = 0;
                     break;
             }
+            */
         }
 
         private void MuteChangedUI(object sender, MuteValueChangedArgs e)
         {
+            view.Bank.setMute(e.offset, e.value);
         }
     }
     public delegate void FaderValueChangedEventHandler(object sender, FaderValueChangedArgs e);
-    public delegate void MuteValueChangedEventHandler(object sender, FaderValueChangedArgs e);
+    public delegate void MuteValueChangedEventHandler(object sender, MuteValueChangedArgs e);
 
 }

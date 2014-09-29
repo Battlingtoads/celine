@@ -47,7 +47,7 @@ namespace App1
         {
             this.InitializeComponent();
             Page_Load();
-            Bank = 0;
+            Bank = new Channel1_8();
 
             presenter = new MainPresenter(this);
 
@@ -59,7 +59,6 @@ namespace App1
             timer.Tick += timer_Tick;
             timer.Start();
             //TODO: Remove this for release
-            Bank = Constants.FADER_GROUP.CHANNEL_1_8;
 
         }
 
@@ -75,98 +74,50 @@ namespace App1
         private void Fader_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             var s = (Fader)sender;
-            string address;
-            string subAddress;
-            Constants.COMPONENT_TYPE type;
-            int channel;
-            FaderValueChangedArgs args = new FaderValueChangedArgs() { offset = faders.IndexOf(s), bank = Bank, value = (float)e.NewValue };
+            FaderValueChangedArgs args = new FaderValueChangedArgs() { offset = faders.IndexOf(s), value = (float)e.NewValue };
             OnFaderValueChanged(args);
-            switch (Bank)
-            {
-                case Constants.FADER_GROUP.CHANNEL_1_8:
-                    subAddress = "/mix/fader";
-                    channel = (1 + faders.IndexOf(s));
-                    address = "/ch/" + channel.ToString().PadLeft(2, '0') + subAddress;
-                    type = Constants.COMPONENT_TYPE.CHANNEL;
-                    break;
-                case Constants.FADER_GROUP.CHANNEL_9_16:
-                    subAddress = "/mix/fader";
-                    channel = (9 + faders.IndexOf(s));
-                    address = "/ch/" + channel.ToString().PadLeft(2, '0') + subAddress;
-                    type = Constants.COMPONENT_TYPE.CHANNEL;
-                    break;
-                case Constants.FADER_GROUP.CHANNEL_17_24:
-                    subAddress = "/mix/fader";
-                    channel = (17 + faders.IndexOf(s));
-                    address = "/ch/" + channel.ToString().PadLeft(2, '0') + subAddress;
-                    type = Constants.COMPONENT_TYPE.CHANNEL;
-                    break;
-                case Constants.FADER_GROUP.CHANNEL_25_32:
-                    subAddress = "/mix/fader";
-                    channel = (25 + faders.IndexOf(s));
-                    address = "/ch/" + channel.ToString().PadLeft(2, '0') + subAddress;
-                    type = Constants.COMPONENT_TYPE.CHANNEL;
-                    break;
-                case Constants.FADER_GROUP.AUX_1_8:
-                    subAddress = "/mix/fader";
-                    channel = 1 + faders.IndexOf(s);
-                    address = "/auxin/" + channel.ToString().PadLeft(2, '0') + subAddress;
-                    type = Constants.COMPONENT_TYPE.AUX_INPUT;
-                    break;
-                case Constants.FADER_GROUP.BUS_1_8:
-                    subAddress = "/mix/fader";
-                    channel = 1 + faders.IndexOf(s);
-                    address = "/bus/" + channel.ToString().PadLeft(2, '0') + subAddress;
-                    type = Constants.COMPONENT_TYPE.MIX_BUS;
-                    break;
-                case Constants.FADER_GROUP.BUS_9_16:
-                    subAddress = "/mix/fader";
-                    channel = 9 + faders.IndexOf(s);
-                    address = "/bus/" + channel.ToString().PadLeft(2, '0') + subAddress;
-                    type = Constants.COMPONENT_TYPE.MIX_BUS;
-                    break;
-                case Constants.FADER_GROUP.MATRIX_MAIN:
-                    subAddress = "/mix/fader";
-                    if (faders.IndexOf(s) < 6)
-                    {
-                        channel = 1 + faders.IndexOf(s);
-                        type = Constants.COMPONENT_TYPE.MATRIX;
-                        address = "/mtx/" + channel.ToString().PadLeft(2, '0') + subAddress;
-                    }
-                    else if(faders.IndexOf(s) == 6)
-                    {
-                        channel = 0;
-                        type = Constants.COMPONENT_TYPE.MAIN;
-                        address = "/main/st/mix/fader";
-                    }
-                    else
-                    {
-                        channel = 1;
-                        type = Constants.COMPONENT_TYPE.MAIN;
-                        address = "/main/m/mix/fader";
-                    }
-                    break;
-                default:
-                    address = "/failure";
-                    type = Constants.COMPONENT_TYPE.CHANNEL;
-                    subAddress = "/failure";
-                    channel = 0;
-                    break;
-            }
         }
 
         private void NavButtonClick(object sender, RoutedEventArgs e)
         {
             Button s = (Button)sender;
-            if(s == navButtons[(int)Bank])
+            if(s == navButtons[(int)Bank.getEnum()])
             {
                 //do nothing
                 return;
             }
             s.BorderBrush = new SolidColorBrush(new Color { A = 255, B = 200 });
-            navButtons[(int)Bank].BorderBrush = new SolidColorBrush(Windows.UI.Colors.White);
-            Bank = (Constants.FADER_GROUP)navButtons.IndexOf(s);
-            GetChannelValues(Bank);
+            navButtons[(int)Bank.getEnum()].BorderBrush = new SolidColorBrush(Windows.UI.Colors.White);
+            switch((Constants.FADER_GROUP)navButtons.IndexOf(s))
+            {
+                case Constants.FADER_GROUP.CHANNEL_1_8:
+                    Bank = new Channel1_8();
+                    break;
+                case Constants.FADER_GROUP.CHANNEL_9_16:
+                    Bank = new Channel9_16();
+                    break;
+                case Constants.FADER_GROUP.CHANNEL_17_24:
+                    Bank = new Channel17_24();
+                    break;
+                case Constants.FADER_GROUP.CHANNEL_25_32:
+                    Bank = new Channel25_32();
+                    break;
+                case Constants.FADER_GROUP.AUX_1_8:
+                    Bank = new AuxInBank();
+                    break;
+                case Constants.FADER_GROUP.BUS_1_8:
+                    Bank = new MixBus1_8();
+                    break;
+                case Constants.FADER_GROUP.BUS_9_16:
+                    Bank = new MixBus9_16();
+                    break;
+                case Constants.FADER_GROUP.MATRIX_MAIN:
+                    Bank = new MatrixMainBank();
+                    break;
+                default:
+                    break;
+            }
+            GetChannelValues(Bank.getEnum());
 
         }
 
@@ -180,19 +131,19 @@ namespace App1
                     {
                         meters[i].SetLevel(meterGroup.Values[i]);
                     }
-                    if (Bank != Constants.FADER_GROUP.DCA &&
-                       Bank != Constants.FADER_GROUP.MATRIX_MAIN)
+                    if (Bank.getEnum() != Constants.FADER_GROUP.DCA &&
+                       Bank.getEnum() != Constants.FADER_GROUP.MATRIX_MAIN)
                     {
                         for (int i = 0; i < 8; i++)
                         {
-                            faders[i].SetMeterValue(meterGroup.Values[(int)Bank + i]);
+                            faders[i].SetMeterValue(meterGroup.Values[(int)Bank.getEnum() + i]);
                         }
                     }
-                    else if(Bank == Constants.FADER_GROUP.MATRIX_MAIN)
+                    else if(Bank.getEnum() == Constants.FADER_GROUP.MATRIX_MAIN)
                     {
                         for( int i = 0; i < 6; i++)
                         {
-                            faders[i].SetMeterValue(meterGroup.Values[(int)Bank + i]);
+                            faders[i].SetMeterValue(meterGroup.Values[(int)Bank.getEnum() + i]);
                         }
                     }
                     break;
@@ -340,7 +291,7 @@ namespace App1
             }
         }
 
-        public Constants.FADER_GROUP Bank
+        public FaderBank Bank
         {
             get;
             set;
@@ -372,12 +323,12 @@ namespace App1
             faderValues.Clear();
             for(int i = 0; i < 8; i++)
             {
-                faderValues.Add((float)faders[i + (int)Bank * 8].FaderValue);
-                mutes.Add(faders[i + (int)Bank * 8].Mute);
+                faderValues.Add((float)faders[i + (int)Bank.getEnum() * 8].FaderValue);
+                mutes.Add(faders[i + (int)Bank.getEnum() * 8].Mute);
                 X32ScribbleStrip tempStrip = new X32ScribbleStrip();
                 //TODO: get actual color
                 tempStrip.Color = Constants.COLOR.WHITE;
-                tempStrip.Name = faders[i + (int)Bank * 8].LabelText;
+                tempStrip.Name = faders[i + (int)Bank.getEnum() * 8].LabelText;
                 labels.Add(tempStrip);
             }
         }
