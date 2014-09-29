@@ -9,8 +9,8 @@ namespace gnow.util.behringer
 {
     public class X32AuxIn : X32ChannelBase
     {
-        public Constants.ON_OFF StereoOn;
-        public Constants.ON_OFF MonoOn;
+        public bool StereoOn;
+        public bool MonoOn;
         public X32Level MonoLevel;
         public X32PreAmp m_PreAmp = new X32PreAmp();
         public X32Eq m_Eq = new X32Eq(4);
@@ -23,8 +23,8 @@ namespace gnow.util.behringer
             {
                 Sends.Add(new X32Send());
             }
-            StereoOn = Constants.ON_OFF.ON;
-            MonoOn = Constants.ON_OFF.OFF;
+            StereoOn = true;
+            MonoOn = true;
             MonoLevel = new X32Level(0.0f, 161);
         }
         public override bool SetValuesFromOSC(string[] parameters, object value)
@@ -49,10 +49,10 @@ namespace gnow.util.behringer
                        case "pan":
                            break;
                        case "st":
-                           StereoOn = (Constants.ON_OFF)(int)value;
+                           StereoOn = (bool)value;
                            break;
                        case "mono":
-                           MonoOn = (Constants.ON_OFF)(int)value;
+                           MonoOn = (bool)value;
                            break;
                        case "mlevel":
                            MonoLevel.RawLevel = (float)value;

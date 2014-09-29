@@ -12,7 +12,7 @@ namespace gnow.util
             int channel = 1 + index;
             string subAddress = "mix/on";
             string address = "/auxin/" + channel.ToString().PadLeft(2, '0') + subAddress;
-            X32Console.Instance.Channels[channel].StereoOn = (Constants.ON_OFF)value;
+            X32Console.Instance.Channels[channel].StereoOn = value;
         }
 
         public void setLevel(int index, float value)

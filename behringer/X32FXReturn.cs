@@ -9,8 +9,8 @@ namespace gnow.util.behringer
 {
     public class X32FXReturn : X32ChannelBase
     {
-        public Constants.ON_OFF StereoOn;
-        public Constants.ON_OFF MonoOn;
+        public bool StereoOn;
+        public bool MonoOn;
         public X32Level MonoLevel;
         public Byte m_MuteGroup = 0;
 
@@ -21,8 +21,8 @@ namespace gnow.util.behringer
             {
                 Sends.Add(new X32Send());
             }
-            StereoOn = Constants.ON_OFF.ON;
-            MonoOn = Constants.ON_OFF.OFF;
+            StereoOn = true;
+            MonoOn = false;
             MonoLevel = new X32Level(0.0f, 161);
         }
         public override bool SetValuesFromOSC(string[] parameters, object value)
@@ -47,10 +47,10 @@ namespace gnow.util.behringer
                        case "pan":
                            break;
                        case "st":
-                           StereoOn = (Constants.ON_OFF)(int)value;
+                           StereoOn = (bool)value;
                            break;
                        case "mono":
-                           MonoOn = (Constants.ON_OFF)(int)value;
+                           MonoOn = (bool)value;
                            break;
                        case "mlevel":
                            MonoLevel.RawLevel = (float)value;

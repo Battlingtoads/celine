@@ -9,7 +9,7 @@ namespace gnow.util.behringer
 {
     public class X32Dynamic : SettableFromOSC
     {
-        public Constants.ON_OFF m_isOn = Constants.ON_OFF.OFF;
+        public bool m_isOn = false;
         public Constants.DYN_MODE m_Mode = Constants.DYN_MODE.COMP;
         public Constants.DYN_DET m_Determiner = Constants.DYN_DET.PEAK;
         public Constants.DYN_ENV m_Envelope = Constants.DYN_ENV.LIN;
@@ -22,7 +22,7 @@ namespace gnow.util.behringer
         public LogFloat m_Release = new LogFloat(5.000f, 4000.000f, 101);
         public Constants.SIMPLE_POS m_TapPoint = Constants.SIMPLE_POS.PRE;
         public int m_KeySource = 0;
-        public Constants.ON_OFF m_FilterOn = Constants.ON_OFF.OFF;
+        public bool m_FilterOn = false;
         public Constants.FILTER_TYPE m_FilterType = Constants.FILTER_TYPE.LC6;
         public LogFloat m_FilterFrequency = new LogFloat(20.000f, 200000f, 201);
 
@@ -31,7 +31,7 @@ namespace gnow.util.behringer
             switch (parameters[2])
             {
                 case "on":
-                    m_isOn = (Constants.ON_OFF)(int)value;
+                    m_isOn = (bool)value;
                     break;
                 case "mode":
                     m_Mode = (Constants.DYN_MODE)(int)value;
@@ -70,7 +70,7 @@ namespace gnow.util.behringer
                     switch (parameters[3])
                     {
                         case "on":
-                            m_FilterOn = (Constants.ON_OFF)(int)value;
+                            m_FilterOn = (bool)value;
                             break;
                         case "type":
                             m_FilterType = (Constants.FILTER_TYPE)value;

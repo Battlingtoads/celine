@@ -10,8 +10,8 @@ namespace gnow.util.behringer
     public class X32Channel : X32ChannelBase , SettableFromOSC
     {
         public float pan;
-        public Constants.ON_OFF StereoOn;
-        public Constants.ON_OFF MonoOn;
+        public bool StereoOn;
+        public bool MonoOn;
         public X32Level MonoLevel;
         public X32Gate m_Gate = new X32Gate();
         public X32Dynamic m_Dynamic = new X32Dynamic();
@@ -29,8 +29,8 @@ namespace gnow.util.behringer
                 
                 Sends.Add(new X32Send());
             }
-            StereoOn = Constants.ON_OFF.ON;
-            MonoOn = Constants.ON_OFF.OFF;
+            StereoOn = true;
+            MonoOn = true;
             MonoLevel = new X32Level(0.0f, 161);
         }
 
@@ -56,10 +56,10 @@ namespace gnow.util.behringer
                         case "pan":
                             break;
                         case "st":
-                            StereoOn = (Constants.ON_OFF)(int)value;
+                            StereoOn = (bool)value;
                             break;
                         case "mono":
-                            MonoOn = (Constants.ON_OFF)(int)value;
+                            MonoOn = (bool)value;
                             break;
                         case "mlevel":
                             MonoLevel.RawLevel = (float)value;

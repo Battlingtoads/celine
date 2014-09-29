@@ -9,8 +9,8 @@ namespace gnow.util.behringer
     public class X32PreAmp : SettableFromOSC
     {
         public LinearFloat m_Trim = new LinearFloat(-12.000f, 12.000f, 0.250f);
-        public Constants.ON_OFF m_PreampInvert = Constants.ON_OFF.OFF;
-        public Constants.ON_OFF m_HighPassOn = Constants.ON_OFF.OFF;
+        public bool m_PreampInvert = false;
+        public bool m_HighPassOn = false;
         public Constants.HP_SLOPE m_HighPassSlope = Constants.HP_SLOPE._12;
 
         //TODO Change to logfloat
@@ -24,10 +24,10 @@ namespace gnow.util.behringer
                     m_Trim.Value = (float)value;
                     break;
                 case "invert":
-                    m_PreampInvert = (Constants.ON_OFF)(int)value;
+                    m_PreampInvert = (bool)value;
                     break;
                 case "hpon":
-                    m_HighPassOn = (Constants.ON_OFF)(int)value;
+                    m_HighPassOn = (bool)value;
                     break;
                 case "hpslope":
                     m_HighPassSlope = (Constants.HP_SLOPE)(int)value;

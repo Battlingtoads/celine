@@ -17,19 +17,19 @@ namespace gnow.util
                 channel = 1 + index;
                 subAddress = "mix/on";
                 address = "/mtx/" + channel.ToString().PadLeft(2, '0') + subAddress;
-                X32Console.Instance.Matrices[channel].Mute = (Constants.ON_OFF)value;
+                X32Console.Instance.Matrices[channel].On = value;
             }
             else if(index == 7)
             {
                 channel = 0;
                 address = "/main/st/mix/on";
-                X32Console.Instance.StereoMain.Mute = (Constants.ON_OFF)value;
+                X32Console.Instance.StereoMain.On = value;
             }
             else
             {
                 channel = 0;
                 address = "/main/m/mix/on";
-                //X32Console.Instance.Mono.Mute = (Constants.ON_OFF)value;
+                //X32Console.Instance.Mono.On = value;
             }
         }
 
@@ -55,7 +55,7 @@ namespace gnow.util
             {
                 channel = 0;
                 address = "/main/m/mix/fader";
-                //X32Console.Instance.Mono.Mute = (Constants.ON_OFF)value;
+                //X32Console.Instance.Mono.On = value;
             }
         }
 

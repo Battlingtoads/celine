@@ -16,8 +16,8 @@ namespace gnow.util.behringer
 		/// <summary>Color of the channel</summary>
         public Constants.COLOR color;
 
-		/// <summary>Mute state of the channel</summary>
-        public Constants.ON_OFF Mute;
+		/// <summary>On state of the channel</summary>
+        public bool On;
 
 		/// <summary>List of the auxiliary//matrix sends this channel sends to.</summary>
         public List<X32Send> Sends;
@@ -31,7 +31,7 @@ namespace gnow.util.behringer
         {
             Name = "Unnamed";
             color = Constants.COLOR.WHITE;
-            Mute = Constants.ON_OFF.ON;
+            On = true;
             Level = new X32Level(Constants.NO_LEVEL, 1024);
         }
 
@@ -63,7 +63,7 @@ namespace gnow.util.behringer
                 switch(parameters[2])
                 {
                     case "on":
-                        Mute = (Constants.ON_OFF)(int)value;
+                        On = (bool)value;
                         setAValue = true;
                         break;
                     case "fader":
@@ -84,7 +84,7 @@ namespace gnow.util.behringer
                         switch (parameters[3])
                         {
                             case "on":
-                                Sends[send].Mute = (Constants.ON_OFF)(int)value;
+                                Sends[send].On = (bool)value;
                                 setAValue = true;
                                 break;
                             case "level":

@@ -10,8 +10,8 @@ namespace gnow.util.behringer
     public class X32MixBus: X32ChannelBase
     {
 
-        public Constants.ON_OFF StereoOn;
-        public Constants.ON_OFF MonoOn;
+        public bool StereoOn;
+        public bool MonoOn;
         public X32Level MonoLevel = new X32Level(0.0f, 161);
         public X32Dynamic m_Dynamic;
         public X32Eq m_Eq = new X32Eq(6);
@@ -48,10 +48,10 @@ namespace gnow.util.behringer
                        case "pan":
                            break;
                        case "st":
-                           StereoOn = (Constants.ON_OFF)(int)value;
+                           StereoOn = (bool)value;
                            break;
                        case "mono":
-                           MonoOn = (Constants.ON_OFF)(int)value;
+                           MonoOn = (bool)value;
                            break;
                        case "mlevel":
                            MonoLevel.RawLevel = (float)value;

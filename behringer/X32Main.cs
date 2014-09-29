@@ -19,7 +19,7 @@ namespace gnow.util.behringer
             {
                 Sends.Add(new X32Send());
             }
-            Mute = Constants.ON_OFF.ON;
+            On = true;
             pan = 0;
         }
 
