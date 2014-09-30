@@ -104,6 +104,9 @@ namespace App1
                 case Constants.FADER_GROUP.AUX_1_8:
                     Bank = new AuxInBank();
                     break;
+                case Constants.FADER_GROUP.FX_RETURNS:
+                    Bank = new FXReturnBank();
+                    break;
                 case Constants.FADER_GROUP.BUS_1_8:
                     Bank = new MixBus1_8();
                     break;
@@ -330,12 +333,12 @@ namespace App1
             faderValues.Clear();
             for(int i = 0; i < 8; i++)
             {
-                faderValues.Add((float)faders[i + (int)Bank.getEnum() * 8].FaderValue);
-                mutes.Add(faders[i + (int)Bank.getEnum() * 8].Mute);
+                faderValues.Add((float)faders[i].FaderValue);
+                mutes.Add(faders[i].Mute);
                 X32ScribbleStrip tempStrip = new X32ScribbleStrip();
                 //TODO: get actual color
                 tempStrip.Color = Constants.COLOR.WHITE;
-                tempStrip.Name = faders[i + (int)Bank.getEnum() * 8].LabelText;
+                tempStrip.Name = faders[i].LabelText;
                 labels.Add(tempStrip);
             }
         }

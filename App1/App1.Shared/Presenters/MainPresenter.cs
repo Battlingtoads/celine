@@ -15,7 +15,7 @@ namespace gnow.util
             this.view = view;
             this.view.FaderValueChanged += FaderChangedUI;
             this.view.MuteValueChanged += MuteChangedUI;
-            X32MessageDispatcher.Instance.ChannelReceivedEvent += OSCReceived;
+            X32MessageDispatcher.Instance.ChannelReceivedEvent += ChannelOSCReceived;
         }
         private void FaderChangedUI(object sender, FaderValueChangedArgs e)
         {
@@ -27,8 +27,41 @@ namespace gnow.util
             view.Bank.setMute(e.offset, e.value);
         }
 
-        private void OSCReceived(object sender, ChannelReceivedEventArgs e)
+        private void ChannelOSCReceived(object sender, ChannelReceivedEventArgs e)
         {
+            string[] subs = e.subAddress.Split('/');
+            switch(subs[1])
+            {
+                case "mix":
+                    switch (subs[2])
+                    {
+                        case "fader":
+                            X32Level level = new X32Level(0, 1024);
+                            level.RawLevel = (float)e.value;
+                            List<float> faderLevels = view.FaderValues as List<float>;
+                            switch(view.Bank.getEnum())
+                            {
+                                case Constants.FADER_GROUP.CHANNEL_1_8:
+                                    faderLevels[e.channel - 1] = level.DbFSLevel;
+                                    break;
+                                case Constants.FADER_GROUP.CHANNEL_9_16:
+                                    faderLevels[e.channel - 9] = level.DbFSLevel;
+                                    break;
+                                case Constants.FADER_GROUP.CHANNEL_17_24:
+                                    faderLevels[e.channel - 17] = level.DbFSLevel;
+                                    break;
+                                case Constants.FADER_GROUP.CHANNEL_25_32:
+                                    faderLevels[e.channel - 25] = level.DbFSLevel;
+                                    break;
+                            }
+                            break;
+                    }
+
+                    break;
+                default:
+                    //do nothing
+                    break;
+            }
         }
     }
     public delegate void FaderValueChangedEventHandler(object sender, FaderValueChangedArgs e);
