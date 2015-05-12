@@ -297,14 +297,14 @@ namespace App1
             get
             {
                 AssignFaderBank();
-                return Mutes;
+                return mutes;
             }
             set
             {
                 List<bool> fMutes = value as List<bool>;
                 for(int i = 0; i < faders.Count; i++)
                 {
-                    faders[i].Mute = fMutes[i];
+                    faders[i].SetMute(fMutes[i]);
                 }
             }
         }
@@ -348,6 +348,7 @@ namespace App1
         private void AssignFaderBank()
         {
             faderValues.Clear();
+            mutes.Clear();
             for(int i = 0; i < 8; i++)
             {
                 faderValues.Add((float)faders[i].FaderValue);

@@ -67,7 +67,6 @@ namespace gnow.UI
         {
             slider0.Value = val*100;           
         }
-
          
         public delegate void FaderValueChangedEventHandler(object sender, RangeBaseValueChangedEventArgs e);
 
@@ -112,6 +111,12 @@ namespace gnow.UI
         private void muteButton_Unchecked(object sender, RoutedEventArgs e)
         {
             Mute = true;
+        }
+
+        public void SetMute(bool val)
+        {
+            Mute = val;
+            muteButton.IsChecked = val;
         }
     }
 }
