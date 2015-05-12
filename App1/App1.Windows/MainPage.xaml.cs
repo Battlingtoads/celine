@@ -324,6 +324,7 @@ namespace App1
             if(MuteValueChanged != null)
             {
                 MuteValueChanged(this, e);
+                int i = 0;
             }
         }
 
