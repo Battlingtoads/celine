@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App1", "App1", "{0C5F99DF-A3D5-4BDB-9382-832EB72E4F5C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "celine", "celine", "{0C5F99DF-A3D5-4BDB-9382-832EB72E4F5C}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "App1.Shared", "App1\App1.Shared\App1.Shared.shproj", "{0E802C81-33A8-4D37-B1F1-E13B6BA9A8CF}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "celine.Shared", "App1\App1.Shared\celine.Shared.shproj", "{0E802C81-33A8-4D37-B1F1-E13B6BA9A8CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App1.Windows", "App1\App1.Windows\App1.Windows.csproj", "{89D9FE22-D8E5-420C-8F43-747A043DB8C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "celine.Windows", "App1\App1.Windows\celine.Windows.csproj", "{89D9FE22-D8E5-420C-8F43-747A043DB8C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App1.WindowsPhone", "App1\App1.WindowsPhone\App1.WindowsPhone.csproj", "{693AD006-0987-479A-9A54-73DC9B9B2778}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "celine.WindowsPhone", "App1\App1.WindowsPhone\celine.WindowsPhone.csproj", "{693AD006-0987-479A-9A54-73DC9B9B2778}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "behringer", "behringer\behringer.csproj", "{0542135E-161B-4538-A8A8-A457D1F8D2AD}"
 EndProject
