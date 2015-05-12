@@ -4,6 +4,7 @@ using System.Text;
 using Windows.UI.Xaml.Controls.Primitives;
 using gnow.util.behringer;
 using gnow.util.behringer.events;
+using gnow.UI;
 
 namespace gnow.util
 {
@@ -30,6 +31,7 @@ namespace gnow.util
         private void ChannelOSCReceived(object sender, ChannelReceivedEventArgs e)
         {
             string[] subs = e.subAddress.Split('/');
+            List<float> faderLevels = view.FaderValues as List<float>;
             switch(subs[1])
             {
                 case "mix":
@@ -38,20 +40,19 @@ namespace gnow.util
                         case "fader":
                             X32Level level = new X32Level(0, 1024);
                             level.RawLevel = (float)e.value;
-                            List<float> faderLevels = view.FaderValues as List<float>;
                             switch(view.Bank.getEnum())
                             {
                                 case Constants.FADER_GROUP.CHANNEL_1_8:
-                                    faderLevels[e.channel - 1] = level.DbFSLevel;
+                                    faderLevels[e.channel - 1] = level.RawLevel;
                                     break;
                                 case Constants.FADER_GROUP.CHANNEL_9_16:
-                                    faderLevels[e.channel - 9] = level.DbFSLevel;
+                                    faderLevels[e.channel - 9] = level.RawLevel;
                                     break;
                                 case Constants.FADER_GROUP.CHANNEL_17_24:
-                                    faderLevels[e.channel - 17] = level.DbFSLevel;
+                                    faderLevels[e.channel - 17] = level.RawLevel;
                                     break;
                                 case Constants.FADER_GROUP.CHANNEL_25_32:
-                                    faderLevels[e.channel - 25] = level.DbFSLevel;
+                                    faderLevels[e.channel - 25] = level.RawLevel;
                                     break;
                             }
                             break;
@@ -62,6 +63,7 @@ namespace gnow.util
                     //do nothing
                     break;
             }
+            view.FaderValues = faderLevels;
         }
     }
     public delegate void FaderValueChangedEventHandler(object sender, FaderValueChangedArgs e);

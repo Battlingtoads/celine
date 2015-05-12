@@ -281,6 +281,15 @@ namespace App1
                 AssignFaderBank();
                 return faderValues;
             }
+            set
+            {
+                List<float> fValues = value as List<float>;
+                for(int i = 0; i < faders.Count; i++)
+                {
+                    faders[i].FaderValue = fValues[i];
+                    faders[i].SetFaderValue(fValues[i]);
+                }
+            }
         }
 
         public IEnumerable<bool> Mutes
@@ -289,6 +298,14 @@ namespace App1
             {
                 AssignFaderBank();
                 return Mutes;
+            }
+            set
+            {
+                List<bool> fMutes = value as List<bool>;
+                for(int i = 0; i < faders.Count; i++)
+                {
+                    faders[i].Mute = fMutes[i];
+                }
             }
         }
 
@@ -324,7 +341,6 @@ namespace App1
             if(MuteValueChanged != null)
             {
                 MuteValueChanged(this, e);
-                int i = 0;
             }
         }
 

@@ -68,17 +68,6 @@ namespace gnow.UI
             slider0.Value = val*100;           
         }
 
-        public void setMute(Constants.ON_OFF val)
-        {
-            if(val == Constants.ON_OFF.ON)
-            {
-                muteButton.IsChecked = false;
-            }
-            else
-            {
-                muteButton.IsChecked = true;
-            }
-        }
          
         public delegate void FaderValueChangedEventHandler(object sender, RangeBaseValueChangedEventArgs e);
 
