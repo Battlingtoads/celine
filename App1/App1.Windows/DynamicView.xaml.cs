@@ -31,6 +31,11 @@ namespace App1
             presenter = new DynamicPresenter(this);
         }
 
+        private void GoBack(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
+        }
+
         private void ThresholdKnob_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             if(Graph != null)

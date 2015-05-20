@@ -36,7 +36,7 @@ namespace App1
         {
             get { return (string)GetValue(TitleProperty); }
             set { SetValue(TitleProperty, value);
-            titleBlock.Text = value;
+            titleButton.Content = value;
             }
         }
 

@@ -28,6 +28,8 @@
             <local:LevelConverter x:Key="LevelConverter"/>
         </Grid.Resources>
 
+        <Button Name="BackButton" HorizontalAlignment="Center" VerticalAlignment="Center" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=GateView}" Style="{StaticResource NavigationBackButtonNormalStyle}"/>
+
         <local:GateGraph x:Name="Graph" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Margin="3" />
 
         <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" >

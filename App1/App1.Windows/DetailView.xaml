@@ -24,6 +24,7 @@
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
 
+        <Button Name="BackButton" HorizontalAlignment="Center" VerticalAlignment="Center" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=GateView}" Style="{StaticResource NavigationBackButtonNormalStyle}"/>
         <Button x:Name="RefreshView" Content="Refresh" Click="RefreshView_Click" />
 
         <local:PreAmpSection x:Name="preamp" Grid.Column="0" Grid.Row="1"/>

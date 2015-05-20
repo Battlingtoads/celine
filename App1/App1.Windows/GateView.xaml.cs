@@ -37,6 +37,11 @@ namespace App1
                 Graph.threshHoldValue = e.NewValue;
         }
 
+        private void GoBack(object sender, RoutedEventArgs args)
+        {
+            Frame.GoBack();
+        }
+
         public float Threshold
         {
             get

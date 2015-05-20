@@ -30,6 +30,11 @@ namespace App1
             presenter = new DetailPresenter(this);
         }
 
+        private void GoBack(object sender, RoutedEventArgs args)
+        {
+            Frame.GoBack();
+        }
+
         private void RefreshView_Click(object sender, RoutedEventArgs e)
         {
             for(int i = 1; i < 17; i++)
@@ -37,6 +42,8 @@ namespace App1
                 Sends.SetLevel(i, .5f);
             }
         }
+
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 

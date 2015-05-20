@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
 using gnow.util.behringer;
+using System.Diagnostics;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -22,11 +23,13 @@ namespace App1
 {
     public sealed partial class GateOverview : UserControl
     {
+        private Frame ownerFrame;
         public GateOverview()
         {
             this.InitializeComponent();
             gainReduction.SetBackgroundFill(new SolidColorBrush(Colors.Red));
             this.Loaded += (o, e) => DrawGraph();
+            ownerFrame = Window.Current.Content as Frame;
 
         }
 
@@ -37,7 +40,7 @@ namespace App1
             set
             {
                 SetValue(TitleProperty, value);
-                titleBlock.Text = value;
+                titleButton.Content = value;
             }
         }
 
@@ -48,7 +51,11 @@ namespace App1
 
         private static void onValueChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
+        }
 
+        private void TitleClick(object sender, RoutedEventArgs e)
+        {
+            ownerFrame.Navigate(typeof(GateView));
         }
 
         private LineSegment threshHoldPoint;
